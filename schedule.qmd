@@ -7,30 +7,30 @@ are linked here as each week is posted.
 
 Readings come from two free QuantEcon lecture series:
 [Python Programming for Economics and Finance](https://python-programming.quantecon.org)
-(**PP**) and
+(**PP**), by Thomas J. Sargent and John Stachurski, and
 [A First Course in Quantitative Economics with Python](https://intro.quantecon.org)
 (**FC**).
 
 | Week | Topic | Reading | Notebook |
 |---|---|---|---|
 | **Module 1** | **Python, Git, and AI-assisted coding foundations** | | |
-| 1 | Course introduction; computational thinking in economics; setup; AI policy | PP: "Python Essentials" | [Week 1](weeks/week01.ipynb) |
-| 2 | Python fundamentals I: variables, control flow, functions | PP: "An Introductory Example," "Python Essentials" | [Week 2](weeks/week02.ipynb) |
-| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | PP: "NumPy," "Matplotlib" | [Week 3](weeks/week03.ipynb) |
+| 1 | Course introduction; computational thinking in economics; setup; AI policy | [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 1](weeks/week01.ipynb) |
+| 2 | Python fundamentals I: variables, control flow, functions | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 2](weeks/week02.ipynb) |
+| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | [Week 3](weeks/week03.ipynb) |
 | **Module 2** | **Data handling and visualization** | | |
-| 4 | pandas for economic data | PP: "Pandas" | |
-| 5 | Exploratory data analysis and visualization | FC: "Introduction to Economic Data" | |
+| 4 | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | |
+| 5 | Exploratory data analysis and visualization | [FC 2. Long-Run Growth](https://intro.quantecon.org/long_run_growth.html) | |
 | **Module 3** | **Numerical methods** | | |
-| 6 | Root-finding and optimization | PP: "SciPy" | |
-| 7 | Linear algebra and Markov chains | FC: "Linear Algebra," "Markov Chains: Basic Concepts" | |
-| 8 | Randomness and simulation; midterm | FC: "LLN and CLT" | |
+| 6 | Root-finding and optimization | [PP 12. SciPy](https://python-programming.quantecon.org/scipy.html) | |
+| 7 | Linear algebra and Markov chains | [FC 17. Linear Equations and Matrix Algebra](https://intro.quantecon.org/linear_equations.html); [FC 40. Markov Chains: Basic Concepts](https://intro.quantecon.org/markov_chains_I.html) | |
+| 8 | Randomness and simulation; midterm | [FC 10. LLN and CLT](https://intro.quantecon.org/lln_clt_intro.html) | |
 | **Module 4** | **Microeconomic applications** | | |
 | 9 | Consumer theory, computationally | | |
 | 10 | Producer theory, competitive markets, and welfare | | |
 | 11 | Monopoly and price discrimination | | |
-| 12 | Oligopoly and game theory | FC: Optimization, Networks & Markets | |
-| 13 | General equilibrium, many goods, and networks | FC: "Supply and Demand with Many Goods" | |
+| 12 | Oligopoly and game theory | | |
+| 13 | General equilibrium, many goods, and networks | [FC 52. Supply and Demand with Many Goods](https://intro.quantecon.org/supply_demand_multiple_goods.html); [FC 50. Networks](https://intro.quantecon.org/networks.html) | |
 | **Module 5** | **Estimation, AI-assisted analysis, and agent-based modeling** | | |
-| 14 | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | FC: "Simple Linear Regression Model," "Maximum Likelihood Estimation" | |
-| 15 | Agent-based modeling | | |
+| 14 | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | [FC 12. Simple Linear Regression Model](https://intro.quantecon.org/simple_linear_regression.html); [FC 13. Maximum Likelihood Estimation](https://intro.quantecon.org/mle_intro.html) | |
+| 15 | Agent-based modeling | [FC 31. Racial Segregation](https://intro.quantecon.org/schelling.html) (the Schelling model) | |
 | 16 | Capstone presentations and wrap-up | | |

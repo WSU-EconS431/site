@@ -76,7 +76,7 @@ your WSU login. On a Chromebook or iPad, skip to [No-install path](#no-install).
    Python from `.venv` (labeled **econs431**). If Positron offers to create an
    environment, decline: `uv sync` builds the course one.
 9. **Check it.** Run `uv run python check_setup.py`. Every line should start with
-   `[OK]`. Then open `ps00/ps00.ipynb`, choose the same **econs431** kernel at the
+   `[OK]`. Then open `ps01/ps01.ipynb`, choose the same **econs431** kernel at the
    top right of the notebook, complete it, commit, push, and submit the commit
    link in Canvas.
 

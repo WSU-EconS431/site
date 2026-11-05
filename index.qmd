@@ -29,4 +29,4 @@ applications, estimation, and agent-based modeling.
 ## This week
 
 **Week 1: Course introduction and setup.** Read the [Week 1 notebook](weeks/week01.ipynb)
-and complete the [Setup guide](setup.qmd) and PS0.
+and complete the [Setup guide](setup.qmd) and PS01.

@@ -147,7 +147,7 @@ git config --global user.email "you@example.com"
 
 ## Notebooks
 
-### How do I tick the boxes in the PS0 checklist?
+### How do I tick the boxes in the PS01 checklist?
 
 Double-click the checklist cell to edit it, change `[ ]` to `[x]`, then press
 **Shift+Enter**.
@@ -219,5 +219,5 @@ Two more prompts that help:
   language for a beginner: what it means, the most likely cause, and the first
   thing to check. Error: [paste]"*
 
-If an AI assistant helped with your setup, say so in PS0's AI usage note, the same as for any
+If an AI assistant helped with your setup, say so in PS01's AI usage note, the same as for any
 problem set.
