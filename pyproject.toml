@@ -1,0 +1,27 @@
+[project]
+name = "econs431"
+version = "2027.1"
+description = "Course environment for ECONS 431 Computational Economics (WSU). Do not edit; run `uv sync`."
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "seaborn",
+  "scipy",
+  "statsmodels",
+  "pyfixest",
+  "scikit-learn",
+  "quantecon",
+  "mesa",
+  "networkx",   # mesa imports networkx but does not install it
+  "wbgapi",
+  "openpyxl",
+  "requests",
+  "ipykernel",
+  "jupyterlab",
+  "nbstripout",
+]
+
+[tool.uv]
+package = false

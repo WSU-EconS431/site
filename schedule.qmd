@@ -1,0 +1,36 @@
+---
+title: "Schedule"
+---
+
+Topics and readings by week. **Due dates are in Canvas only.** Lecture notebooks
+are linked here as each week is posted.
+
+Readings come from two free QuantEcon lecture series:
+[Python Programming for Economics and Finance](https://python-programming.quantecon.org)
+(**PP**) and
+[A First Course in Quantitative Economics with Python](https://intro.quantecon.org)
+(**FC**).
+
+| Week | Topic | Reading | Notebook |
+|---|---|---|---|
+| **Module 1** | **Python, Git, and AI-assisted coding foundations** | | |
+| 1 | Course introduction; computational thinking in economics; setup; AI policy | PP: "Python Essentials" | [Week 1](weeks/week01.ipynb) |
+| 2 | Python fundamentals I: variables, control flow, functions | PP: "An Introductory Example," "Python Essentials" | |
+| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | PP: "NumPy," "Matplotlib" | |
+| **Module 2** | **Data handling and visualization** | | |
+| 4 | pandas for economic data | PP: "Pandas" | |
+| 5 | Exploratory data analysis and visualization | FC: "Introduction to Economic Data" | |
+| **Module 3** | **Numerical methods** | | |
+| 6 | Root-finding and optimization | PP: "SciPy" | |
+| 7 | Linear algebra and Markov chains | FC: "Linear Algebra," "Markov Chains: Basic Concepts" | |
+| 8 | Randomness and simulation; midterm | FC: "LLN and CLT" | |
+| **Module 4** | **Microeconomic applications** | | |
+| 9 | Consumer theory, computationally | | |
+| 10 | Producer theory, competitive markets, and welfare | | |
+| 11 | Monopoly and price discrimination | | |
+| 12 | Oligopoly and game theory | FC: Optimization, Networks & Markets | |
+| 13 | General equilibrium, many goods, and networks | FC: "Supply and Demand with Many Goods" | |
+| **Module 5** | **Estimation, AI-assisted analysis, and agent-based modeling** | | |
+| 14 | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | FC: "Simple Linear Regression Model," "Maximum Likelihood Estimation" | |
+| 15 | Agent-based modeling | | |
+| 16 | Capstone presentations and wrap-up | | |

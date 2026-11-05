@@ -1,0 +1,54 @@
+---
+title: "Policies"
+---
+
+The syllabus in Canvas is the official version of every course policy. This page
+summarizes the ones you'll use most.
+
+## AI use
+
+AI assistants are allowed in this course, with acknowledgment, under rules that
+change as your skills grow. You must be able to explain and defend every line you
+submit.
+
+| Period | Chat assistants (explain, debug) | Inline autocomplete | Agentic tools that edit and run code for you | Disclosure |
+|---|---|---|---|---|
+| Weeks 1–5 (fundamentals, data) | Allowed | **Off** | Not for problem sets | AI usage note on every problem set |
+| Weeks 6–13 (numerical methods, applications) | Allowed | Allowed | Not for problem sets | AI usage note on every problem set |
+| Weeks 14–16 and capstone | Allowed | Allowed | Allowed, documented | Usage note, plus one AI error your team caught and corrected, in the presentation |
+| Midterm and in-class exams | Not allowed | Off | Not allowed | — |
+
+**Why autocomplete is off at first:** in the first five weeks, autocomplete writes
+the syntax you're supposed to be learning. A chat assistant explaining an error
+message teaches it.
+
+**Tools:** Microsoft 365 Copilot Chat is free with your WSU login and is the
+course default. GitHub Copilot is free for verified students through GitHub
+Education. You may use other assistants under the same rules; you never need to
+pay for one.
+
+**Privacy:** never paste personal data, other students' work, or restricted
+datasets into a consumer AI tool. Use the WSU-login Copilot when unsure.
+
+**Spot checks:** each week a few students, chosen at random, walk through one
+cell of their submission for three minutes in lab or office hours.
+
+### AI usage note
+
+Every problem-set notebook ends with this cell. "None" is a fine answer.
+
+```markdown
+## AI usage note
+- Tool(s) and model, if known:
+- What I asked (paste or summarize the key prompts):
+- What I used from the output, and where (cell numbers):
+- How I checked it (tests run, numbers compared, errors I fixed):
+```
+
+## Submitting work
+
+1. Restart & Run All. The notebook must run from top to bottom.
+2. Fill in the AI usage note.
+3. Commit and push.
+4. Copy the commit URL from GitHub and paste it into the Canvas assignment before
+   the deadline. **The Canvas submission time is the official time.**

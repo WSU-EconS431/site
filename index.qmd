@@ -1,0 +1,32 @@
+---
+title: "ECONS 431 Computational Economics"
+subtitle: "Washington State University"
+toc: false
+---
+
+Computational tools for solving and analyzing economic models: programming in
+Python, working with economic data, numerical methods, microeconomic
+applications, estimation, and agent-based modeling.
+
+## Start here
+
+1. **Set up your computer** with the [Setup guide](setup.qmd) before the second
+   class session.
+2. **Stuck?** Check the [Setup FAQ](setup-faq.qmd), then post on Discussions.
+3. **Each week**, the [Schedule](schedule.qmd) links that week's readings and
+   lecture notebooks.
+
+## Where things live
+
+| What | Where |
+|---|---|
+| Lecture notes, notebooks, readings, setup help | This site |
+| Your problem sets | Your private repo: `WSU-EconS431/ps-<your-username>` |
+| Due dates, submissions, grades, announcements | Canvas |
+| Questions about code | Course Discussions on GitHub |
+| Course policies, including AI use | [Policies](policies.qmd) |
+
+## This week
+
+**Week 1: Course introduction and setup.** Read the [Week 1 notebook](weeks/week01.ipynb)
+and complete the [Setup guide](setup.qmd) and PS0.

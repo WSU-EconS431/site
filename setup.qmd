@@ -1,0 +1,89 @@
+---
+title: "Setup guide"
+---
+
+This sets up everything you need for the semester: Git, Positron (the editor),
+uv (which builds the course's Python environment), and your private course repo
+on GitHub. Do it before the second class session. If you get stuck, see the
+[Setup FAQ](setup-faq.qmd).
+
+**Before you start:** about 5 GB of free disk space, an internet connection, and
+your WSU login. On a Chromebook or iPad, skip to [No-install path](#no-install).
+
+## Steps
+
+1. **GitHub account.** Sign up at [github.com](https://github.com) with any
+   username (it doesn't need to be your real name) and add your WSU email to the
+   account. Then apply for GitHub Education student benefits at
+   [education.github.com](https://education.github.com); approval can take a few
+   days. Enter your username in the Canvas "GitHub username" survey.
+2. **Git.**
+   - *Windows:* install "Git for Windows" from [git-scm.com](https://git-scm.com)
+     and accept every default. It includes the sign-in helper Git needs for GitHub.
+   - *Mac:* open Terminal, type `git --version`, and accept the prompt to install
+     the Command Line Tools. Then install the GitHub CLI from
+     [cli.github.com](https://cli.github.com) and run `gh auth login` (choose the
+     web-browser login) and `gh auth setup-git`, so Git can sign in to GitHub.
+3. **Positron.** Download and install it from
+   [positron.posit.co](https://positron.posit.co).
+4. **uv.**
+   - *Windows* (PowerShell):
+     `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+   - *Mac* (Terminal): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+
+   Close and reopen the terminal afterward.
+5. **Tell Git who you are** (in a terminal):
+
+   ```
+   git config --global user.name "First Last"
+   git config --global user.email "your-github-email@example.com"
+   ```
+6. **Accept your repo invitation** from the email GitHub sends you, or at
+   `https://github.com/WSU-EconS431/ps-<your-username>/invitations`.
+7. **Clone your repo.** Make a folder such as `EconS431` directly in your home
+   folder (`C:\Users\<you>\EconS431` or `/Users/<you>/EconS431`). **Not in
+   OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents**, which
+   many laptops sync automatically. Then, in a Positron terminal:
+
+   ```
+   cd ~/EconS431
+   git clone https://github.com/WSU-EconS431/ps-<your-username>.git
+   ```
+
+   The first clone opens a GitHub sign-in window; choose the browser option.
+   Then open the new folder: **File > Open Folder** > `EconS431/ps-<your-username>`.
+8. **Build the environment.** In a Positron terminal inside your repo, run
+   `uv sync`. Then click the interpreter name at the top right and choose the
+   Python from `.venv` (labeled **econs431**). If Positron offers to create an
+   environment, decline: `uv sync` builds the course one.
+9. **Check it.** Run `uv run python check_setup.py`. Every line should start with
+   `[OK]`. Then open `ps00/ps00.ipynb`, choose the same **econs431** kernel at the
+   top right of the notebook, complete it, commit, push, and submit the commit
+   link in Canvas.
+
+## No-install path {#no-install}
+
+For a Chromebook, an iPad, or a laptop that won't cooperate: do steps 1 and 6.
+Then, on your repo's GitHub page, click **Code > Codespaces > Create codespace**.
+Wait for setup to finish (a few minutes the first time) and start at step 9.
+
+## Every problem set
+
+1. **Pull** in Positron (Source Control > **...** > Pull). The new `psNN/` folder appears.
+2. **Work** in `psNN/psNN.ipynb`, and commit whenever something works.
+3. **Restart & Run All.** If it doesn't run from top to bottom, it isn't finished.
+4. **Fill in the AI usage note** at the bottom.
+5. **Push, copy the commit URL** from GitHub, and **paste it into Canvas** before
+   the deadline.
+
+## Rules of the road
+
+- Your repo is private. Never make it public or share it, even after the course,
+  unless an assignment says it may be shared.
+- Use relative paths (`data/prices.csv`), never `C:\Users\...`. Your code must
+  run on the instructor's machine.
+- Don't commit `.venv/` or big data files. GitHub rejects files over 100 MB, and
+  your repo's `.gitignore` handles the common cases.
+- Don't change `pyproject.toml` or `uv.lock`. If you think you need another
+  package, ask on Discussions.
+- **Asking for help:** see [Getting help](setup-faq.qmd#getting-help).

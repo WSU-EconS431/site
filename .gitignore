@@ -1,0 +1,15 @@
+# Python environment (rebuilt by `uv sync`; never commit it)
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Quarto build output (rebuilt by `quarto render`; published with `quarto publish gh-pages`)
+/.quarto/
+/_site/
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+**/*.quarto_ipynb

@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: _site
+
+# Run notebook code when rendering (with the course environment, via `uv run`),
+# but re-run a notebook only when its source changes. Results are stored in
+# _freeze/; commit it so the site rebuilds without re-executing every notebook.
+execute:
+  enabled: true
+  freeze: auto
+
+website:
+  title: "ECONS 431 Computational Economics"
+  site-url: https://wsu-econs431.github.io/site/
+  repo-url: https://github.com/WSU-EconS431/site
+  search: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: schedule.qmd
+        text: Schedule
+      - text: Setup
+        menu:
+          - href: setup.qmd
+            text: Setup guide
+          - href: setup-faq.qmd
+            text: Setup FAQ
+      - href: policies.qmd
+        text: Policies
+  page-footer:
+    left: "ECONS 431 · Washington State University"
+    right: "Grades, due dates, and announcements are in Canvas."
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-overflow: wrap

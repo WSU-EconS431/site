@@ -1,0 +1,223 @@
+---
+title: "Setup FAQ"
+subtitle: "ECONS 431 Computational Economics"
+toc: true
+---
+
+Start here when setup goes wrong. Most problems are one of the cases below.
+If yours isn't, see [Getting help](#getting-help) at the bottom.
+
+**Your best diagnostic tool:** from your repo folder, run
+
+```
+uv run python check_setup.py
+```
+
+Every line should start with `[OK]`. Each `[!!]` line says what to fix. Paste
+the whole output into any help request.
+
+## Installing
+
+### "uv is not recognized" (or "command not found")
+
+uv is installed, but your terminal started before it was. Close every terminal
+**and Positron**, reopen, and try again. If it still fails, rerun the uv install
+command from the setup guide.
+
+### I see two Pythons, or Python 3.14, or a Python I don't recognize
+
+That's normal. Many computers already have one or more Pythons. The course uses
+its own Python 3.13, which `uv sync` downloads into your repo's `.venv` folder.
+You don't need to uninstall anything; you only need to **select** the `.venv` one
+(see below).
+
+## The Python environment
+
+### Positron shows a red ✕ and "A dedicated Python environment is available" (or offers to "Create Python environment")
+
+Don't click the create button. It builds a different environment from the course
+one. Instead:
+
+1. Open your repo folder (**File > Open Folder**). It's the folder that contains `pyproject.toml`.
+2. Open a terminal (**Terminal > New Terminal**) and run `uv sync`.
+3. Click the interpreter name at the top right of Positron and choose the Python from `.venv`.
+
+### `uv sync` says it can't find `pyproject.toml`
+
+The terminal is in the wrong folder. Open your repo folder in Positron
+(**File > Open Folder**), then open a new terminal; it starts in the right place.
+
+### `uv sync` fails with "Failed to hardlink files" or "os error 396"
+
+A sync or backup tool (OneDrive, Dropbox, and others) is blocking the file links
+uv uses to save disk space. Tell uv to copy instead:
+
+```
+uv sync --link-mode=copy
+```
+
+Current course repos already include this setting, so it should only affect
+older copies.
+
+### A notebook says "No module named numpy" (or pandas, scipy, ...)
+
+The notebook is running a different Python from the course one. Click the kernel
+name at the **top right of the notebook** and choose the Python from `.venv`
+(it's labeled **econs431**). Then **Restart** the kernel and run the cells again.
+Positron usually remembers this choice for the folder.
+
+### `check_setup.py` says "Repo is outside a cloud-synced folder" is a problem
+
+Your repo is inside OneDrive, Dropbox, iCloud, or Google Drive. Syncing the
+`.venv` folder (about 850 MB and 25,000 files) causes slowdowns and locked-file
+errors. Move the repo to a folder in your home folder that doesn't sync, such as
+`C:\Users\<you>\EconS431` (Windows) or `/Users/<you>/EconS431` (Mac).
+
+Watch out: on many laptops, **Desktop and Documents are synced** (OneDrive on
+Windows, iCloud on Mac) even if you never set that up. If the path contains
+`OneDrive`, `Dropbox`, `iCloud`, or `Mobile Documents`, it syncs.
+
+### My `.venv` folder is huge, and Windows won't let me delete or move it
+
+Its size is normal: it holds compiled scientific libraries. It's never uploaded
+to GitHub, and `uv sync` rebuilds it in a minute, so deleting it is always safe.
+
+Windows refuses because a program still has its files open:
+
+1. Quit Positron completely, including from the system tray.
+2. In Task Manager, end any leftover `python.exe` processes.
+3. If the folder is in OneDrive or Dropbox, pause syncing.
+4. Delete it. If Windows still refuses, restart the computer and delete it before opening anything else.
+
+## GitHub and Git
+
+### The browser asks me to "Authorize Visual-Studio-Code"
+
+That's expected. Positron is built on VS Code and uses VS Code's GitHub sign-in.
+Check that the address starts with `https://github.com/`, then authorize.
+
+### GitHub says I'm connected, but Positron says "failed to sign in to GitHub"
+
+The browser couldn't hand the sign-in back to Positron. You don't need that
+sign-in; let Git sign in on its own:
+
+1. In Positron, open **Settings** (Ctrl+, or Cmd+,), search for `github.gitAuthentication`, uncheck it, and restart Positron.
+2. When you clone, choose **Git: Clone** and **paste your repo's URL** rather than choosing "Clone from GitHub".
+3. The first clone or push opens a sign-in window. Choose the browser option.
+
+### How do I know Git can sign in to GitHub?
+
+**Windows:** run
+
+```
+git config --show-origin --get-all credential.helper
+```
+
+You should see `manager` (from `C:/Program Files/Git/etc/gitconfig`). If you see
+nothing, run `git config --global credential.helper manager`.
+
+**Mac:** install the GitHub CLI from [cli.github.com](https://cli.github.com),
+then run these two commands and choose the web-browser login when asked:
+
+```
+gh auth login
+gh auth setup-git
+```
+
+### `check_setup.py` says "Repo is connected to GitHub" is a problem
+
+You're working in a copy of the files rather than a clone of your GitHub repo.
+Clone your repo (**Git: Clone**, paste
+`https://github.com/WSU-EconS431/ps-<your-username>.git`), then run `uv sync` in
+the new folder. Copy any work you want to keep into the clone.
+
+### I get "Repository not found" (or 404) for my repo
+
+You haven't accepted the invitation yet. Open the email from GitHub, or go to
+`https://github.com/WSU-EconS431/ps-<your-username>/invitations` while signed in.
+
+### `check_setup.py` says `git user.name` or `git user.email` isn't set
+
+Run these once, with your own name and the email on your GitHub account:
+
+```
+git config --global user.name "First Last"
+git config --global user.email "you@example.com"
+```
+
+## Notebooks
+
+### How do I tick the boxes in the PS0 checklist?
+
+Double-click the checklist cell to edit it, change `[ ]` to `[x]`, then press
+**Shift+Enter**.
+
+### The kernel is named "econs431". Is that right?
+
+Yes. That's the course environment in your repo's `.venv` folder.
+
+## Still stuck after 30 minutes? {#still-stuck}
+
+Stop and switch to the no-install path so you're not blocked: on your repo's
+GitHub page, click **Code > Codespaces > Create codespace**. Everything is
+preinstalled there. Then post your problem (see below) so we can fix your laptop
+setup.
+
+## Getting help {#getting-help}
+
+### Post on Discussions
+
+Include all four of these, so someone can help on the first reply:
+
+1. Your computer: Windows or Mac.
+2. The setup step you were on.
+3. The **exact** error text, copied as text (not a screenshot).
+4. The full output of `uv run python check_setup.py`, if you can run it.
+
+Answering a classmate's setup question counts toward participation.
+
+### Ask an AI assistant (with the right context first)
+
+Generic AI advice often conflicts with this course's setup. It may tell you to
+`pip install numpy`, install Anaconda, or create a new environment, and those
+make things worse here. Paste this context **first**, then your problem.
+Microsoft 365 Copilot Chat (sign in with your WSU account) is free and works well
+for this.
+
+```
+I'm setting up a Python course environment. The setup is fixed and I must not
+change it:
+- Editor: Positron (built on VS Code).
+- Python environment: managed by uv. My repo has pyproject.toml, uv.lock and
+  .python-version (Python 3.13). The environment is built with `uv sync` into a
+  .venv folder in the repo.
+- Code lives in a private GitHub repo that I clone with Git; Git signs in with
+  Git Credential Manager (Windows) or the GitHub CLI (Mac).
+- The repo checker is `uv run python check_setup.py`; [!!] lines are problems.
+
+Rules for your answer:
+- Do NOT suggest pip install, conda/Anaconda, a new virtual environment,
+  changing pyproject.toml or uv.lock, or a different Python version.
+- Fixes should use: uv sync, choosing the .venv interpreter or kernel in
+  Positron, moving the repo out of a cloud-synced folder, or Git/GitHub
+  settings.
+- Give me ONE step at a time, tell me what I should see if it worked, and wait
+  for my result before the next step.
+
+My computer: [Windows or Mac]
+What I was doing: [setup step or command]
+Exact error text: [paste]
+check_setup.py output: [paste, if available]
+```
+
+Two more prompts that help:
+
+- **Before running a Git command you're unsure about:** *"Before I run
+  `[command]`, explain in plain language what it will do, and whether it can lose
+  any of my work. Don't suggest alternatives unless it's risky."*
+- **When an error message makes no sense:** *"Explain this error in plain
+  language for a beginner: what it means, the most likely cause, and the first
+  thing to check. Error: [paste]"*
+
+If an AI assistant helped with your setup, say so in PS0's AI usage note, the same as for any
+problem set.
