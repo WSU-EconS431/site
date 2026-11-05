@@ -455,8 +455,8 @@ How many: 4</code></pre>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"vectorized: </span><span class="sc">{</span>t_vec<span class="sc">:.4f}</span><span class="ss"> s  (</span><span class="sc">{</span>t_loop <span class="op">/</span> t_vec<span class="sc">:.0f}</span><span class="ss">x faster)"</span>)</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same answer:"</span>, np.isclose(total, total_vec))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>loop:       0.466 s
-vectorized: 0.0153 s  (30x faster)
+<pre><code>loop:       0.376 s
+vectorized: 0.0093 s  (41x faster)
 same answer: True</code></pre>
 </div>
 </div>
@@ -630,8 +630,8 @@ Demand at P = 30: 49</code></pre>
 <section id="this-week" class="level2">
 <h2 class="anchored" data-anchor-id="this-week">This week</h2>
 <ul>
-<li>Read QuantEcon’s <a href="https://python-programming.quantecon.org/numpy.html">“NumPy”</a> and <a href="https://python-programming.quantecon.org/matplotlib.html">“Matplotlib”</a>.</li>
-<li><strong>PS2</strong> (vectorized market and plot) is in the <code>ps02</code> folder of your repo.</li>
+<li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://python-programming.quantecon.org/numpy.html">10. NumPy</a> and <a href="https://python-programming.quantecon.org/matplotlib.html">11. Matplotlib</a>.</li>
+<li><strong>PS03</strong> (vectorized market and plot) is in the <code>ps03</code> folder of your repo.</li>
 <li>Module 1 ends here. Week 4 starts working with real economic data in pandas.</li>
 </ul>
 
