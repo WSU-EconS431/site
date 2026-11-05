@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week03.html</loc>
+    <lastmod>2026-11-05T22:01:19.412Z</lastmod>
+  </url>
+  <url>
     <loc>https://wsu-econs431.github.io/site/weeks/week01.html</loc>
     <lastmod>2026-11-05T16:22:12.364Z</lastmod>
   </url>
@@ -18,10 +22,14 @@
   </url>
   <url>
     <loc>https://wsu-econs431.github.io/site/schedule.html</loc>
-    <lastmod>2026-11-05T16:22:12.354Z</lastmod>
+    <lastmod>2026-11-05T21:00:12.495Z</lastmod>
   </url>
   <url>
     <loc>https://wsu-econs431.github.io/site/setup.html</loc>
-    <lastmod>2026-11-05T16:22:12.354Z</lastmod>
+    <lastmod>2026-11-05T22:00:25.642Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week02.html</loc>
+    <lastmod>2026-11-05T22:01:08.746Z</lastmod>
   </url>
 </urlset>
