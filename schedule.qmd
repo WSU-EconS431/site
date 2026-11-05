@@ -15,8 +15,8 @@ Readings come from two free QuantEcon lecture series:
 |---|---|---|---|
 | **Module 1** | **Python, Git, and AI-assisted coding foundations** | | |
 | 1 | Course introduction; computational thinking in economics; setup; AI policy | PP: "Python Essentials" | [Week 1](weeks/week01.ipynb) |
-| 2 | Python fundamentals I: variables, control flow, functions | PP: "An Introductory Example," "Python Essentials" | |
-| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | PP: "NumPy," "Matplotlib" | |
+| 2 | Python fundamentals I: variables, control flow, functions | PP: "An Introductory Example," "Python Essentials" | [Week 2](weeks/week02.ipynb) |
+| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | PP: "NumPy," "Matplotlib" | [Week 3](weeks/week03.ipynb) |
 | **Module 2** | **Data handling and visualization** | | |
 | 4 | pandas for economic data | PP: "Pandas" | |
 | 5 | Exploratory data analysis and visualization | FC: "Introduction to Economic Data" | |
