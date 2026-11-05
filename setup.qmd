@@ -12,34 +12,35 @@ your WSU login. On a Chromebook or iPad, skip to [No-install path](#no-install).
 
 ## Steps
 
-1. **GitHub account.** Sign up at [github.com](https://github.com) with any
-   username (it doesn't need to be your real name) and add your WSU email to the
-   account. Then apply for GitHub Education student benefits at
-   [education.github.com](https://education.github.com); approval can take a few
-   days. Enter your username in the Canvas "GitHub username" survey.
-2. **Git.**
-   - *Windows:* install "Git for Windows" from [git-scm.com](https://git-scm.com)
-     and accept every default. It includes the sign-in helper Git needs for GitHub.
-   - *Mac:* open Terminal, type `git --version`, and accept the prompt to install
-     the Command Line Tools. Then install the GitHub CLI from
-     [cli.github.com](https://cli.github.com) and run `gh auth login` (choose the
-     web-browser login) and `gh auth setup-git`, so Git can sign in to GitHub.
-3. **Positron.** Download and install it from
-   [positron.posit.co](https://positron.posit.co).
-4. **uv.**
+1. **GitHub**: the website that stores your course work online. Each student gets a private repository ("repo") there, a folder only you and the instructor can see. New problem sets arrive in it. To hand in work, you use Git to save it to your repo, then submit the link to it in Canvas.
+   - Sign up at [github.com](https://github.com) with any username (it doesn't need to be your real name), and add your WSU email to the account.
+   - Apply for GitHub Education student benefits at [education.github.com](https://education.github.com). Approval can take a few days; it gives you free GitHub Copilot and free Codespaces hours.
+   - Enter your GitHub username in the Canvas "GitHub username" survey, so your course repo can be created.
+
+2. **Git**: Provides version control. It saves snapshots ("commits") of your work and syncs them with your private course repo on GitHub. You'll use it to get each new problem set (pull) and to hand in your work (commit and push), mostly through buttons in Positron.
+   - *Windows:* install "Git for Windows" from [git-scm.com](https://git-scm.com) and accept every default. It includes the sign-in helper Git needs for GitHub.
+   - *Mac:* open Terminal, type `git --version`, and accept the prompt to install the Command Line Tools. Then install the GitHub CLI from
+     [cli.github.com](https://cli.github.com) and run `gh auth login` (choose the web-browser login) and `gh auth setup-git`, so Git can sign in to GitHub.
+
+3. **Positron**: Download and install it from [positron.posit.co](https://positron.posit.co).
+
+4. **uv**: uv is a tool that installs Python and the course packages, so everyone's setup is identical.
    - *Windows* (PowerShell):
      `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
    - *Mac* (Terminal): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
    Close and reopen the terminal afterward.
+
 5. **Tell Git who you are** (in a terminal):
 
    ```
    git config --global user.name "First Last"
    git config --global user.email "your-github-email@example.com"
    ```
+
 6. **Accept your repo invitation** from the email GitHub sends you, or at
    `https://github.com/WSU-EconS431/ps-<your-username>/invitations`.
+
 7. **Clone your repo.** Make a folder such as `EconS431` directly in your home
    folder (`C:\Users\<you>\EconS431` or `/Users/<you>/EconS431`). **Not in
    OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents**, which
