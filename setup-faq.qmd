@@ -145,6 +145,13 @@ git config --global user.name "First Last"
 git config --global user.email "you@example.com"
 ```
 
+### "Commit operation was cancelled due to empty commit message"
+
+Every commit needs a short message saying what it contains. Type one in the box
+above **Commit** in Source Control (for example, "PS02 Q1-Q3 done"), then click
+**Commit**. If Positron opens a `COMMIT_EDITMSG` tab instead, type the message on
+its first line, then save and close the tab.
+
 ## Notebooks
 
 ### How do I tick the boxes in the PS01 checklist?
