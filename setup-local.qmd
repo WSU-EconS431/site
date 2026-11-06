@@ -1,0 +1,92 @@
+---
+title: "Work on your own computer (optional)"
+---
+
+The course's default is [GitHub Codespaces](setup.qmd), which runs in your web
+browser with nothing to install. This page sets up the same environment on your
+own laptop instead, so you can work offline and use Positron, a desktop editor.
+It's optional, and you can do it any time.
+
+You can use both. Your repo on GitHub is the same either way: **pull when you
+sit down, and push when you get up**, whichever computer you're on.
+
+**Before you start:** finish steps 1 and 2 of the [Setup guide](setup.qmd)
+(GitHub account and repo invitation). You'll also need about 5 GB of free disk
+space. If you get stuck, see the [Setup FAQ](setup-faq.qmd); you can always keep
+working in Codespaces in the meantime.
+
+## Steps
+
+1. **Git**: version-control software. It saves snapshots ("commits") of your work and syncs them with your private course repo on GitHub. You'll use it to get each new problem set (pull) and to hand in your work (commit and push), mostly through buttons in Positron. You'll type Git commands in Positron's terminal only during setup and for the occasional fix.
+   - *Windows:* install "Git for Windows" from [git-scm.com](https://git-scm.com) and accept every default. It includes the sign-in helper Git needs for GitHub.
+   - *Mac:* open Terminal, type `git --version`, and accept the prompt to install the Command Line Tools. Then install the GitHub CLI from
+     [cli.github.com](https://cli.github.com) and run `gh auth login` (choose the web-browser login) and `gh auth setup-git`, so Git can sign in to GitHub.
+
+2. **Positron** (free, from Posit): the program where you'll do all your coding. It opens your course repo, runs Python notebooks and scripts, shows your data and plots, and has Git built in. Download and install it from [positron.posit.co](https://positron.posit.co).
+   - When you first open your course folder, Positron asks whether you trust the authors of the files. Click **Yes, I trust the authors**; it's your own repo.
+   - If Positron offers to create a Python environment, decline. Step 6 builds the course environment instead.
+   - If Positron asks "Would you like Positron to periodically run git fetch?", click **Yes**. It checks GitHub for new problem sets without changing your files; a small down-arrow count in the status bar means something new is ready to pull.
+   - The first time you commit, Positron may ask whether to stage all your changes and commit them directly. Click **Yes** (or **Always**).
+   - The first time you click **Sync Changes**, Positron asks you to confirm pulling and pushing. Click **OK** (or **OK, Don't Ask Again**).
+   - If Positron asks you to sign in to GitHub, your browser will show "Authorize Visual-Studio-Code". That's expected: Positron is built on VS Code. If Positron then says sign-in failed, see the [Setup FAQ](setup-faq.qmd).
+   - If Positron offers to turn on an AI assistant or code completions, skip it for now. AI autocomplete stays off through Week 5 (see [Policies](policies.qmd)).
+
+3. **uv**: a free tool that installs Python and the course packages, so everyone's setup is identical. To install it, open a terminal: in Positron, choose **Terminal > New Terminal** (on Windows this opens PowerShell; on a Mac, a regular terminal). Then paste the command for your system and press Enter:
+   - *Windows:*
+
+     ```powershell
+     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+     ```
+
+   - *Mac:*
+
+     ```bash
+     curl -LsSf https://astral.sh/uv/install.sh | sh
+     ```
+   - Not using Positron's terminal? On Windows, click Start, type **PowerShell**, and open **Windows PowerShell**. On a Mac, press **Cmd+Space**, type **Terminal**, and press Return.
+   - When it finishes, quit and reopen Positron (or close and reopen the terminal) so it can find uv. Check with `uv --version`, which should print a version number.
+
+4. **Tell Git who you are.** In a terminal, paste each command, replace the text in quotes with your own name and the email on your GitHub account, then press Enter:
+
+   ```bash
+   git config --global user.name "First Last"
+   ```
+
+   ```bash
+   git config --global user.email "your-github-email@example.com"
+   ```
+   
+
+5. **Clone your repo.** Make a folder such as `EconS431` directly in your home
+   folder (`C:\Users\<you>\EconS431` or `/Users/<you>/EconS431`). **Not in
+   OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents**, which
+   many laptops sync automatically. Then, in a Positron terminal:
+
+   ```
+   cd ~/EconS431
+   git clone https://github.com/WSU-EconS431/ps-<your-username>.git
+   ```
+
+   The first clone opens a GitHub sign-in window; choose the browser option.
+   Then open the new folder: **File > Open Folder** > `EconS431/ps-<your-username>`.
+
+6. **Build the environment.** In a Positron terminal inside your repo, run
+   `uv sync`. Then click the interpreter name at the top right and choose the
+   Python from `.venv` (labeled **econs431**). If Positron offers to create an
+   environment, decline: `uv sync` builds the course one.
+
+7. **Check it.** Run `uv run python check_setup.py`. Every line should start with
+   `[OK]`. Then open `ps01/ps01.ipynb`, choose the same **econs431** kernel at the
+   top right of the notebook, complete it, commit, push, and submit the commit
+   link in Canvas.
+
+## Every problem set in Positron
+
+1. **Pull** in Positron (Source Control > **...** > Pull). The new `psNN/` folder appears.
+2. **Work** in `psNN/psNN.ipynb`, and commit whenever something works.
+3. **Restart & Run All.** If it doesn't run from top to bottom, it isn't finished.
+4. **Fill in the AI usage note** at the bottom.
+5. **Push, copy the commit URL** from GitHub, and **paste it into Canvas** before
+   the deadline.
+
+The [rules of the road](setup.qmd#rules) are the same as in Codespaces.

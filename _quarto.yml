@@ -23,7 +23,9 @@ website:
       - text: Setup
         menu:
           - href: setup.qmd
-            text: Setup guide
+            text: Setup guide (Codespaces)
+          - href: setup-local.qmd
+            text: Work on your own computer
           - href: setup-faq.qmd
             text: Setup FAQ
       - href: policies.qmd

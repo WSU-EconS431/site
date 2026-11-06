@@ -16,7 +16,54 @@ uv run python check_setup.py
 Every line should start with `[OK]`. Each `[!!]` line says what to fix. Paste
 the whole output into any help request.
 
-## Installing
+## Codespaces
+
+### My repo is greyed out, or I don't see "Create codespace"
+
+Check that you accepted your repo invitation (step 2 of the [Setup guide](setup.qmd)),
+and that you're on **your repo's** page: `https://github.com/WSU-EconS431/ps-<your-username>`.
+Use the green **Code** button there, then the **Codespaces** tab. If the repo is
+still greyed out, post on Discussions; it's a course setting the instructor can fix.
+
+### How do I get back to my codespace?
+
+Your repo's page > **Code** > **Codespaces** tab > click the codespace listed
+there (it has a random two-word name). You can also see all of yours at
+[github.com/codespaces](https://github.com/codespaces). Reuse that one codespace
+all semester rather than creating new ones.
+
+### A notebook says "No module named numpy" (or asks me to select a kernel)
+
+Click **Select Kernel** (or the kernel name) at the top right of the notebook,
+choose **Python Environments**, and pick the one in `.venv`. Then run the cells again.
+
+### I pressed Ctrl+W (or another shortcut) and my browser tab closed
+
+Some shortcuts belong to the browser, not the editor. Reopen your codespace (see
+above); your files are still there, and the editor saves changes automatically.
+
+### Will I run out of codespace time?
+
+Unlikely if you stop your codespace when you're done. Your account includes about
+60 hours a month, or 90 with GitHub student benefits. Check your usage under
+**Settings > Billing** on GitHub. To use less: close the tab when you're done (it
+stops after 30 idle minutes), or stop it right away at
+[github.com/codespaces](https://github.com/codespaces) (**⋯ > Stop codespace**).
+If you're about to run out, [set up your own computer](setup-local.qmd) as a backup.
+
+### My codespace disappeared
+
+A codespace you don't open for several weeks is deleted, along with anything not
+pushed to GitHub. Create a new one from your repo page; everything you pushed is
+still there. This is why every work session ends with commit and push.
+
+### "Pull" fails after I worked in a codespace and on my laptop
+
+Your two copies changed in different ways. Always pull when you sit down and push
+when you get up. If a pull still fails, don't force anything; post the message on
+Discussions.
+
+## Your own computer: installing
 
 ### "uv is not recognized" (or "command not found")
 
@@ -31,7 +78,7 @@ its own Python 3.13, which `uv sync` downloads into your repo's `.venv` folder.
 You don't need to uninstall anything; you only need to **select** the `.venv` one
 (see below).
 
-## The Python environment
+## Your own computer: the Python environment
 
 ### Positron shows a red ✕ and "A dedicated Python environment is available" (or offers to "Create Python environment")
 
@@ -96,7 +143,7 @@ Windows refuses because a program still has its files open:
 3. If the folder is in OneDrive or Dropbox, pause syncing.
 4. Delete it. If Windows still refuses, restart the computer and delete it before opening anything else.
 
-## GitHub and Git
+## Your own computer: GitHub and Git
 
 ### The browser asks me to "Authorize Visual-Studio-Code"
 
@@ -154,7 +201,7 @@ git config --global user.email "you@example.com"
 
 ### "Commit operation was cancelled due to empty commit message"
 
-Every commit needs a short message saying what it contains. Type one in the box
+(This happens in Codespaces too.) Every commit needs a short message saying what it contains. Type one in the box
 above **Commit** in Source Control (for example, "PS02 Q1-Q3 done"), then click
 **Commit**. If Positron opens a `COMMIT_EDITMSG` tab instead, type the message on
 its first line, then save and close the tab.
@@ -166,16 +213,19 @@ its first line, then save and close the tab.
 Double-click the checklist cell to edit it, change `[ ]` to `[x]`, then press
 **Shift+Enter**.
 
-### The kernel is named "econs431". Is that right?
+### The kernel is named "econs431" (or ".venv"). Is that right?
 
-Yes. That's the course environment in your repo's `.venv` folder.
+Yes. Positron labels the course environment **econs431**; Codespaces shows it as
+the Python in `.venv`. Either way it's the course environment in your repo's
+`.venv` folder.
 
 ## Still stuck after 30 minutes? {#still-stuck}
 
-Stop and switch to the no-install path so you're not blocked: on your repo's
-GitHub page, click **Code > Codespaces > Create codespace**. Everything is
-preinstalled there. Then post your problem (see below) so we can fix your laptop
-setup.
+If you're setting up your own computer, switch to Codespaces so you're not
+blocked: on your repo's GitHub page, click **Code > Codespaces > Create codespace
+on main**. Everything is preinstalled there. Then post your problem (see below)
+so we can fix your laptop setup later. If Codespaces itself is the problem, post
+right away.
 
 ## Getting help {#getting-help}
 
@@ -183,7 +233,7 @@ setup.
 
 Include all four of these, so someone can help on the first reply:
 
-1. Your computer: Windows or Mac.
+1. Where you're working: Codespaces, or your own Windows or Mac computer.
 2. The setup step you were on.
 3. The **exact** error text, copied as text (not a screenshot).
 4. The full output of `uv run python check_setup.py`, if you can run it.
@@ -201,12 +251,14 @@ for this.
 ```
 I'm setting up a Python course environment. The setup is fixed and I must not
 change it:
-- Editor: Positron (built on VS Code).
+- Editor: GitHub Codespaces (VS Code in the browser), or Positron on my own
+  computer (built on VS Code).
 - Python environment: managed by uv. My repo has pyproject.toml, uv.lock and
   .python-version (Python 3.13). The environment is built with `uv sync` into a
   .venv folder in the repo.
-- Code lives in a private GitHub repo that I clone with Git; Git signs in with
-  Git Credential Manager (Windows) or the GitHub CLI (Mac).
+- Code lives in a private GitHub repo. In Codespaces, Git signs in
+  automatically; on my own computer, Git signs in with Git Credential Manager
+  (Windows) or the GitHub CLI (Mac).
 - The repo checker is `uv run python check_setup.py`; [!!] lines are problems.
 
 Rules for your answer:
@@ -218,7 +270,7 @@ Rules for your answer:
 - Give me ONE step at a time, tell me what I should see if it worked, and wait
   for my result before the next step.
 
-My computer: [Windows or Mac]
+Where I'm working: [Codespaces, or my own Windows/Mac computer]
 What I was doing: [setup step or command]
 Exact error text: [paste]
 check_setup.py output: [paste, if available]

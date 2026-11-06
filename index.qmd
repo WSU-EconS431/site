@@ -10,8 +10,8 @@ applications, estimation, and agent-based modeling.
 
 ## Start here
 
-1. **Set up your computer** with the [Setup guide](setup.qmd) before the second
-   class session.
+1. **Set up your codespace** with the [Setup guide](setup.qmd) before the second
+   class session. It runs in your web browser, so there's nothing to install.
 2. **Stuck?** Check the [Setup FAQ](setup-faq.qmd), then post on Discussions.
 3. **Each week**, the [Schedule](schedule.qmd) links that week's readings and
    lecture notebooks.

@@ -25,7 +25,8 @@ message teaches it.
 **Tools:** Microsoft 365 Copilot Chat is free with your WSU login and is the
 course default. GitHub Copilot is free for verified students through GitHub
 Education. You may use other assistants under the same rules; you never need to
-pay for one.
+pay for one. In course codespaces, Copilot's autocomplete is switched off for Weeks 1–5;
+you'll be shown how to turn it on in Week 6. Copilot Chat stays available.
 
 **Privacy:** never paste personal data, other students' work, or restricted
 datasets into a consumer AI tool. Use the WSU-login Copilot when unsure.
