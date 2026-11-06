@@ -42,6 +42,13 @@ one. Instead:
 2. Open a terminal (**Terminal > New Terminal**) and run `uv sync`.
 3. Click the interpreter name at the top right of Positron and choose the Python from `.venv`.
 
+### A command gives "No module named uv" (or a Python SyntaxError)
+
+You typed it into the **Console**, the panel with the `>>>` prompt, which runs
+Python code only. Commands such as `uv`, `git`, and `cd` go in the **Terminal**
+(**Terminal > New Terminal**), whose prompt shows your folder, like
+`PS C:\Users\<you>\EconS431\ps-<your-username>>`.
+
 ### `uv sync` says it can't find `pyproject.toml`
 
 The terminal is in the wrong folder. Open your repo folder in Positron
