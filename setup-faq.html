@@ -109,7 +109,11 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-setup">    
         <li>
     <a class="dropdown-item" href="./setup.html">
- <span class="dropdown-text">Setup guide</span></a>
+ <span class="dropdown-text">Setup guide (Codespaces)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./setup-local.html">
+ <span class="dropdown-text">Work on your own computer</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./setup-faq.html">
@@ -138,21 +142,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installing" id="toc-installing" class="nav-link active" data-scroll-target="#installing">Installing</a>
+  <li><a href="#codespaces" id="toc-codespaces" class="nav-link active" data-scroll-target="#codespaces">Codespaces</a>
+  <ul class="collapse">
+  <li><a href="#my-repo-is-greyed-out-or-i-dont-see-create-codespace" id="toc-my-repo-is-greyed-out-or-i-dont-see-create-codespace" class="nav-link" data-scroll-target="#my-repo-is-greyed-out-or-i-dont-see-create-codespace">My repo is greyed out, or I don’t see “Create codespace”</a></li>
+  <li><a href="#how-do-i-get-back-to-my-codespace" id="toc-how-do-i-get-back-to-my-codespace" class="nav-link" data-scroll-target="#how-do-i-get-back-to-my-codespace">How do I get back to my codespace?</a></li>
+  <li><a href="#a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" id="toc-a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" class="nav-link" data-scroll-target="#a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel">A notebook says “No module named numpy” (or asks me to select a kernel)</a></li>
+  <li><a href="#i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" id="toc-i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" class="nav-link" data-scroll-target="#i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed">I pressed Ctrl+W (or another shortcut) and my browser tab closed</a></li>
+  <li><a href="#will-i-run-out-of-codespace-time" id="toc-will-i-run-out-of-codespace-time" class="nav-link" data-scroll-target="#will-i-run-out-of-codespace-time">Will I run out of codespace time?</a></li>
+  <li><a href="#my-codespace-disappeared" id="toc-my-codespace-disappeared" class="nav-link" data-scroll-target="#my-codespace-disappeared">My codespace disappeared</a></li>
+  <li><a href="#pull-fails-after-i-worked-in-a-codespace-and-on-my-laptop" id="toc-pull-fails-after-i-worked-in-a-codespace-and-on-my-laptop" class="nav-link" data-scroll-target="#pull-fails-after-i-worked-in-a-codespace-and-on-my-laptop">“Pull” fails after I worked in a codespace and on my laptop</a></li>
+  </ul></li>
+  <li><a href="#your-own-computer-installing" id="toc-your-own-computer-installing" class="nav-link" data-scroll-target="#your-own-computer-installing">Your own computer: installing</a>
   <ul class="collapse">
   <li><a href="#uv-is-not-recognized-or-command-not-found" id="toc-uv-is-not-recognized-or-command-not-found" class="nav-link" data-scroll-target="#uv-is-not-recognized-or-command-not-found">“uv is not recognized” (or “command not found”)</a></li>
   <li><a href="#i-see-two-pythons-or-python-3.14-or-a-python-i-dont-recognize" id="toc-i-see-two-pythons-or-python-3.14-or-a-python-i-dont-recognize" class="nav-link" data-scroll-target="#i-see-two-pythons-or-python-3.14-or-a-python-i-dont-recognize">I see two Pythons, or Python 3.14, or a Python I don’t recognize</a></li>
   </ul></li>
-  <li><a href="#the-python-environment" id="toc-the-python-environment" class="nav-link" data-scroll-target="#the-python-environment">The Python environment</a>
+  <li><a href="#your-own-computer-the-python-environment" id="toc-your-own-computer-the-python-environment" class="nav-link" data-scroll-target="#your-own-computer-the-python-environment">Your own computer: the Python environment</a>
   <ul class="collapse">
   <li><a href="#positron-shows-a-red-and-a-dedicated-python-environment-is-available-or-offers-to-create-python-environment" id="toc-positron-shows-a-red-and-a-dedicated-python-environment-is-available-or-offers-to-create-python-environment" class="nav-link" data-scroll-target="#positron-shows-a-red-and-a-dedicated-python-environment-is-available-or-offers-to-create-python-environment">Positron shows a red ✕ and “A dedicated Python environment is available” (or offers to “Create Python environment”)</a></li>
+  <li><a href="#a-command-gives-no-module-named-uv-or-a-python-syntaxerror" id="toc-a-command-gives-no-module-named-uv-or-a-python-syntaxerror" class="nav-link" data-scroll-target="#a-command-gives-no-module-named-uv-or-a-python-syntaxerror">A command gives “No module named uv” (or a Python SyntaxError)</a></li>
   <li><a href="#uv-sync-says-it-cant-find-pyproject.toml" id="toc-uv-sync-says-it-cant-find-pyproject.toml" class="nav-link" data-scroll-target="#uv-sync-says-it-cant-find-pyproject.toml"><code>uv sync</code> says it can’t find <code>pyproject.toml</code></a></li>
   <li><a href="#uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396" id="toc-uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396" class="nav-link" data-scroll-target="#uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396"><code>uv sync</code> fails with “Failed to hardlink files” or “os error 396”</a></li>
   <li><a href="#a-notebook-says-no-module-named-numpy-or-pandas-scipy" id="toc-a-notebook-says-no-module-named-numpy-or-pandas-scipy" class="nav-link" data-scroll-target="#a-notebook-says-no-module-named-numpy-or-pandas-scipy">A notebook says “No module named numpy” (or pandas, scipy, …)</a></li>
   <li><a href="#check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem" id="toc-check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem" class="nav-link" data-scroll-target="#check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem"><code>check_setup.py</code> says “Repo is outside a cloud-synced folder” is a problem</a></li>
   <li><a href="#my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it" id="toc-my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it" class="nav-link" data-scroll-target="#my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it">My <code>.venv</code> folder is huge, and Windows won’t let me delete or move it</a></li>
   </ul></li>
-  <li><a href="#github-and-git" id="toc-github-and-git" class="nav-link" data-scroll-target="#github-and-git">GitHub and Git</a>
+  <li><a href="#your-own-computer-github-and-git" id="toc-your-own-computer-github-and-git" class="nav-link" data-scroll-target="#your-own-computer-github-and-git">Your own computer: GitHub and Git</a>
   <ul class="collapse">
   <li><a href="#the-browser-asks-me-to-authorize-visual-studio-code" id="toc-the-browser-asks-me-to-authorize-visual-studio-code" class="nav-link" data-scroll-target="#the-browser-asks-me-to-authorize-visual-studio-code">The browser asks me to “Authorize Visual-Studio-Code”</a></li>
   <li><a href="#github-says-im-connected-but-positron-says-failed-to-sign-in-to-github" id="toc-github-says-im-connected-but-positron-says-failed-to-sign-in-to-github" class="nav-link" data-scroll-target="#github-says-im-connected-but-positron-says-failed-to-sign-in-to-github">GitHub says I’m connected, but Positron says “failed to sign in to GitHub”</a></li>
@@ -160,11 +175,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#check_setup.py-says-repo-is-connected-to-github-is-a-problem" id="toc-check_setup.py-says-repo-is-connected-to-github-is-a-problem" class="nav-link" data-scroll-target="#check_setup.py-says-repo-is-connected-to-github-is-a-problem"><code>check_setup.py</code> says “Repo is connected to GitHub” is a problem</a></li>
   <li><a href="#i-get-repository-not-found-or-404-for-my-repo" id="toc-i-get-repository-not-found-or-404-for-my-repo" class="nav-link" data-scroll-target="#i-get-repository-not-found-or-404-for-my-repo">I get “Repository not found” (or 404) for my repo</a></li>
   <li><a href="#check_setup.py-says-git-user.name-or-git-user.email-isnt-set" id="toc-check_setup.py-says-git-user.name-or-git-user.email-isnt-set" class="nav-link" data-scroll-target="#check_setup.py-says-git-user.name-or-git-user.email-isnt-set"><code>check_setup.py</code> says <code>git user.name</code> or <code>git user.email</code> isn’t set</a></li>
+  <li><a href="#commit-operation-was-cancelled-due-to-empty-commit-message" id="toc-commit-operation-was-cancelled-due-to-empty-commit-message" class="nav-link" data-scroll-target="#commit-operation-was-cancelled-due-to-empty-commit-message">“Commit operation was cancelled due to empty commit message”</a></li>
   </ul></li>
   <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks">Notebooks</a>
   <ul class="collapse">
   <li><a href="#how-do-i-tick-the-boxes-in-the-ps01-checklist" id="toc-how-do-i-tick-the-boxes-in-the-ps01-checklist" class="nav-link" data-scroll-target="#how-do-i-tick-the-boxes-in-the-ps01-checklist">How do I tick the boxes in the PS01 checklist?</a></li>
-  <li><a href="#the-kernel-is-named-econs431.-is-that-right" id="toc-the-kernel-is-named-econs431.-is-that-right" class="nav-link" data-scroll-target="#the-kernel-is-named-econs431.-is-that-right">The kernel is named “econs431”. Is that right?</a></li>
+  <li><a href="#the-kernel-is-named-econs431-or-.venv.-is-that-right" id="toc-the-kernel-is-named-econs431-or-.venv.-is-that-right" class="nav-link" data-scroll-target="#the-kernel-is-named-econs431-or-.venv.-is-that-right">The kernel is named “econs431” (or “.venv”). Is that right?</a></li>
   </ul></li>
   <li><a href="#still-stuck" id="toc-still-stuck" class="nav-link" data-scroll-target="#still-stuck">Still stuck after 30 minutes?</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a>
@@ -202,8 +218,39 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Your best diagnostic tool:</strong> from your repo folder, run</p>
 <pre><code>uv run python check_setup.py</code></pre>
 <p>Every line should start with <code>[OK]</code>. Each <code>[!!]</code> line says what to fix. Paste the whole output into any help request.</p>
-<section id="installing" class="level2">
-<h2 class="anchored" data-anchor-id="installing">Installing</h2>
+<section id="codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="codespaces">Codespaces</h2>
+<section id="my-repo-is-greyed-out-or-i-dont-see-create-codespace" class="level3">
+<h3 class="anchored" data-anchor-id="my-repo-is-greyed-out-or-i-dont-see-create-codespace">My repo is greyed out, or I don’t see “Create codespace”</h3>
+<p>Check that you accepted your repo invitation (step 2 of the <a href="./setup.html">Setup guide</a>), and that you’re on <strong>your repo’s</strong> page: <code>https://github.com/WSU-EconS431/ps-&lt;your-username&gt;</code>. Use the green <strong>Code</strong> button there, then the <strong>Codespaces</strong> tab. If the repo is still greyed out, post on Discussions; it’s a course setting the instructor can fix.</p>
+</section>
+<section id="how-do-i-get-back-to-my-codespace" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-i-get-back-to-my-codespace">How do I get back to my codespace?</h3>
+<p>Your repo’s page &gt; <strong>Code</strong> &gt; <strong>Codespaces</strong> tab &gt; click the codespace listed there (it has a random two-word name). You can also see all of yours at <a href="https://github.com/codespaces">github.com/codespaces</a>. Reuse that one codespace all semester rather than creating new ones.</p>
+</section>
+<section id="a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" class="level3">
+<h3 class="anchored" data-anchor-id="a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel">A notebook says “No module named numpy” (or asks me to select a kernel)</h3>
+<p>Click <strong>Select Kernel</strong> (or the kernel name) at the top right of the notebook, choose <strong>Python Environments</strong>, and pick the one in <code>.venv</code>. Then run the cells again.</p>
+</section>
+<section id="i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" class="level3">
+<h3 class="anchored" data-anchor-id="i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed">I pressed Ctrl+W (or another shortcut) and my browser tab closed</h3>
+<p>Some shortcuts belong to the browser, not the editor. Reopen your codespace (see above); your files are still there, and the editor saves changes automatically.</p>
+</section>
+<section id="will-i-run-out-of-codespace-time" class="level3">
+<h3 class="anchored" data-anchor-id="will-i-run-out-of-codespace-time">Will I run out of codespace time?</h3>
+<p>Unlikely if you stop your codespace when you’re done. Your account includes about 60 hours a month, or 90 with GitHub student benefits. Check your usage under <strong>Settings &gt; Billing</strong> on GitHub. To use less: close the tab when you’re done (it stops after 30 idle minutes), or stop it right away at <a href="https://github.com/codespaces">github.com/codespaces</a> (<strong>⋯ &gt; Stop codespace</strong>). If you’re about to run out, <a href="./setup-local.html">set up your own computer</a> as a backup.</p>
+</section>
+<section id="my-codespace-disappeared" class="level3">
+<h3 class="anchored" data-anchor-id="my-codespace-disappeared">My codespace disappeared</h3>
+<p>A codespace you don’t open for several weeks is deleted, along with anything not pushed to GitHub. Create a new one from your repo page; everything you pushed is still there. This is why every work session ends with commit and push.</p>
+</section>
+<section id="pull-fails-after-i-worked-in-a-codespace-and-on-my-laptop" class="level3">
+<h3 class="anchored" data-anchor-id="pull-fails-after-i-worked-in-a-codespace-and-on-my-laptop">“Pull” fails after I worked in a codespace and on my laptop</h3>
+<p>Your two copies changed in different ways. Always pull when you sit down and push when you get up. If a pull still fails, don’t force anything; post the message on Discussions.</p>
+</section>
+</section>
+<section id="your-own-computer-installing" class="level2">
+<h2 class="anchored" data-anchor-id="your-own-computer-installing">Your own computer: installing</h2>
 <section id="uv-is-not-recognized-or-command-not-found" class="level3">
 <h3 class="anchored" data-anchor-id="uv-is-not-recognized-or-command-not-found">“uv is not recognized” (or “command not found”)</h3>
 <p>uv is installed, but your terminal started before it was. Close every terminal <strong>and Positron</strong>, reopen, and try again. If it still fails, rerun the uv install command from the setup guide.</p>
@@ -213,8 +260,8 @@ ul.task-list li input[type="checkbox"] {
 <p>That’s normal. Many computers already have one or more Pythons. The course uses its own Python 3.13, which <code>uv sync</code> downloads into your repo’s <code>.venv</code> folder. You don’t need to uninstall anything; you only need to <strong>select</strong> the <code>.venv</code> one (see below).</p>
 </section>
 </section>
-<section id="the-python-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-python-environment">The Python environment</h2>
+<section id="your-own-computer-the-python-environment" class="level2">
+<h2 class="anchored" data-anchor-id="your-own-computer-the-python-environment">Your own computer: the Python environment</h2>
 <section id="positron-shows-a-red-and-a-dedicated-python-environment-is-available-or-offers-to-create-python-environment" class="level3">
 <h3 class="anchored" data-anchor-id="positron-shows-a-red-and-a-dedicated-python-environment-is-available-or-offers-to-create-python-environment">Positron shows a red ✕ and “A dedicated Python environment is available” (or offers to “Create Python environment”)</h3>
 <p>Don’t click the create button. It builds a different environment from the course one. Instead:</p>
@@ -223,6 +270,10 @@ ul.task-list li input[type="checkbox"] {
 <li>Open a terminal (<strong>Terminal &gt; New Terminal</strong>) and run <code>uv sync</code>.</li>
 <li>Click the interpreter name at the top right of Positron and choose the Python from <code>.venv</code>.</li>
 </ol>
+</section>
+<section id="a-command-gives-no-module-named-uv-or-a-python-syntaxerror" class="level3">
+<h3 class="anchored" data-anchor-id="a-command-gives-no-module-named-uv-or-a-python-syntaxerror">A command gives “No module named uv” (or a Python SyntaxError)</h3>
+<p>You typed it into the <strong>Console</strong>, the panel with the <code>&gt;&gt;&gt;</code> prompt, which runs Python code only. Commands such as <code>uv</code>, <code>git</code>, and <code>cd</code> go in the <strong>Terminal</strong> (<strong>Terminal &gt; New Terminal</strong>), whose prompt shows your folder, like <code>PS C:\Users\&lt;you&gt;\EconS431\ps-&lt;your-username&gt;&gt;</code>.</p>
 </section>
 <section id="uv-sync-says-it-cant-find-pyproject.toml" class="level3">
 <h3 class="anchored" data-anchor-id="uv-sync-says-it-cant-find-pyproject.toml"><code>uv sync</code> says it can’t find <code>pyproject.toml</code></h3>
@@ -255,8 +306,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 </section>
-<section id="github-and-git" class="level2">
-<h2 class="anchored" data-anchor-id="github-and-git">GitHub and Git</h2>
+<section id="your-own-computer-github-and-git" class="level2">
+<h2 class="anchored" data-anchor-id="your-own-computer-github-and-git">Your own computer: GitHub and Git</h2>
 <section id="the-browser-asks-me-to-authorize-visual-studio-code" class="level3">
 <h3 class="anchored" data-anchor-id="the-browser-asks-me-to-authorize-visual-studio-code">The browser asks me to “Authorize Visual-Studio-Code”</h3>
 <p>That’s expected. Positron is built on VS Code and uses VS Code’s GitHub sign-in. Check that the address starts with <code>https://github.com/</code>, then authorize.</p>
@@ -293,6 +344,10 @@ gh auth setup-git</code></pre>
 <pre><code>git config --global user.name "First Last"
 git config --global user.email "you@example.com"</code></pre>
 </section>
+<section id="commit-operation-was-cancelled-due-to-empty-commit-message" class="level3">
+<h3 class="anchored" data-anchor-id="commit-operation-was-cancelled-due-to-empty-commit-message">“Commit operation was cancelled due to empty commit message”</h3>
+<p>(This happens in Codespaces too.) Every commit needs a short message saying what it contains. Type one in the box above <strong>Commit</strong> in Source Control (for example, “PS02 Q1-Q3 done”), then click <strong>Commit</strong>. If Positron opens a <code>COMMIT_EDITMSG</code> tab instead, type the message on its first line, then save and close the tab.</p>
+</section>
 </section>
 <section id="notebooks" class="level2">
 <h2 class="anchored" data-anchor-id="notebooks">Notebooks</h2>
@@ -300,14 +355,14 @@ git config --global user.email "you@example.com"</code></pre>
 <h3 class="anchored" data-anchor-id="how-do-i-tick-the-boxes-in-the-ps01-checklist">How do I tick the boxes in the PS01 checklist?</h3>
 <p>Double-click the checklist cell to edit it, change <code>[ ]</code> to <code>[x]</code>, then press <strong>Shift+Enter</strong>.</p>
 </section>
-<section id="the-kernel-is-named-econs431.-is-that-right" class="level3">
-<h3 class="anchored" data-anchor-id="the-kernel-is-named-econs431.-is-that-right">The kernel is named “econs431”. Is that right?</h3>
-<p>Yes. That’s the course environment in your repo’s <code>.venv</code> folder.</p>
+<section id="the-kernel-is-named-econs431-or-.venv.-is-that-right" class="level3">
+<h3 class="anchored" data-anchor-id="the-kernel-is-named-econs431-or-.venv.-is-that-right">The kernel is named “econs431” (or “.venv”). Is that right?</h3>
+<p>Yes. Positron labels the course environment <strong>econs431</strong>; Codespaces shows it as the Python in <code>.venv</code>. Either way it’s the course environment in your repo’s <code>.venv</code> folder.</p>
 </section>
 </section>
 <section id="still-stuck" class="level2">
 <h2 class="anchored" data-anchor-id="still-stuck">Still stuck after 30 minutes?</h2>
-<p>Stop and switch to the no-install path so you’re not blocked: on your repo’s GitHub page, click <strong>Code &gt; Codespaces &gt; Create codespace</strong>. Everything is preinstalled there. Then post your problem (see below) so we can fix your laptop setup.</p>
+<p>If you’re setting up your own computer, switch to Codespaces so you’re not blocked: on your repo’s GitHub page, click <strong>Code &gt; Codespaces &gt; Create codespace on main</strong>. Everything is preinstalled there. Then post your problem (see below) so we can fix your laptop setup later. If Codespaces itself is the problem, post right away.</p>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
@@ -315,7 +370,7 @@ git config --global user.email "you@example.com"</code></pre>
 <h3 class="anchored" data-anchor-id="post-on-discussions">Post on Discussions</h3>
 <p>Include all four of these, so someone can help on the first reply:</p>
 <ol type="1">
-<li>Your computer: Windows or Mac.</li>
+<li>Where you’re working: Codespaces, or your own Windows or Mac computer.</li>
 <li>The setup step you were on.</li>
 <li>The <strong>exact</strong> error text, copied as text (not a screenshot).</li>
 <li>The full output of <code>uv run python check_setup.py</code>, if you can run it.</li>
@@ -327,12 +382,14 @@ git config --global user.email "you@example.com"</code></pre>
 <p>Generic AI advice often conflicts with this course’s setup. It may tell you to <code>pip install numpy</code>, install Anaconda, or create a new environment, and those make things worse here. Paste this context <strong>first</strong>, then your problem. Microsoft 365 Copilot Chat (sign in with your WSU account) is free and works well for this.</p>
 <pre><code>I'm setting up a Python course environment. The setup is fixed and I must not
 change it:
-- Editor: Positron (built on VS Code).
+- Editor: GitHub Codespaces (VS Code in the browser), or Positron on my own
+  computer (built on VS Code).
 - Python environment: managed by uv. My repo has pyproject.toml, uv.lock and
   .python-version (Python 3.13). The environment is built with `uv sync` into a
   .venv folder in the repo.
-- Code lives in a private GitHub repo that I clone with Git; Git signs in with
-  Git Credential Manager (Windows) or the GitHub CLI (Mac).
+- Code lives in a private GitHub repo. In Codespaces, Git signs in
+  automatically; on my own computer, Git signs in with Git Credential Manager
+  (Windows) or the GitHub CLI (Mac).
 - The repo checker is `uv run python check_setup.py`; [!!] lines are problems.
 
 Rules for your answer:
@@ -344,7 +401,7 @@ Rules for your answer:
 - Give me ONE step at a time, tell me what I should see if it worked, and wait
   for my result before the next step.
 
-My computer: [Windows or Mac]
+Where I'm working: [Codespaces, or my own Windows/Mac computer]
 What I was doing: [setup step or command]
 Exact error text: [paste]
 check_setup.py output: [paste, if available]</code></pre>

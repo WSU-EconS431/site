@@ -144,7 +144,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-setup">    
         <li>
     <a class="dropdown-item" href="./setup.html">
- <span class="dropdown-text">Setup guide</span></a>
+ <span class="dropdown-text">Setup guide (Codespaces)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./setup-local.html">
+ <span class="dropdown-text">Work on your own computer</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./setup-faq.html">
@@ -173,10 +177,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#steps" id="toc-steps" class="nav-link active" data-scroll-target="#steps">Steps</a></li>
-  <li><a href="#no-install" id="toc-no-install" class="nav-link" data-scroll-target="#no-install">No-install path</a></li>
+  <li><a href="#one-time-setup" id="toc-one-time-setup" class="nav-link active" data-scroll-target="#one-time-setup">One-time setup</a></li>
+  <li><a href="#each-time" id="toc-each-time" class="nav-link" data-scroll-target="#each-time">Each time you work</a></li>
   <li><a href="#every-problem-set" id="toc-every-problem-set" class="nav-link" data-scroll-target="#every-problem-set">Every problem set</a></li>
-  <li><a href="#rules-of-the-road" id="toc-rules-of-the-road" class="nav-link" data-scroll-target="#rules-of-the-road">Rules of the road</a></li>
+  <li><a href="#rules" id="toc-rules" class="nav-link" data-scroll-target="#rules">Rules of the road</a></li>
   </ul>
 </nav>
     </div>
@@ -202,72 +206,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This sets up everything you need for the semester: Git, Positron (the editor), uv (which builds the course’s Python environment), and your private course repo on GitHub. Do it before the second class session. If you get stuck, see the <a href="./setup-faq.html">Setup FAQ</a>.</p>
-<p><strong>Before you start:</strong> about 5 GB of free disk space, an internet connection, and your WSU login. On a Chromebook or iPad, skip to <a href="#no-install">No-install path</a>.</p>
-<section id="steps" class="level2">
-<h2 class="anchored" data-anchor-id="steps">Steps</h2>
+<p>You’ll do your coding in <strong>GitHub Codespaces</strong>: the course’s Python setup, running on GitHub’s computers and shown in your web browser. There’s nothing to install, and it works the same on any laptop, a Chromebook, or a campus lab computer. Do steps 1–5 before the second class session. If you get stuck, see the <a href="./setup-faq.html">Setup FAQ</a>.</p>
+<p>Prefer a desktop editor or working offline? You can also <a href="./setup-local.html">work on your own computer</a>. That’s optional, and you can add it any time.</p>
+<p><strong>Before you start:</strong> an internet connection, a current web browser (Chrome, Edge, Firefox, or Safari), and your phone for GitHub’s sign-in codes.</p>
+<section id="one-time-setup" class="level2">
+<h2 class="anchored" data-anchor-id="one-time-setup">One-time setup</h2>
 <ol type="1">
 <li><p><strong>GitHub</strong>: the website that stores your course work online. Each student gets a private repository (“repo”) there, a folder only you and the instructor can see. New problem sets arrive in it. To hand in work, you use Git to save it to your repo, then submit the link to it in Canvas.</p>
 <ul>
 <li>Sign up at <a href="https://github.com">github.com</a> with any username (it doesn’t need to be your real name), and add your WSU email to the account.</li>
 <li>Apply for GitHub Education student benefits at <a href="https://education.github.com">education.github.com</a>. Approval can take a few days; it gives you free GitHub Copilot and free Codespaces hours.</li>
+<li>GitHub will ask you to set up two-factor sign-in. Keep that phone or app handy: you’ll need a code when you sign in on a lab computer.</li>
 <li>Enter your GitHub username in the Canvas “GitHub username” survey, so your course repo can be created.</li>
 </ul></li>
-<li><p><strong>Git</strong>: version-control software. It saves snapshots (“commits”) of your work and syncs them with your private course repo on GitHub. You’ll use it to get each new problem set (pull) and to hand in your work (commit and push), mostly through buttons in Positron. You’ll type Git commands in Positron’s terminal only during setup and for the occasional fix.</p>
-<ul>
-<li><em>Windows:</em> install “Git for Windows” from <a href="https://git-scm.com">git-scm.com</a> and accept every default. It includes the sign-in helper Git needs for GitHub.</li>
-<li><em>Mac:</em> open Terminal, type <code>git --version</code>, and accept the prompt to install the Command Line Tools. Then install the GitHub CLI from <a href="https://cli.github.com">cli.github.com</a> and run <code>gh auth login</code> (choose the web-browser login) and <code>gh auth setup-git</code>, so Git can sign in to GitHub.</li>
-</ul></li>
-<li><p><strong>Positron</strong> (free, from Posit): the program where you’ll do all your coding. It opens your course repo, runs Python notebooks and scripts, shows your data and plots, and has Git built in. Download and install it from <a href="https://positron.posit.co">positron.posit.co</a>.</p>
-<ul>
-<li>When you first open your course folder, Positron asks whether you trust the authors of the files. Click <strong>Yes, I trust the authors</strong>; it’s your own repo.</li>
-<li>If Positron offers to create a Python environment, decline. Step 8 builds the course environment instead.</li>
-<li>If Positron asks “Would you like Positron to periodically run git fetch?”, click <strong>Yes</strong>. It checks GitHub for new problem sets without changing your files; a small down-arrow count in the status bar means something new is ready to pull.</li>
-<li>The first time you commit, Positron may ask whether to stage all your changes and commit them directly. Click <strong>Yes</strong> (or <strong>Always</strong>).</li>
-<li>The first time you click <strong>Sync Changes</strong>, Positron asks you to confirm pulling and pushing. Click <strong>OK</strong> (or <strong>OK, Don’t Ask Again</strong>).</li>
-<li>If Positron asks you to sign in to GitHub, your browser will show “Authorize Visual-Studio-Code”. That’s expected: Positron is built on VS Code. If Positron then says sign-in failed, see the <a href="./setup-faq.html">Setup FAQ</a>.</li>
-<li>If Positron offers to turn on an AI assistant or code completions, skip it for now. AI autocomplete stays off through Week 5 (see <a href="./policies.html">Policies</a>).</li>
-</ul></li>
-<li><p><strong>uv</strong>: a free tool that installs Python and the course packages, so everyone’s setup is identical. To install it, open a terminal: in Positron, choose <strong>Terminal &gt; New Terminal</strong> (on Windows this opens PowerShell; on a Mac, a regular terminal). Then paste the command for your system and press Enter:</p>
-<ul>
-<li><p><em>Windows:</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><em>Mac:</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Not using Positron’s terminal? On Windows, click Start, type <strong>PowerShell</strong>, and open <strong>Windows PowerShell</strong>. On a Mac, press <strong>Cmd+Space</strong>, type <strong>Terminal</strong>, and press Return.</p></li>
-<li><p>When it finishes, quit and reopen Positron (or close and reopen the terminal) so it can find uv. Check with <code>uv --version</code>, which should print a version number.</p></li>
-</ul></li>
-<li><p><strong>Tell Git who you are.</strong> In a terminal, paste each command, replace the text in quotes with your own name and the email on your GitHub account, then press Enter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"First Last"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your-github-email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Accept your repo invitation</strong> from the email GitHub sends you, or at <code>https://github.com/WSU-EconS431/ps-&lt;your-username&gt;/invitations</code>.</p></li>
-<li><p><strong>Clone your repo.</strong> Make a folder such as <code>EconS431</code> directly in your home folder (<code>C:\Users\&lt;you&gt;\EconS431</code> or <code>/Users/&lt;you&gt;/EconS431</code>). <strong>Not in OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents</strong>, which many laptops sync automatically. Then, in a Positron terminal:</p>
-<pre><code>cd ~/EconS431
-git clone https://github.com/WSU-EconS431/ps-&lt;your-username&gt;.git</code></pre>
-<p>The first clone opens a GitHub sign-in window; choose the browser option. Then open the new folder: <strong>File &gt; Open Folder</strong> &gt; <code>EconS431/ps-&lt;your-username&gt;</code>.</p></li>
-<li><p><strong>Build the environment.</strong> In a Positron terminal inside your repo, run <code>uv sync</code>. Then click the interpreter name at the top right and choose the Python from <code>.venv</code> (labeled <strong>econs431</strong>). If Positron offers to create an environment, decline: <code>uv sync</code> builds the course one.</p></li>
-<li><p><strong>Check it.</strong> Run <code>uv run python check_setup.py</code>. Every line should start with <code>[OK]</code>. Then open <code>ps01/ps01.ipynb</code>, choose the same <strong>econs431</strong> kernel at the top right of the notebook, complete it, commit, push, and submit the commit link in Canvas.</p></li>
+<li><p><strong>Create your codespace.</strong> On your repo’s page (<code>https://github.com/WSU-EconS431/ps-&lt;your-username&gt;</code>), click the green <strong>Code</strong> button, choose the <strong>Codespaces</strong> tab, and click <strong>Create codespace on main</strong>.</p>
+<ul>
+<li>The first time takes a few minutes while it installs Python and the course packages. Then an editor opens in your browser. It’s VS Code, the program Positron is built on.</li>
+<li>If it offers to turn on GitHub Copilot or AI code completions, skip it for now. AI autocomplete stays off through Week 5 (see <a href="./policies.html">Policies</a>).</li>
+</ul></li>
+<li><p><strong>Check it.</strong> Open a terminal: click the <strong>☰</strong> menu at the top left, then <strong>Terminal &gt; New Terminal</strong> (or press <strong>Ctrl+`</strong>). Run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python check_setup.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every line should start with <code>[OK]</code>.</p></li>
+<li><p><strong>Do PS01.</strong> In the file list on the left, open <code>ps01/ps01.ipynb</code>. If the notebook asks you to <strong>Select Kernel</strong> (top right), choose <strong>Python Environments</strong>, then the one in <code>.venv</code>. Complete it, then:</p>
+<ul>
+<li>In <strong>Source Control</strong> (the branching icon on the left), type a short message such as “PS01 done” in the box and click <strong>Commit</strong>. Every commit needs a message.</li>
+<li>Click <strong>Sync Changes</strong> to push it to GitHub.</li>
+<li>On your repo’s GitHub page, open the commit, copy its URL, and paste it into the PS01 assignment in Canvas.</li>
+</ul></li>
 </ol>
 </section>
-<section id="no-install" class="level2">
-<h2 class="anchored" data-anchor-id="no-install">No-install path</h2>
-<p>For a Chromebook, an iPad, or a laptop that won’t cooperate: do steps 1 and 6. Then, on your repo’s GitHub page, click <strong>Code &gt; Codespaces &gt; Create codespace</strong>. Wait for setup to finish (a few minutes the first time) and start at step 9.</p>
+<section id="each-time" class="level2">
+<h2 class="anchored" data-anchor-id="each-time">Each time you work</h2>
+<ul>
+<li><strong>Open your codespace:</strong> your repo’s page &gt; <strong>Code</strong> &gt; <strong>Codespaces</strong> tab &gt; click the codespace that’s already there. Reuse it; don’t create a new one each time.</li>
+<li><strong>Start by pulling:</strong> in Source Control, click <strong>Sync Changes</strong> (or <strong>⋯ &gt; Pull</strong>) so you have any new problem sets.</li>
+<li><strong>Before you leave: commit and push.</strong> Your work is only safe once it’s on GitHub. A codespace you stop using for a few weeks is deleted, and anything not pushed goes with it.</li>
+<li><strong>Then close the tab.</strong> The codespace stops by itself after 30 idle minutes. To stop it right away, go to <a href="https://github.com/codespaces">github.com/codespaces</a>, click <strong>⋯</strong> next to it, and choose <strong>Stop codespace</strong>.</li>
+<li><strong>On a lab or shared computer,</strong> sign out of GitHub when you’re done.</li>
+</ul>
+<p><strong>Your monthly allowance:</strong> your GitHub account includes about 60 hours of codespace time a month, or 90 once your student benefits are approved. That’s plenty for this course if you stop your codespace when you’re done. You can see your usage under <strong>Settings &gt; Billing</strong> on GitHub.</p>
 </section>
 <section id="every-problem-set" class="level2">
 <h2 class="anchored" data-anchor-id="every-problem-set">Every problem set</h2>
 <ol type="1">
-<li><strong>Pull</strong> in Positron (Source Control &gt; <strong>…</strong> &gt; Pull). The new <code>psNN/</code> folder appears.</li>
+<li><strong>Pull</strong> (Source Control &gt; <strong>Sync Changes</strong>). The new <code>psNN/</code> folder appears.</li>
 <li><strong>Work</strong> in <code>psNN/psNN.ipynb</code>, and commit whenever something works.</li>
 <li><strong>Restart &amp; Run All.</strong> If it doesn’t run from top to bottom, it isn’t finished.</li>
 <li><strong>Fill in the AI usage note</strong> at the bottom.</li>
-<li><strong>Push, copy the commit URL</strong> from GitHub, and <strong>paste it into Canvas</strong> before the deadline.</li>
+<li><strong>Commit, push (Sync Changes), copy the commit URL</strong> from GitHub, and <strong>paste it into Canvas</strong> before the deadline.</li>
 </ol>
 </section>
-<section id="rules-of-the-road" class="level2">
-<h2 class="anchored" data-anchor-id="rules-of-the-road">Rules of the road</h2>
+<section id="rules" class="level2">
+<h2 class="anchored" data-anchor-id="rules">Rules of the road</h2>
 <ul>
 <li>Your repo is private. Never make it public or share it, even after the course, unless an assignment says it may be shared.</li>
-<li>Use relative paths (<code>data/prices.csv</code>), never <code>C:\Users\...</code>. Your code must run on the instructor’s machine.</li>
+<li>Use relative paths (<code>data/prices.csv</code>), never full paths like <code>C:\Users\...</code> or <code>/workspaces/...</code>. Your code must run on the instructor’s machine.</li>
 <li>Don’t commit <code>.venv/</code> or big data files. GitHub rejects files over 100 MB, and your repo’s <code>.gitignore</code> handles the common cases.</li>
 <li>Don’t change <code>pyproject.toml</code> or <code>uv.lock</code>. If you think you need another package, ask on Discussions.</li>
 <li><strong>Asking for help:</strong> see <a href="./setup-faq.html#getting-help">Getting help</a>.</li>
