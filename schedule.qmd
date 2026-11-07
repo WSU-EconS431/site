@@ -14,8 +14,8 @@ Readings come from two free QuantEcon lecture series:
 | Week | Topic | Reading | Notebook |
 |---|---|---|---|
 | **Module 1** | **Python, Git, and AI-assisted coding foundations** | | |
-| 1 | Course introduction; computational thinking in economics; setup; AI policy | [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 1](weeks/week01.ipynb) |
-| 2 | Python fundamentals I: variables, control flow, functions | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 2](weeks/week02.ipynb) |
+| 1 | Course introduction; computational thinking in economics; writing in Markdown and LaTeX; setup; AI policy | [PP 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | [Week 1](weeks/week01.ipynb) |
+| 2 | Python fundamentals I: variables, control flow, functions | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 4. Functions](https://python-programming.quantecon.org/functions.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 2](weeks/week02.ipynb) |
 | 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | [Week 3](weeks/week03.ipynb) |
 | **Module 2** | **Data handling and visualization** | | |
 | 4 | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | |
