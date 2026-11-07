@@ -32,10 +32,21 @@ there (it has a random two-word name). You can also see all of yours at
 [github.com/codespaces](https://github.com/codespaces). Reuse that one codespace
 all semester rather than creating new ones.
 
-### A notebook says "No module named numpy" (or asks me to select a kernel)
+### A notebook says "No module named numpy" (or asks me to select a kernel) {#missing-package}
 
-Click **Select Kernel** (or the kernel name) at the top right of the notebook,
-choose **Python Environments**, and pick the one in `.venv`. Then run the cells again.
+Python reports a missing package as `ModuleNotFoundError: No module named ...`.
+
+1. **Check the kernel.** Click **Select Kernel** (or the kernel name) at the top
+   right of the notebook, choose **Python Environments**, and pick the one in
+   `.venv`. Then run the cells again. This fixes it almost every time.
+2. **Still missing? Run `uv sync`.** Open a terminal, a window for typing
+   commands to the computer: click the **☰** menu at the top left, then
+   **Terminal > New Terminal**. It opens in your repo folder, which is where
+   `uv sync` has to run. Type `uv sync` and press Enter. It installs the course
+   packages into your repo's `.venv` folder.
+3. **Restart.** Back in the notebook, click **Restart**, then run the cells again.
+
+Working on your own computer? See the [Positron version](#missing-package-local).
 
 ### I pressed Ctrl+W (or another shortcut) and my browser tab closed
 
@@ -113,12 +124,16 @@ uv sync --link-mode=copy
 Current course repos already include this setting, so it should only affect
 older copies.
 
-### A notebook says "No module named numpy" (or pandas, scipy, ...)
+### A notebook says "No module named numpy" (or pandas, scipy, ...) {#missing-package-local}
 
-The notebook is running a different Python from the course one. Click the kernel
-name at the **top right of the notebook** and choose the Python from `.venv`
-(it's labeled **econs431**). Then **Restart** the kernel and run the cells again.
-Positron usually remembers this choice for the folder.
+The notebook is probably running a different Python from the course one. Click
+the kernel name at the **top right of the notebook** and choose the Python from
+`.venv` (it's labeled **econs431**). Then **Restart** the kernel and run the cells
+again. Positron usually remembers this choice for the folder.
+
+If the package is still missing, open a terminal (**Terminal > New Terminal**)
+with your course repo folder open in Positron, run `uv sync`, then restart the
+kernel again.
 
 ### `check_setup.py` says "Repo is outside a cloud-synced folder" is a problem
 
