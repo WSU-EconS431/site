@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#my-repo-is-greyed-out-or-i-dont-see-create-codespace" id="toc-my-repo-is-greyed-out-or-i-dont-see-create-codespace" class="nav-link" data-scroll-target="#my-repo-is-greyed-out-or-i-dont-see-create-codespace">My repo is greyed out, or I don’t see “Create codespace”</a></li>
   <li><a href="#how-do-i-get-back-to-my-codespace" id="toc-how-do-i-get-back-to-my-codespace" class="nav-link" data-scroll-target="#how-do-i-get-back-to-my-codespace">How do I get back to my codespace?</a></li>
-  <li><a href="#a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" id="toc-a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" class="nav-link" data-scroll-target="#a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel">A notebook says “No module named numpy” (or asks me to select a kernel)</a></li>
+  <li><a href="#missing-package" id="toc-missing-package" class="nav-link" data-scroll-target="#missing-package">A notebook says “No module named numpy” (or asks me to select a kernel)</a></li>
   <li><a href="#i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" id="toc-i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" class="nav-link" data-scroll-target="#i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed">I pressed Ctrl+W (or another shortcut) and my browser tab closed</a></li>
   <li><a href="#will-i-run-out-of-codespace-time" id="toc-will-i-run-out-of-codespace-time" class="nav-link" data-scroll-target="#will-i-run-out-of-codespace-time">Will I run out of codespace time?</a></li>
   <li><a href="#my-codespace-disappeared" id="toc-my-codespace-disappeared" class="nav-link" data-scroll-target="#my-codespace-disappeared">My codespace disappeared</a></li>
@@ -163,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#a-command-gives-no-module-named-uv-or-a-python-syntaxerror" id="toc-a-command-gives-no-module-named-uv-or-a-python-syntaxerror" class="nav-link" data-scroll-target="#a-command-gives-no-module-named-uv-or-a-python-syntaxerror">A command gives “No module named uv” (or a Python SyntaxError)</a></li>
   <li><a href="#uv-sync-says-it-cant-find-pyproject.toml" id="toc-uv-sync-says-it-cant-find-pyproject.toml" class="nav-link" data-scroll-target="#uv-sync-says-it-cant-find-pyproject.toml"><code>uv sync</code> says it can’t find <code>pyproject.toml</code></a></li>
   <li><a href="#uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396" id="toc-uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396" class="nav-link" data-scroll-target="#uv-sync-fails-with-failed-to-hardlink-files-or-os-error-396"><code>uv sync</code> fails with “Failed to hardlink files” or “os error 396”</a></li>
-  <li><a href="#a-notebook-says-no-module-named-numpy-or-pandas-scipy" id="toc-a-notebook-says-no-module-named-numpy-or-pandas-scipy" class="nav-link" data-scroll-target="#a-notebook-says-no-module-named-numpy-or-pandas-scipy">A notebook says “No module named numpy” (or pandas, scipy, …)</a></li>
+  <li><a href="#missing-package-local" id="toc-missing-package-local" class="nav-link" data-scroll-target="#missing-package-local">A notebook says “No module named numpy” (or pandas, scipy, …)</a></li>
   <li><a href="#check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem" id="toc-check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem" class="nav-link" data-scroll-target="#check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem"><code>check_setup.py</code> says “Repo is outside a cloud-synced folder” is a problem</a></li>
   <li><a href="#my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it" id="toc-my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it" class="nav-link" data-scroll-target="#my-.venv-folder-is-huge-and-windows-wont-let-me-delete-or-move-it">My <code>.venv</code> folder is huge, and Windows won’t let me delete or move it</a></li>
   </ul></li>
@@ -228,9 +228,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="how-do-i-get-back-to-my-codespace">How do I get back to my codespace?</h3>
 <p>Your repo’s page &gt; <strong>Code</strong> &gt; <strong>Codespaces</strong> tab &gt; click the codespace listed there (it has a random two-word name). You can also see all of yours at <a href="https://github.com/codespaces">github.com/codespaces</a>. Reuse that one codespace all semester rather than creating new ones.</p>
 </section>
-<section id="a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel" class="level3">
-<h3 class="anchored" data-anchor-id="a-notebook-says-no-module-named-numpy-or-asks-me-to-select-a-kernel">A notebook says “No module named numpy” (or asks me to select a kernel)</h3>
-<p>Click <strong>Select Kernel</strong> (or the kernel name) at the top right of the notebook, choose <strong>Python Environments</strong>, and pick the one in <code>.venv</code>. Then run the cells again.</p>
+<section id="missing-package" class="level3">
+<h3 class="anchored" data-anchor-id="missing-package">A notebook says “No module named numpy” (or asks me to select a kernel)</h3>
+<p>Python reports a missing package as <code>ModuleNotFoundError: No module named ...</code>.</p>
+<ol type="1">
+<li><strong>Check the kernel.</strong> Click <strong>Select Kernel</strong> (or the kernel name) at the top right of the notebook, choose <strong>Python Environments</strong>, and pick the one in <code>.venv</code>. Then run the cells again. This fixes it almost every time.</li>
+<li><strong>Still missing? Run <code>uv sync</code>.</strong> Open a terminal, a window for typing commands to the computer: click the <strong>☰</strong> menu at the top left, then <strong>Terminal &gt; New Terminal</strong>. It opens in your repo folder, which is where <code>uv sync</code> has to run. Type <code>uv sync</code> and press Enter. It installs the course packages into your repo’s <code>.venv</code> folder.</li>
+<li><strong>Restart.</strong> Back in the notebook, click <strong>Restart</strong>, then run the cells again.</li>
+</ol>
+<p>Working on your own computer? See the <a href="#missing-package-local">Positron version</a>.</p>
 </section>
 <section id="i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed" class="level3">
 <h3 class="anchored" data-anchor-id="i-pressed-ctrlw-or-another-shortcut-and-my-browser-tab-closed">I pressed Ctrl+W (or another shortcut) and my browser tab closed</h3>
@@ -285,9 +291,10 @@ ul.task-list li input[type="checkbox"] {
 <pre><code>uv sync --link-mode=copy</code></pre>
 <p>Current course repos already include this setting, so it should only affect older copies.</p>
 </section>
-<section id="a-notebook-says-no-module-named-numpy-or-pandas-scipy" class="level3">
-<h3 class="anchored" data-anchor-id="a-notebook-says-no-module-named-numpy-or-pandas-scipy">A notebook says “No module named numpy” (or pandas, scipy, …)</h3>
-<p>The notebook is running a different Python from the course one. Click the kernel name at the <strong>top right of the notebook</strong> and choose the Python from <code>.venv</code> (it’s labeled <strong>econs431</strong>). Then <strong>Restart</strong> the kernel and run the cells again. Positron usually remembers this choice for the folder.</p>
+<section id="missing-package-local" class="level3">
+<h3 class="anchored" data-anchor-id="missing-package-local">A notebook says “No module named numpy” (or pandas, scipy, …)</h3>
+<p>The notebook is probably running a different Python from the course one. Click the kernel name at the <strong>top right of the notebook</strong> and choose the Python from <code>.venv</code> (it’s labeled <strong>econs431</strong>). Then <strong>Restart</strong> the kernel and run the cells again. Positron usually remembers this choice for the folder.</p>
+<p>If the package is still missing, open a terminal (<strong>Terminal &gt; New Terminal</strong>) with your course repo folder open in Positron, run <code>uv sync</code>, then restart the kernel again.</p>
 </section>
 <section id="check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem" class="level3">
 <h3 class="anchored" data-anchor-id="check_setup.py-says-repo-is-outside-a-cloud-synced-folder-is-a-problem"><code>check_setup.py</code> says “Repo is outside a cloud-synced folder” is a problem</h3>
