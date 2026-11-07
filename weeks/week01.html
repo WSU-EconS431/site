@@ -111,7 +111,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
+
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -212,6 +215,14 @@ window.Quarto = {
   <li><a href="#a-market-in-a-few-lines" id="toc-a-market-in-a-few-lines" class="nav-link active" data-scroll-target="#a-market-in-a-few-lines">A market in a few lines</a></li>
   <li><a href="#drawing-it" id="toc-drawing-it" class="nav-link" data-scroll-target="#drawing-it">Drawing it</a></li>
   <li><a href="#changing-it" id="toc-changing-it" class="nav-link" data-scroll-target="#changing-it">Changing it</a></li>
+  <li><a href="#writing-it-up" id="toc-writing-it-up" class="nav-link" data-scroll-target="#writing-it-up">Writing it up</a>
+  <ul class="collapse">
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a></li>
+  <li><a href="#math-with-latex" id="toc-math-with-latex" class="nav-link" data-scroll-target="#math-with-latex">Math with LaTeX</a></li>
+  <li><a href="#five-mistakes-that-break-math" id="toc-five-mistakes-that-break-math" class="nav-link" data-scroll-target="#five-mistakes-that-break-math">Five mistakes that break math</a></li>
+  <li><a href="#math-in-figures-and-printed-results" id="toc-math-in-figures-and-printed-results" class="nav-link" data-scroll-target="#math-in-figures-and-printed-results">Math in figures and printed results</a></li>
+  <li><a href="#try-it" id="toc-try-it" class="nav-link" data-scroll-target="#try-it">Try it</a></li>
+  </ul></li>
   <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This week</a></li>
   </ul>
 </nav>
@@ -345,11 +356,307 @@ window.Quarto = {
 </div>
 </div>
 </section>
+<section id="writing-it-up" class="level2">
+<h2 class="anchored" data-anchor-id="writing-it-up">Writing it up</h2>
+<p>Code computes an answer; the text around it says what the answer means. A notebook has a cell type for each job. <strong>Code cells</strong> run Python. <strong>Markdown cells</strong> hold formatted text: headings, lists, tables, and equations written in <strong>LaTeX</strong>, the notation economists, journals, and textbooks use for math. Every problem set asks you to explain results in Markdown cells, and that text is what gets read and graded.</p>
+<p><strong>Markdown cells in your codespace</strong></p>
+<ul>
+<li>Add one with the <strong>+ Markdown</strong> button that appears when you hover between cells.</li>
+<li>To switch a cell’s type, click to the left of it (so it’s selected but you aren’t typing in it), then press <strong>M</strong> for Markdown or <strong>Y</strong> for code.</li>
+<li>Press <strong>Shift+Enter</strong> to render a Markdown cell. Double-click it to edit again.</li>
+</ul>
+<section id="markdown" class="level3">
+<h3 class="anchored" data-anchor-id="markdown">Markdown</h3>
+<p>You type plain text with a few symbols, and it renders as formatted text:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>**Result:** with linear demand and supply, the market clears at a price of</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>**30** and a quantity of **40**.</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>What the model leaves out:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>taxes and subsidies</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>market power (*Week 11*)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Run <span class="in">`uv sync`</span> if a package is missing, and see</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">QuantEcon</span><span class="co">](https://intro.quantecon.org)</span> for more examples.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>renders as:</p>
+<blockquote class="blockquote">
+<p><strong>Result:</strong> with linear demand and supply, the market clears at a price of <strong>30</strong> and a quantity of <strong>40</strong>.</p>
+<p>What the model leaves out:</p>
+<ul>
+<li>taxes and subsidies</li>
+<li>market power (<em>Week 11</em>)</li>
+</ul>
+<p>Run <code>uv sync</code> if a package is missing, and see <a href="https://intro.quantecon.org">QuantEcon</a> for more examples.</p>
+</blockquote>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>You type</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code># Title</code>, <code>## Section</code>, <code>### Subsection</code></td>
+<td>headings, largest to smallest</td>
+</tr>
+<tr class="even">
+<td><code>*italic*</code> and <code>**bold**</code></td>
+<td><em>italic</em> and <strong>bold</strong></td>
+</tr>
+<tr class="odd">
+<td><code>- item</code> or <code>1. item</code>, one per line</td>
+<td>a bulleted or numbered list</td>
+</tr>
+<tr class="even">
+<td><code>[QuantEcon](https://quantecon.org)</code></td>
+<td>a link: <a href="https://quantecon.org">QuantEcon</a></td>
+</tr>
+<tr class="odd">
+<td><code>`p_star`</code></td>
+<td>code: <code>p_star</code></td>
+</tr>
+<tr class="even">
+<td><code>![Market diagram](market.png)</code></td>
+<td>an image saved next to the notebook (Week 3 shows how to save one)</td>
+</tr>
+<tr class="odd">
+<td>a blank line</td>
+<td>a new paragraph</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Blank lines matter.</strong> Put one before every list, heading, table, and display equation. Without it, Markdown can run them into the paragraph above. A single line break inside a paragraph is ignored, so you can wrap long lines however you like.</p>
+<p><strong>Tables</strong> use pipes and dashes. A colon on the right of the dashes right-aligns a column, which suits numbers:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Demand intercept $a$ <span class="pp">|</span> Price $P^*$ | Quantity $Q^*$ <span class="pp">|</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---:|---:|---:|</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 90  <span class="pp">|</span> 26.67 <span class="pp">|</span> 36.67 <span class="pp">|</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 100 <span class="pp">|</span> 30.00 <span class="pp">|</span> 40.00 <span class="pp">|</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 110 <span class="pp">|</span> 33.33 <span class="pp">|</span> 43.33 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Demand intercept <span class="math inline">\(a\)</span></th>
+<th style="text-align: right;">Price <span class="math inline">\(P^*\)</span></th>
+<th style="text-align: right;">Quantity <span class="math inline">\(Q^*\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">26.67</td>
+<td style="text-align: right;">36.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">30.00</td>
+<td style="text-align: right;">40.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">33.33</td>
+<td style="text-align: right;">43.33</td>
+</tr>
+</tbody>
+</table>
+<p>Don’t type tables of results by hand. pandas will write the Markdown for you, ready to paste into a Markdown cell:</p>
+<div id="w1md03" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(rows).<span class="bu">round</span>(<span class="dv">2</span>).to_markdown(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>|   demand intercept a |   price |   quantity |
+|---------------------:|--------:|-----------:|
+|                   80 |   23.33 |      33.33 |
+|                   90 |   26.67 |      36.67 |
+|                  100 |   30    |      40    |
+|                  110 |   33.33 |      43.33 |
+|                  120 |   36.67 |      46.67 |</code></pre>
+</div>
+</div>
+</section>
+<section id="math-with-latex" class="level3">
+<h3 class="anchored" data-anchor-id="math-with-latex">Math with LaTeX</h3>
+<p>Put math between dollar signs. Single dollar signs give <strong>inline</strong> math, inside a sentence. Double dollar signs give <strong>display</strong> math, centered on its own line.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Demand is $Q_d = a - bP$, so the choke price is $a/b$. The equilibrium price is</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>P^* = \frac{a - c}{b + d}.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>renders as:</p>
+<blockquote class="blockquote">
+<p>Demand is <span class="math inline">\(Q_d = a - bP\)</span>, so the choke price is <span class="math inline">\(a/b\)</span>. The equilibrium price is</p>
+<p><span class="math display">\[
+P^* = \frac{a - c}{b + d}.
+\]</span></p>
+</blockquote>
+<p>These cover most of what you’ll write this semester:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You type</th>
+<th>You get</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Q_d</code>, <code>Q_{d,i}</code></td>
+<td><span class="math inline">\(Q_d\)</span>, <span class="math inline">\(Q_{d,i}\)</span></td>
+<td>subscript; braces around anything longer than one character</td>
+</tr>
+<tr class="even">
+<td><code>P^*</code>, <code>x^{10}</code></td>
+<td><span class="math inline">\(P^*\)</span>, <span class="math inline">\(x^{10}\)</span></td>
+<td>superscript; <code>x^10</code> gives <span class="math inline">\(x^10\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>\frac{a - c}{b + d}</code></td>
+<td><span class="math inline">\(\frac{a - c}{b + d}\)</span></td>
+<td>fraction: <code>\frac{top}{bottom}</code></td>
+</tr>
+<tr class="even">
+<td><code>\alpha</code>, <code>\beta</code>, <code>\varepsilon</code>, <code>\pi</code>, <code>\Delta</code></td>
+<td><span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(\pi\)</span>, <span class="math inline">\(\Delta\)</span></td>
+<td>Greek letters; capitalize for capitals</td>
+</tr>
+<tr class="odd">
+<td><code>a \cdot b</code>, <code>a \times b</code></td>
+<td><span class="math inline">\(a \cdot b\)</span>, <span class="math inline">\(a \times b\)</span></td>
+<td>multiplication</td>
+</tr>
+<tr class="even">
+<td><code>\le</code>, <code>\ge</code>, <code>\ne</code>, <code>\approx</code></td>
+<td><span class="math inline">\(\le\)</span>, <span class="math inline">\(\ge\)</span>, <span class="math inline">\(\ne\)</span>, <span class="math inline">\(\approx\)</span></td>
+<td>comparisons</td>
+</tr>
+<tr class="odd">
+<td><code>\sqrt{x}</code>, <code>e^{-rt}</code>, <code>\ln x</code></td>
+<td><span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(e^{-rt}\)</span>, <span class="math inline">\(\ln x\)</span></td>
+<td>roots, exponentials, logs</td>
+</tr>
+<tr class="even">
+<td><code>\sum_{i=1}^{n} q_i</code></td>
+<td><span class="math inline">\(\sum_{i=1}^{n} q_i\)</span></td>
+<td>sums</td>
+</tr>
+<tr class="odd">
+<td><code>\int_0^{Q^*} P(q)\,dq</code></td>
+<td><span class="math inline">\(\int_0^{Q^*} P(q)\,dq\)</span></td>
+<td>integrals; <code>\,</code> adds a thin space</td>
+</tr>
+<tr class="even">
+<td><code>\frac{\partial \pi}{\partial q}</code></td>
+<td><span class="math inline">\(\frac{\partial \pi}{\partial q}\)</span></td>
+<td>partial derivatives</td>
+</tr>
+<tr class="odd">
+<td><code>\max_{q}\ \pi(q)</code></td>
+<td><span class="math inline">\(\max_{q}\ \pi(q)\)</span></td>
+<td>optimization; <code>\</code> adds a space</td>
+</tr>
+<tr class="even">
+<td><code>\text{CS}</code></td>
+<td><span class="math inline">\(\text{CS}\)</span></td>
+<td>words inside math</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Several lines of algebra</strong> go in an <code>aligned</code> block. <code>&amp;</code> marks the point to line up (usually the equals sign) and <code>\\</code> ends a line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Q_d &amp;= Q_s <span class="sc">\\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>a - bP &amp;= c + dP <span class="sc">\\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>P^* &amp;= \frac{a - c}{b + d} = \frac{100 - 10}{2 + 1} = 30</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[
+\begin{aligned}
+Q_d &amp;= Q_s \\
+a - bP &amp;= c + dP \\
+P^* &amp;= \frac{a - c}{b + d} = \frac{100 - 10}{2 + 1} = 30
+\end{aligned}
+\]</span></p>
+<p>Two more you’ll meet later. Consumer surplus is the area between inverse demand and the price:</p>
+<p><span class="math display">\[
+\text{CS} = \int_0^{Q^*} \left( \frac{a - q}{b} - P^* \right) dq = \frac{1}{2}\, Q^* \left( \frac{a}{b} - P^* \right) = 400,
+\]</span></p>
+<p>and in Week 9 a consumer with Cobb-Douglas utility solves</p>
+<p><span class="math display">\[
+\max_{x,\,y}\ x^{\alpha} y^{1-\alpha} \quad \text{subject to} \quad p_x x + p_y y \le m.
+\]</span></p>
+<p><code>\left(</code> and <code>\right)</code> make parentheses grow to fit what’s inside them.</p>
+</section>
+<section id="five-mistakes-that-break-math" class="level3">
+<h3 class="anchored" data-anchor-id="five-mistakes-that-break-math">Five mistakes that break math</h3>
+<ol type="1">
+<li><strong>Dollar signs that mean money.</strong> Write <code>\$12.50</code>. Some viewers turn the words between two unescaped dollar signs into math.</li>
+<li><strong>Missing braces.</strong> <code>x^10</code> gives <span class="math inline">\(x^10\)</span>; write <code>x^{10}</code>. The same goes for subscripts: <code>Q_{d1}</code>.</li>
+<li><strong>Spaces just inside the dollar signs.</strong> Write <code>$P^*$</code>, not <code>$ P^* $</code>. Some editors forgive the spaces; the course website doesn’t.</li>
+<li><strong>Blank lines inside display math.</strong> Everything between the opening <code>$$</code> and the closing <code>$$</code> must be one block with no empty lines.</li>
+<li><strong>Unmatched braces or misspelled commands</strong>, such as <code>\frac{a}{b</code> or <code>\aplha</code>. The equation shows up as raw text or a red error message. Read it like a traceback: find the first brace or command that doesn’t match.</li>
+</ol>
+<p><strong>AI help.</strong> Copilot Chat writes LaTeX well. Describe the equation in words (“consumer surplus as the integral from 0 to Q-star of inverse demand minus the price”) and paste the result into a Markdown cell. Then render it and check every symbol, sign, and fraction against what you meant: an equation that renders isn’t necessarily the right equation.</p>
+</section>
+<section id="math-in-figures-and-printed-results" class="level3">
+<h3 class="anchored" data-anchor-id="math-in-figures-and-printed-results">Math in figures and printed results</h3>
+<p>Matplotlib reads the same dollar-sign math in titles, labels, and legends. Put an <code>r</code> in front of the string (a <strong>raw string</strong>) so Python leaves the backslashes alone. In an ordinary string, <code>"\frac"</code> starts with <code>\f</code>, which Python reads as a special character, not as LaTeX.</p>
+<div id="w1md08" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax.plot(a <span class="op">-</span> b <span class="op">*</span> p, p, label<span class="op">=</span><span class="vs">r"Demand: </span><span class="dv">$</span><span class="vs">Q_d = a - bP</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.plot(c <span class="op">+</span> d <span class="op">*</span> p, p, label<span class="op">=</span><span class="vs">r"Supply: </span><span class="dv">$</span><span class="vs">Q_s = c </span><span class="op">+</span><span class="vs"> dP</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax.plot(q_star, p_star, <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"Quantity </span><span class="dv">$</span><span class="vs">Q</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"Price </span><span class="dv">$</span><span class="vs">P</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r"Equilibrium at </span><span class="dv">$</span><span class="vs">P</span><span class="dv">^</span><span class="op">*</span><span class="vs"> = </span><span class="ch">\f</span><span class="vs">rac{a - c}{b </span><span class="op">+</span><span class="vs"> d}</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">110</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week01_files/figure-html/cell-6-output-1.png" width="511" height="380" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To put computed numbers into formatted text, build a Markdown string and display it. In an f-string, LaTeX’s own braces must be doubled, <code>{{</code> and <code>}}</code>, so Python doesn’t mistake them for placeholders; single braces still insert values:</p>
+<div id="w1md10" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"The market clears at $P^* = </span><span class="sc">{</span>p_star<span class="sc">:.2f}</span><span class="ss">$ and $Q^* = </span><span class="sc">{</span>q_star<span class="sc">:.2f}</span><span class="ss">$."</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="vs">rf"Check: </span><span class="dv">$</span><span class="ch">\f</span><span class="vs">rac</span><span class="ch">{{</span><span class="vs">a - c</span><span class="ch">}}{{</span><span class="vs">b </span><span class="op">+</span><span class="vs"> d</span><span class="ch">}}</span><span class="vs"> = </span><span class="sc">{</span>(a <span class="op">-</span> c) <span class="op">/</span> (b <span class="op">+</span> d)<span class="sc">:.2f}</span><span class="dv">$</span><span class="vs">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>The market clears at <span class="math inline">\(P^* = 30.00\)</span> and <span class="math inline">\(Q^* = 40.00\)</span>.</p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p>Check: <span class="math inline">\(\frac{a - c}{b + d} = 30.00\)</span></p>
+</div>
+</div>
+</section>
+<section id="try-it" class="level3">
+<h3 class="anchored" data-anchor-id="try-it">Try it</h3>
+<p><strong>T1.</strong> Add a Markdown cell below this one with a short heading, a two-item bulleted list of things the competitive model leaves out, and the supply curve as inline math.</p>
+<p><strong>T2.</strong> In a second Markdown cell, write the equilibrium quantity as display math, <span class="math inline">\(Q^* = a - bP^* = \frac{ad + bc}{b + d}\)</span>, and check by hand that it gives 40.</p>
+<p><strong>T3.</strong> Copy the text below into a new Markdown cell, render it, and fix it. It has one example of each mistake above. Not every editor shows all five as errors, so read it carefully, too.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>At a price of $25 the firm sells 50 units, so revenue is $1,250.</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Demand is $ Q_d = a - bP $ and the elasticity is $\varepsilon = -b \frac{P}{Q$.</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Total cost is $C(q) = 200 + 0.5q^2$ and a large firm produces $q^10$ units.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>\text{CS} = \frac{1}{2} Q^* \left( \frac{a}{b} - P^* \right)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
 <section id="this-week" class="level2">
 <h2 class="anchored" data-anchor-id="this-week">This week</h2>
 <ul>
 <li>Complete the <a href="../setup.html">Setup guide</a> and PS01.</li>
-<li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://python-programming.quantecon.org/python_essentials.html">5. Python Essentials</a>.</li>
+<li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://python-programming.quantecon.org/about_py.html">1. About These Lectures</a>.</li>
+<li>Keep Quarto’s <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown Basics</a> page handy. It covers everything in “Writing it up” and more.</li>
 <li>Bring a laptop, Chromebook, or tablet with a keyboard to the second session. We’ll set up codespaces together.</li>
 </ul>
 

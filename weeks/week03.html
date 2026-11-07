@@ -390,13 +390,12 @@ How many: 4</code></pre>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Quantity demanded at price p (a number or an array)."""</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">-</span> b <span class="op">*</span> p</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>demand(grid, a, b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>demand(np.array([<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">75</span>]), a, b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>array([90. , 82.5, 75. , 67.5, 60. , 52.5, 45. , 37.5, 30. , 22.5, 15. ,
-        7.5,  0. ])</code></pre>
+<pre><code>array([ 90. ,  45. ,   0. , -22.5])</code></pre>
 </div>
 </div>
-<p>Look at the end of that output: above the choke price <span class="math inline">\(a/b = 60\)</span>, linear demand turns negative. A Week 2 <code>if</code> can’t fix that for arrays, because <code>if</code> needs one <code>True</code> or <code>False</code>, and a comparison on an array gives many:</p>
+<p>Look at the last value: <span class="math inline">\(P = 75\)</span> is above the choke price <span class="math inline">\(a/b = 60\)</span>, and linear demand turns negative there. A Week 2 <code>if</code> can’t fix that for arrays, because <code>if</code> needs one <code>True</code> or <code>False</code>, and a comparison on an array gives many:</p>
 <div id="c019" class="cell" data-tags="[&quot;raises-exception&quot;]" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> demand_nonneg_loop_style(p, a, b):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p <span class="op">&gt;</span> a <span class="op">/</span> b:</span>
@@ -459,8 +458,8 @@ How many: 4</code></pre>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"vectorized: </span><span class="sc">{</span>t_vec<span class="sc">:.4f}</span><span class="ss"> s  (</span><span class="sc">{</span>t_loop <span class="op">/</span> t_vec<span class="sc">:.0f}</span><span class="ss">x faster)"</span>)</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same answer:"</span>, np.isclose(total, total_vec))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>loop:       0.376 s
-vectorized: 0.0093 s  (41x faster)
+<pre><code>loop:       0.448 s
+vectorized: 0.0119 s  (38x faster)
 same answer: True</code></pre>
 </div>
 </div>
