@@ -24,7 +24,8 @@ applications, estimation, and agent-based modeling.
 | Your problem sets | Your private repo: `WSU-EconS431/ps-<your-username>` |
 | Due dates, submissions, grades, announcements | Canvas |
 | Questions about code | Course Discussions on GitHub |
-| Course policies, including AI use | [Policies](policies.qmd) |
+| Syllabus: official policies, grading, and the semester plan | In Canvas |
+| AI rules and how to submit work, in brief | [Policies](policies.qmd) |
 
 ## This week
 
