@@ -20,6 +20,8 @@ website:
         text: Home
       - href: schedule.qmd
         text: Schedule
+      - href: syllabus.qmd
+        text: Syllabus
       - text: Setup
         menu:
           - href: setup.qmd

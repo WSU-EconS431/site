@@ -2,7 +2,7 @@
 title: "Policies"
 ---
 
-The Syllabus, posted in Canvas, is the official version of every course policy. This page
+The [Syllabus](syllabus.qmd) is the official version of every course policy. This page
 summarizes the ones you'll use most.
 
 ## AI use

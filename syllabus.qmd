@@ -1,0 +1,205 @@
+---
+title: "Syllabus"
+subtitle: "ECONS 431 Computational Economics · Spring 2027"
+---
+
+::: {.callout-warning}
+## Draft
+Fill in the remaining **[TBD]** items (office hours, the academic integrity sanction, and any break week) and delete this box before the first day of class.
+:::
+
+This syllabus is the official statement of course policies. Readings and lecture notebooks are on the [course website's Schedule](https://wsu-econs431.github.io/site/schedule.html); due dates, submissions, and grades are in Canvas.
+
+**Students are responsible for reading and understanding all university-wide policies and resources pertaining to all courses.** They are in the [University Syllabus](https://syllabus.wsu.edu/university-syllabus/).
+
+## Course information
+
+| Item | Details |
+|---|---|
+| Course | ECONS 431 Computational Economics, 3 credits |
+| Term | Spring 2027 |
+| Meetings | Tuesday & Thursday 10:35-11:50 am, Hulbert 27 [and when notified, Computer Lab Hulbert 21] |
+| Prerequisite | ECONS 301 |
+| Course website | [wsu-econs431.github.io/site](https://wsu-econs431.github.io/site/) |
+| Canvas | Due dates, submissions, grades, and announcements |
+| UCORE designation | None |
+
+**Catalog description.** Computational tools for solving a broad range of microeconomic and macroeconomic models from partial and general equilibrium models to dynamic models, growth modeling, neural nets, and portfolio models.
+
+**This offering.** We build models in Python, starting from a supply-and-demand market and ending with an agent-based model. Along the way you'll work with real economic data, solve models numerically, analyze market structure and welfare, and estimate economic relationships. No programming experience is assumed.
+
+## Instructor
+
+| Item | Details |
+|---|---|
+| Instructor | Prof. Jonathan Yoder |
+| Email | [yoder@wsu.edu](mailto:yoder@wsu.edu) |
+| Office | 203B |
+| Phone | (509) 335-8596 |
+| Student (office) hours | **[TBD: days and times]**, and by appointment |
+| Teaching assistant | None |
+
+**Getting help.** Post questions about code in the course Discussions on GitHub, so classmates with the same question see the answer. Use email for anything personal. I answer within one business day, though not usually in the evening before a deadline, so start early.
+
+## Materials and costs
+
+Everything required for this course is free.
+
+| Item | Required? | Where | Cost |
+|---|---|---|---|
+| [*Python Programming for Economics and Finance*](https://python-programming.quantecon.org), Thomas J. Sargent and John Stachurski (online) | Required readings | [python-programming.quantecon.org](https://python-programming.quantecon.org) | Free |
+| [*A First Course in Quantitative Economics with Python*](https://intro.quantecon.org), Thomas J. Sargent and John Stachurski (online) | Required readings | [intro.quantecon.org](https://intro.quantecon.org) | Free |
+| A laptop, Chromebook, or tablet with a keyboard, and a current web browser | Required in class | Your own, or a WSU computer lab | — |
+| [GitHub](https://github.com) account, with [GitHub Education student benefits](https://education.github.com) | Required | [github.com](https://github.com), [education.github.com](https://education.github.com) | Free |
+| [GitHub Codespaces](https://github.com/features/codespaces) (where you write and run code) | Required | Your course repository | Free within the monthly allowance ([Setup guide](https://wsu-econs431.github.io/site/setup.html)) |
+| [Microsoft 365 Copilot Chat](https://its.wsu.edu/2026/08/03/copilot-chat-at-wsu-new-guide-to-help-you-get-started/) (AI assistant) | Recommended | Your WSU login | Free |
+
+There are no course fees. If you don't have a suitable device, talk to me in the first week.
+
+## Learning outcomes
+
+By the end of the course, you will be able to:
+
+1. **Program.** Write, test, and debug Python code that solves economic problems, and manage your work with Git and GitHub.
+2. **Work with data.** Load, clean, combine, summarize, and visualize economic data.
+3. **Solve models numerically.** Use root-finding, optimization, linear algebra, and simulation to solve economic models, including ones with no pencil-and-paper solution.
+4. **Apply microeconomics computationally.** Build computational versions of consumer and producer choice, market structure, game theory, and general equilibrium, and use them for comparative statics and welfare analysis.
+5. **Estimate.** Estimate economic relationships with regression and maximum likelihood, and distinguish prediction from causal inference.
+6. **Model with agents.** Build an agent-based model and compare its aggregate outcomes with an analytical model.
+7. **Communicate and work responsibly.** Present computational results in reproducible notebooks with clear writing, equations, and figures, and use AI assistants critically and with transparent disclosure.
+
+| Outcome | Where you practice it | How it's assessed |
+|---|---|---|
+| 1. Program | Weeks 1–3, every week after | Problem sets, midterm, labs |
+| 2. Work with data | Weeks 4–5 | Problem sets, capstone |
+| 3. Solve models numerically | Weeks 6–8 | Problem sets, midterm |
+| 4. Apply microeconomics | Weeks 9–13 | Problem sets, capstone |
+| 5. Estimate | Week 14 | Problem set, capstone |
+| 6. Model with agents | Week 15 | Agent-based model lab, capstone |
+| 7. Communicate and work responsibly | All weeks | Written answers and AI usage notes in every problem set; capstone notebook and presentation |
+
+## How the course works
+
+Each week has a **lecture notebook** on the course website, which we work through in class with live coding, and an **in-class lab** where you practice in pairs. Most weeks also have a **problem set** that appears in your private GitHub repository. You work on it in your codespace, push it to GitHub, and submit the commit link in Canvas. The [Setup guide](https://wsu-econs431.github.io/site/setup.html) walks you through all of this in Week 1, and the [Setup FAQ](https://wsu-econs431.github.io/site/setup-faq.html) covers common problems.
+
+**Expected effort.** ECONS 431 is a 3-credit course. Plan on about 9 hours a week: about 3 in class and about 6 outside class on readings, problem sets, and the capstone project. Programming takes longer when you're new to it; that's normal, and it speeds up.
+
+## Assessments and grading
+
+| Component | Weight | Details |
+|---|---|---|
+| Problem sets (PS01–PS14) | 35% | Weekly; each ends with an AI usage note. Your lowest score, other than PS01, is dropped. |
+| Midterm computational exam | 15% | Week 8, in class, covers Modules 1–3. |
+| In-class labs and participation | 10% | Completed during class; your two lowest lab scores are dropped. |
+| Agent-based model lab | 10% | Week 15, individually or in pairs. |
+| Capstone project | 30% | Teams of 2–3: proposal (5%), progress check-in (5%), final notebook, repository, and written summary (12%), and presentation (8%). |
+
+**Problem sets** combine code, which must run from top to bottom, with written answers in Markdown. Parts are checked by running your notebook; written answers, figures, and explanations are graded by hand. Automated feedback during the semester is for practice only and doesn't set your grade.
+
+**Capstone project.** Teams form in Week 5 and propose a question in Week 7, usually a market-structure comparison, a tax or welfare analysis, or a small general-equilibrium economy, using public data or a calibrated model. Each team checks in during Week 12 and presents in Week 16. The final submission is a team repository with the project notebook, a 1–2 page written summary, and an AI usage disclosure. The presentation includes one AI-generated error the team caught and corrected. Team members may receive different grades if their contributions differ substantially; each member submits a short contribution statement.
+
+**Final exam.** There is no final exam. Capstone presentations take place in Week 16.
+
+### Letter grades
+
+Final percentages are rounded to the nearest whole number (89.5 becomes 90) before letter grades are assigned.
+
+| Grade | Percentage | Grade | Percentage |
+|---|---|---|---|
+| A | 93–100 | C+ | 77–79 |
+| A– | 90–92 | C | 73–76 |
+| B+ | 87–89 | C– | 70–72 |
+| B | 83–86 | D+ | 67–69 |
+| B– | 80–82 | D | 60–66 |
+|  |  | F | 0–59 |
+
+## Attendance, late work, and make-ups
+
+**Attendance.** Attendance isn't graded directly, but in-class labs are part of your grade and are done during class. The two dropped lab scores cover illness and other short absences. For a longer absence, contact me as soon as you can.
+
+**Late problem sets.** A problem set submitted up to 48 hours late loses 10% of its points for each 24 hours, or part of 24 hours, that it's late. After 48 hours it isn't accepted. The Canvas submission time is the official time. With a documented university-approved absence, emergency, or accommodation, contact me for an extension without penalty.
+
+**Capstone deliverables** aren't accepted late without arrangement made in advance.
+
+**Missed midterm.** If you miss the midterm because of illness, an emergency, or a university-approved absence, email me before the exam if possible, and no later than 24 hours after it, to arrange a make-up. Make-ups without a documented reason aren't given. Arrangements for religious observance follow the [University Syllabus](https://syllabus.wsu.edu/university-syllabus/).
+
+**Missed labs** can't be made up; the two dropped lab scores cover them.
+
+**Incomplete grades.** Under [Academic Regulation 90](https://catalog.wsu.edu/General/AcademicRegulations/ListAll), an Incomplete is possible only when circumstances beyond your control prevent you from finishing the course's work on time. Talk to me as soon as such a situation arises.
+
+## Collaboration
+
+Discussing ideas, approaches, and error messages with classmates is encouraged. The code and written answers you submit for problem sets must be your own: don't copy someone else's code or answers or share yours, and name the classmates you worked with in your AI usage note. In-class labs and the agent-based model lab may be done in pairs; the capstone is a team project.
+
+## Your repository and privacy
+
+Your course work lives in a private GitHub repository that only you and the course staff can see. Your GitHub username doesn't need to be your real name. Keep your repository private, and don't post course work publicly, during or after the course, unless an assignment says it may be shared.
+
+## Classroom expectations
+
+We are all expected to engage in courteous, respectful discussion, including on GitHub Discussions. Bring a charged device to every class. Keep phones and unrelated browser tabs away during live coding and labs; it's hard to catch up after missing a few steps. Behavior that disrupts the learning environment may lead to a request to leave class or referral to the appropriate disciplinary process.
+
+## Artificial intelligence (AI) policy
+
+**AI use only with acknowledgment.** AI assistants are allowed in this course, following the rules below, provided you disclose how you used them. You must be able to explain and defend every line you submit. The rules change as your skills grow:
+
+| Period | Chat assistants (explain, debug) | Inline autocomplete | Agentic tools that edit and run code for you |
+|---|---|---|---|
+| Weeks 1–5 | Allowed | Off | Not for problem sets |
+| Weeks 6–13 | Allowed | Allowed | Not for problem sets |
+| Weeks 14–16 and capstone | Allowed | Allowed | Allowed, documented |
+| Midterm and in-class exams | Not allowed | Off | Not allowed |
+
+**Why the phases:** early on, autocomplete writes the syntax you're there to learn, while a chat assistant explaining an error message teaches it.
+
+**Disclosure.** Every problem set ends with an AI usage note: the tool, what you asked, what you used and where, and how you checked it. "None" is a fine answer. The capstone requires the same disclosure, plus one AI error your team caught and corrected. Undisclosed AI use, or AI use that breaks the rules above, is a violation of academic integrity (see below).
+
+**Spot checks.** Each week a few students, chosen at random, walk me through one cell of their submission for about three minutes. Difficulty explaining your own work is a reason for a closer look at it, not proof of a violation.
+
+**Tools and privacy.** The course default is Microsoft 365 Copilot Chat, free with your WSU login. GitHub Copilot is free for verified students. You never need to pay for an AI tool. Don't paste personal information, other students' work, or restricted data into consumer AI tools. The course website's [Policies](https://wsu-econs431.github.io/site/policies.html) page has more detail.
+
+## Academic integrity
+
+You are responsible for reading WSU's [Academic Integrity Policy](https://communitystandards.wsu.edu/policies-and-reporting/academic-integrity-policy/), which is based on [Washington State law](https://apps.leg.wa.gov/wac/default.aspx?cite=504-26-202). If you cheat in your work in this class you will:
+
+- **[TBD: academic sanction. Suggested: receive a zero on the assignment for a first violation; fail the course for a second violation or for any violation on the midterm]**.
+- Be reported to the [Center for Community Standards](https://communitystandards.wsu.edu/).
+- Have the right to appeal my decision.
+- Not be able to drop the course or withdraw from the course until the appeals process is finished.
+
+If you have any questions about what you can and cannot do in this course, ask me.
+
+If you want to ask for a change in my decision about academic integrity, use the [form](https://cm.maxient.com/reportingform.php?WashingtonStateUniv&layout_id=10) at the [Center for Community Standards](https://communitystandards.wsu.edu/) website. You must submit this request within 21 calendar days of the decision.
+
+## Course concerns
+
+If you have a concern about the course, start by talking to me. Under [Academic Regulation 104](https://catalog.wsu.edu/General/AcademicRegulations/ListAll), concerns about course policies in this syllabus must be emailed to me within 5 business days after the first day of instruction, and concerns about a final grade within 10 business days of the final grading deadline. If a concern isn't resolved with me within 10 business days, you may take it to the director of the [School of Economic Sciences](https://ses.wsu.edu/), and then to the dean of the [College of Agricultural, Human, and Natural Resource Sciences](https://cahnrs.wsu.edu/). The [University Ombuds](https://ombuds.wsu.edu/) is available at any stage for advice or help resolving a concern.
+
+## University policies and resources
+
+The [University Syllabus](https://syllabus.wsu.edu/university-syllabus/) covers student support resources; Lauren's Promise (WSU's commitment to address discrimination and harassment); reasonable accommodations through the [Access Center](https://access.wsu.edu/); pregnancy and related conditions; arrangements for religious reasons; and emergencies on campus.
+
+## Course schedule
+
+Topics may shift slightly; any change will be announced in Canvas. PP is Python Programming for Economics and Finance and FC is A First Course in Quantitative Economics with Python. Lecture notebooks for each week are posted on the course website's [Schedule](https://wsu-econs431.github.io/site/schedule.html). **Due dates are in Canvas.** **[TBD: if the term includes a break, note which week it follows.]**
+
+| Week | Module | Topic | Readings | Due |
+|---|---|---|---|---|
+| 1 | 1. Python, Git, and AI-assisted coding foundations | Course introduction; why compute in economics; writing in Markdown and LaTeX; setup; AI policy | [PP 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | PS01 (setup and first commit) |
+| 2 | 1 | Python fundamentals I: variables, control flow, functions, debugging | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 4. Functions](https://python-programming.quantecon.org/functions.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | PS02 |
+| 3 | 1 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | PS03 |
+| 4 | 2. Data handling and visualization | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | PS04 |
+| 5 | 2 | Exploratory data analysis and visualization | [FC 2. Long-Run Growth](https://intro.quantecon.org/long_run_growth.html) | PS05; capstone teams formed |
+| 6 | 3. Numerical methods | Root-finding and optimization | [PP 12. SciPy](https://python-programming.quantecon.org/scipy.html) | PS06 |
+| 7 | 3 | Linear algebra and Markov chains | [FC 17. Linear Equations and Matrix Algebra](https://intro.quantecon.org/linear_equations.html); [FC 40. Markov Chains: Basic Concepts](https://intro.quantecon.org/markov_chains_I.html) | PS07; capstone proposal |
+| 8 | 3 | Randomness and simulation | [FC 10. LLN and CLT](https://intro.quantecon.org/lln_clt_intro.html) | PS08; **midterm exam** |
+| 9 | 4. Microeconomic applications | Consumer theory, computationally | To be posted | PS09 |
+| 10 | 4 | Producer theory, competitive markets, and welfare | To be posted | PS10 |
+| 11 | 4 | Monopoly and price discrimination | To be posted | PS11 |
+| 12 | 4 | Oligopoly and game theory | To be posted | PS12; capstone progress check-in |
+| 13 | 4 | General equilibrium, many goods, and networks | [FC 52. Supply and Demand with Many Goods](https://intro.quantecon.org/supply_demand_multiple_goods.html); [FC 50. Networks](https://intro.quantecon.org/networks.html) | PS13 |
+| 14 | 5. Estimation, AI-assisted analysis, and agent-based modeling | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | [FC 12. Simple Linear Regression Model](https://intro.quantecon.org/simple_linear_regression.html); [FC 13. Maximum Likelihood Estimation](https://intro.quantecon.org/mle_intro.html) | PS14 |
+| 15 | 5 | Agent-based modeling | [FC 31. Racial Segregation](https://intro.quantecon.org/schelling.html) (the Schelling model) | Agent-based model lab |
+| 16 | 5 | Capstone presentations and wrap-up | — | Capstone presentation, repository, and written summary |
+
+*This syllabus may be updated during the term; changes will be announced in Canvas, and this page always shows the current version.*
