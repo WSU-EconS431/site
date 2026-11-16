@@ -1,6 +1,6 @@
 ---
 title: "ECONS 431 Computational Economics"
-subtitle: "Washington State University"
+subtitle: "Spring Semester 2027"
 toc: false
 ---
 
