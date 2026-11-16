@@ -14,14 +14,14 @@ Readings come from two free QuantEcon lecture series:
 | Week | Topic | Reading | Notebook |
 |---|---|---|---|
 | **Module 1** | **Python, Git, and AI-assisted coding foundations** | | |
-| 1 | Course introduction; computational thinking in economics; writing in Markdown and LaTeX; setup; AI policy | [PP 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | [Week 1](weeks/week01.ipynb) |
-| 2 | Python fundamentals I: variables, control flow, functions | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 4. Functions](https://python-programming.quantecon.org/functions.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 2](weeks/week02.ipynb) |
-| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | [Week 3](weeks/week03.ipynb) |
+| 1 | Course introduction; computational thinking in economics; writing in Markdown and LaTeX; setup; AI policy | [SS 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | [Week 1](weeks/week01.ipynb) |
+| 2 | Python fundamentals I: variables, control flow, functions | [SS 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [SS 4. Functions](https://python-programming.quantecon.org/functions.html); [SS 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | [Week 2](weeks/week02.ipynb) |
+| 3 | Python fundamentals II: NumPy arrays, vectorization, plotting | [SS10. NumPy](https://python-programming.quantecon.org/numpy.html); [SS 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | [Week 3](weeks/week03.ipynb) |
 | **Module 2** | **Data handling and visualization** | | |
-| 4 | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | |
+| 4 | pandas for economic data | [SS 17. Pandas](https://python-programming.quantecon.org/pandas.html) | |
 | 5 | Exploratory data analysis and visualization | [FC 2. Long-Run Growth](https://intro.quantecon.org/long_run_growth.html) | |
 | **Module 3** | **Numerical methods** | | |
-| 6 | Root-finding and optimization | [PP 12. SciPy](https://python-programming.quantecon.org/scipy.html) | |
+| 6 | Root-finding and optimization | [SS 12. SciPy](https://python-programming.quantecon.org/scipy.html) | |
 | 7 | Linear algebra and Markov chains | [FC 17. Linear Equations and Matrix Algebra](https://intro.quantecon.org/linear_equations.html); [FC 40. Markov Chains: Basic Concepts](https://intro.quantecon.org/markov_chains_I.html) | |
 | 8 | Randomness and simulation; midterm | [FC 10. LLN and CLT](https://intro.quantecon.org/lln_clt_intro.html) | |
 | **Module 4** | **Microeconomic applications** | | |

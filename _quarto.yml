@@ -34,7 +34,7 @@ website:
         text: Policies
   page-footer:
     left: "ECONS 431 · Washington State University"
-    right: "Grades, due dates, and announcements are in Canvas."
+    right: "Grades are in Canvas."
 
 format:
   html:
