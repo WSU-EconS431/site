@@ -1,0 +1,13 @@
+<!-- Cougar logo for the page footer. Drop the official file at images/wsu-cougar.svg
+     (or .png and edit the src below). If the file is missing, the image hides itself. -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var left = document.querySelector(".nav-footer-left");
+  if (!left) return;
+  var img = new Image();
+  img.src = new URL("images/wsu-cougar.svg", document.querySelector("link[rel=stylesheet]").href.replace(/site_libs\/.*$/, "")).href;
+  img.alt = "Washington State University Cougar logo";
+  img.className = "wsu-footer-logo";
+  img.onload = function () { left.insertBefore(img, left.firstChild); };
+});
+</script>

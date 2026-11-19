@@ -33,12 +33,15 @@ website:
       - href: policies.qmd
         text: Policies
   page-footer:
+    background: "#4D4D4D"
+    border: false
     left: "ECONS 431 · Washington State University"
     right: "Grades are in Canvas."
 
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, wsu.scss]
+    include-after-body: _footer-logo.html
     toc: true
     code-copy: true
     code-overflow: wrap

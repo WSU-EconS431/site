@@ -1,0 +1,42 @@
+/*-- scss:defaults --*/
+// WSU brand palette (brand.wsu.edu/colors): Crimson #A60F2D, Gray #4D4D4D.
+// Used for the whole site; Quarto compiles this on top of the cosmo theme.
+$wsu-crimson:      #A60F2D;
+$wsu-crimson-dark: #7D0B22;
+$wsu-gray:         #4D4D4D;
+$wsu-gray-light:   #F1F1F1;
+$wsu-gray-mid:     #D9D9D9;
+
+$body-color:       #262626;
+$link-color:       $wsu-crimson;
+$link-hover-color: $wsu-crimson-dark;
+$primary:          $wsu-crimson;
+$secondary:        $wsu-gray;
+$navbar-bg:        $wsu-crimson;
+$navbar-fg:        #FFFFFF;
+$navbar-hl:        #FFFFFF;
+$footer-bg:        $wsu-gray;
+$footer-fg:        #FFFFFF;
+$code-color:       $wsu-crimson-dark;
+$table-border-color: $wsu-gray-mid;
+$font-family-sans-serif: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+/*-- scss:rules --*/
+// WSU web guidance: headings in gray, not crimson.
+h1, h2, h3, h4, h5, h6, .title { color: $wsu-gray; }
+h2 { border-bottom: 2px solid $wsu-crimson; padding-bottom: .2rem; }
+
+.navbar { border-bottom: 4px solid $wsu-crimson-dark; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: #fff; text-decoration: underline; }
+.dropdown-menu .dropdown-item.active, .dropdown-item:active { background-color: $wsu-crimson; color: #fff; }
+
+table thead th { background-color: $wsu-gray; color: #fff; border-bottom: none; }
+table tbody tr:nth-of-type(even) { background-color: $wsu-gray-light; }
+
+blockquote { border-left: .25rem solid $wsu-crimson; }
+.sidebar nav[role=doc-toc] ul > li > a.active,
+#TOC .nav-link.active { color: $wsu-crimson; border-left-color: $wsu-crimson; }
+
+.nav-footer { border-top: 4px solid $wsu-crimson; padding: 1.2rem 0; }
+.nav-footer a { color: #fff; }
+.wsu-footer-logo { height: 56px; width: auto; vertical-align: middle; margin-right: .75rem; }
