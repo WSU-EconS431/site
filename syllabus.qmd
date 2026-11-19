@@ -51,7 +51,7 @@ Everything required for this course is free.
 | [*A First Course in Quantitative Economics with Python*](https://intro.quantecon.org), Thomas J. Sargent and John Stachurski (online) | Required readings | [intro.quantecon.org](https://intro.quantecon.org) | Free |
 | A laptop, Chromebook, or tablet with a keyboard, and a current web browser | Required in class | Your own, or a WSU computer lab | — |
 | [GitHub](https://github.com) account, with [GitHub Education student benefits](https://education.github.com) | Required | [github.com](https://github.com), [education.github.com](https://education.github.com) | Free |
-| [GitHub Codespaces](https://github.com/features/codespaces) (where you write and run code) | Required | Your course repository | Free within the monthly allowance ([Setup guide](https://wsu-econs431.github.io/site/setup.html)) |
+| [GitHub Codespaces](https://github.com/features/codespaces) or other code editors like [Google Colab](https://colab.research.google.com/), Positron, or VSCode (where you write and run code) | Required | Your course repository | Free within the monthly allowance ([Setup guide](https://wsu-econs431.github.io/site/setup.html)) |
 | [Microsoft 365 Copilot Chat](https://its.wsu.edu/2026/08/03/copilot-chat-at-wsu-new-guide-to-help-you-get-started/) (AI assistant) | Recommended | Your WSU login | Free |
 
 There are no course fees. If you don't have a suitable device, talk to me in the first week.
