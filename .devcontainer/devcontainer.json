@@ -22,6 +22,7 @@
         "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
         "python.terminal.activateEnvironment": true,
         "files.autoSave": "afterDelay",
+        "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
         "git.autofetch": true,
         "git.enableSmartCommit": true,
         "git.confirmSync": false,
