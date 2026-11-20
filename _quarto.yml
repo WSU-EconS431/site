@@ -41,7 +41,6 @@ website:
 format:
   html:
     theme: [cosmo, wsu.scss]
-    include-after-body: _footer-logo.html
     toc: true
     code-copy: true
     code-overflow: wrap
