@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wsu-econs431.github.io/site/weeks/week03.html</loc>
-    <lastmod>2026-11-07T19:52:33.212Z</lastmod>
+    <lastmod>2026-11-19T23:17:36.753Z</lastmod>
   </url>
   <url>
     <loc>https://wsu-econs431.github.io/site/weeks/week01.html</loc>
-    <lastmod>2026-11-07T20:23:16.242Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/setup-local.html</loc>
-    <lastmod>2026-11-06T15:10:55.616Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/schedule.html</loc>
-    <lastmod>2026-11-07T18:24:20.065Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/index.html</loc>
-    <lastmod>2026-11-06T15:10:56.417Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/policies.html</loc>
-    <lastmod>2026-11-06T15:10:56.701Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/setup-faq.html</loc>
-    <lastmod>2026-11-07T20:16:50.316Z</lastmod>
+    <lastmod>2026-11-20T00:45:03.003Z</lastmod>
   </url>
   <url>
     <loc>https://wsu-econs431.github.io/site/setup.html</loc>
     <lastmod>2026-11-06T15:10:55.366Z</lastmod>
   </url>
   <url>
+    <loc>https://wsu-econs431.github.io/site/setup-faq.html</loc>
+    <lastmod>2026-11-07T20:16:50.316Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/policies.html</loc>
+    <lastmod>2026-11-19T20:27:53.334Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/index.html</loc>
+    <lastmod>2026-11-16T14:36:56.072Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/schedule.html</loc>
+    <lastmod>2026-11-19T18:45:51.231Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/setup-local.html</loc>
+    <lastmod>2026-11-06T15:10:55.616Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/syllabus.html</loc>
+    <lastmod>2026-11-19T22:03:10.656Z</lastmod>
+  </url>
+  <url>
     <loc>https://wsu-econs431.github.io/site/weeks/week02.html</loc>
-    <lastmod>2026-11-07T19:52:20.896Z</lastmod>
+    <lastmod>2026-11-19T23:23:20.273Z</lastmod>
   </url>
 </urlset>

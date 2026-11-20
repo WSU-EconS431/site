@@ -39,7 +39,7 @@
     "href": "weeks/week03.html#how-much-faster",
     "title": "Week 3: NumPy arrays, vectorization, and plotting",
     "section": "5. How much faster?",
-    "text": "5. How much faster?\nVectorized code runs as compiled loops inside NumPy instead of one Python step at a time. Compare total revenue over a million prices:\n\nimport time\n\np_big = np.linspace(0, 60, 1_000_000)\n\nt0 = time.perf_counter()\ntotal = 0.0\nfor p_i in p_big:\n    total += p_i * (a - b * p_i)\nt_loop = time.perf_counter() - t0\n\nt0 = time.perf_counter()\ntotal_vec = np.sum(p_big * (a - b * p_big))\nt_vec = time.perf_counter() - t0\n\nprint(f\"loop:       {t_loop:.3f} s\")\nprint(f\"vectorized: {t_vec:.4f} s  ({t_loop / t_vec:.0f}x faster)\")\nprint(\"same answer:\", np.isclose(total, total_vec))\n\nloop:       0.448 s\nvectorized: 0.0119 s  (38x faster)\nsame answer: True\n\n\nSpeed matters once you simulate many agents or solve a model thousands of times (Weeks 8 and 15). Until then, the bigger gain is that the vectorized line is shorter and matches the math."
+    "text": "5. How much faster?\nVectorized code runs as compiled loops inside NumPy instead of one Python step at a time. Compare total revenue over a million prices:\n\nimport time\n\np_big = np.linspace(0, 60, 1_000_000)\n\nt0 = time.perf_counter()\ntotal = 0.0\nfor p_i in p_big:\n    total += p_i * (a - b * p_i)\nt_loop = time.perf_counter() - t0\n\nt0 = time.perf_counter()\ntotal_vec = np.sum(p_big * (a - b * p_big))\nt_vec = time.perf_counter() - t0\n\nprint(f\"loop:       {t_loop:.3f} s\")\nprint(f\"vectorized: {t_vec:.4f} s  ({t_loop / t_vec:.0f}x faster)\")\nprint(\"same answer:\", np.isclose(total, total_vec))\n\nloop:       0.369 s\nvectorized: 0.0105 s  (35x faster)\nsame answer: True\n\n\nSpeed matters once you simulate many agents or solve a model thousands of times (Weeks 8 and 15). Until then, the bigger gain is that the vectorized line is shorter and matches the math."
   },
   {
     "objectID": "weeks/week03.html#searching-a-grid",
@@ -81,7 +81,14 @@
     "href": "weeks/week01.html",
     "title": "Week 1: Why compute in economics?",
     "section": "",
-    "text": "Open in Colab · View on GitHub\nMost models in your economics courses so far could be solved with pencil and paper. This course is about the ones that can’t, or that are much easier to understand once a computer does the algebra. We start with a model you already know, a competitive market, and let Python solve it, draw it, and change it."
+    "text": "View on GitHub · Open in Codespaces · Open in Colab\nMost models in your economics courses so far could be solved with pencil and paper. This course is about the ones that can’t, or that are much easier to understand once a computer does the algebra. We start with a model you already know, a competitive market, and let Python solve it, draw it, and change it."
+  },
+  {
+    "objectID": "weeks/week01.html#the-course-at-a-glance",
+    "href": "weeks/week01.html#the-course-at-a-glance",
+    "title": "Week 1: Why compute in economics?",
+    "section": "The course at a glance",
+    "text": "The course at a glance\nECONS 431 is about building economic models on a computer: writing a model in Python, solving it, drawing it, testing it against data, and explaining what it says. No programming experience is assumed. We start from scratch this week.\nBy the end of the semester, you’ll be able to:\n\nwrite, test, and debug Python code, and manage it with Git and GitHub\nload, clean, and graph economic data\nsolve models numerically, including ones with no pencil-and-paper solution\nbuild computational versions of microeconomic models and use them to analyze markets and welfare\nestimate economic relationships from data\nbuild an agent-based model, where market outcomes emerge from many individual decisions\npresent results in clear, reproducible notebooks, and use AI assistants critically and openly\n\n\n\n\n\n\n\n\n\nModule\nWeeks\nWhat you’ll do\n\n\n\n\n1. Python, Git, and AI-assisted coding\n1–3\nLearn Python on economic examples; set up your codespace and GitHub repository\n\n\n2. Data\n4–5\nLoad, clean, and graph real economic data\n\n\n3. Numerical methods\n6–8\nSolve equations, optimize, work with matrices and Markov chains, simulate; midterm in Week 8\n\n\n4. Microeconomic applications\n9–13\nConsumers, firms, competition, monopoly, oligopoly, and general equilibrium\n\n\n5. Estimation and agent-based models\n14–16\nRegression, intro machine learning, agent-based models; capstone presentations\n\n\n\n\nHow a week works\n\nIn class, we work through the week’s lecture notebook, like this one, with live coding, then practice in a short lab.\nA problem set appears in your GitHub repository, in a folder named for the week (ps02 in Week 2, and so on).\nYou complete it in your codespace, push it to GitHub, and paste the commit link into Canvas by the due date.\n\nReadings come from two free online textbooks by QuantEcon, listed week by week on the Schedule.\n\n\nGrades\n\n\n\n\n\n\n\n\n\n\nProblem sets\nMidterm (Week 8)\nIn-class labs\nAgent-based model lab (Week 15)\nCapstone project\n\n\n\n\n35%\n15%\n10%\n10%\n30%\n\n\n\nThe capstone is a team project (2–3 people) that builds on the Module 4 models: teams form in Week 5, propose a question in Week 7, and present in Week 16.\n\n\nAI assistants\nAI assistants are allowed, with disclosure, under rules that loosen as your skills grow. Chat assistants such as Microsoft 365 Copilot Chat (free with your WSU login) are allowed from day one for explaining and debugging. Autocomplete stays off until Week 6, and no AI is allowed on exams. Every problem set ends with a short note on how you used AI. Details are on the Policies page.\n\n\nWhere things are\n\nSyllabus: the official course policies, grading, and schedule\nSchedule: readings and lecture notebooks by week\nCanvas: due dates, submissions, grades, and announcements\nDiscussions on GitHub: questions about code\n\nThe rest of this notebook is a first taste of the course: a model you already know, solved, drawn, and changed in Python, and then written up with Markdown and LaTeX."
   },
   {
     "objectID": "weeks/week01.html#a-market-in-a-few-lines",
@@ -116,84 +123,42 @@
     "href": "weeks/week01.html#this-week",
     "title": "Week 1: Why compute in economics?",
     "section": "This week",
-    "text": "This week\n\nComplete the Setup guide and PS01.\nRead Python Programming for Economics and Finance: 1. About These Lectures.\nKeep Quarto’s Markdown Basics page handy. It covers everything in “Writing it up” and more.\nBring a laptop, Chromebook, or tablet with a keyboard to the second session. We’ll set up codespaces together."
+    "text": "This week\n\nComplete the Setup guide and PS01.\nRead the Syllabus.\nRead Python Programming for Economics and Finance: 1. About These Lectures.\nKeep Quarto’s Markdown Basics page handy. It covers everything in “Writing it up” and more.\nBring a laptop, Chromebook, or tablet with a keyboard to the second session. We’ll set up codespaces together."
   },
   {
-    "objectID": "setup-local.html",
-    "href": "setup-local.html",
-    "title": "Work on your own computer (optional)",
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup guide",
     "section": "",
-    "text": "The course’s default is GitHub Codespaces, which runs in your web browser with nothing to install. This page sets up the same environment on your own laptop instead, so you can work offline and use Positron, a desktop editor. It’s optional, and you can do it any time.\nYou can use both. Your repo on GitHub is the same either way: pull when you sit down, and push when you get up, whichever computer you’re on.\nBefore you start: finish steps 1 and 2 of the Setup guide (GitHub account and repo invitation). You’ll also need about 5 GB of free disk space. If you get stuck, see the Setup FAQ; you can always keep working in Codespaces in the meantime."
+    "text": "You’ll do your coding in GitHub Codespaces: the course’s Python setup, running on GitHub’s computers and shown in your web browser. There’s nothing to install, and it works the same on any laptop, a Chromebook, or a campus lab computer. Do steps 1–5 before the second class session. If you get stuck, see the Setup FAQ.\nPrefer a desktop editor or working offline? You can also work on your own computer. That’s optional, and you can add it any time.\nBefore you start: an internet connection, a current web browser (Chrome, Edge, Firefox, or Safari), and your phone for GitHub’s sign-in codes."
   },
   {
-    "objectID": "setup-local.html#steps",
-    "href": "setup-local.html#steps",
-    "title": "Work on your own computer (optional)",
-    "section": "Steps",
-    "text": "Steps\n\nGit: version-control software. It saves snapshots (“commits”) of your work and syncs them with your private course repo on GitHub. You’ll use it to get each new problem set (pull) and to hand in your work (commit and push), mostly through buttons in Positron. You’ll type Git commands in Positron’s terminal only during setup and for the occasional fix.\n\nWindows: install “Git for Windows” from git-scm.com and accept every default. It includes the sign-in helper Git needs for GitHub.\nMac: open Terminal, type git --version, and accept the prompt to install the Command Line Tools. Then install the GitHub CLI from cli.github.com and run gh auth login (choose the web-browser login) and gh auth setup-git, so Git can sign in to GitHub.\n\nPositron (free, from Posit): the program where you’ll do all your coding. It opens your course repo, runs Python notebooks and scripts, shows your data and plots, and has Git built in. Download and install it from positron.posit.co.\n\nWhen you first open your course folder, Positron asks whether you trust the authors of the files. Click Yes, I trust the authors; it’s your own repo.\nIf Positron offers to create a Python environment, decline. Step 6 builds the course environment instead.\nIf Positron asks “Would you like Positron to periodically run git fetch?”, click Yes. It checks GitHub for new problem sets without changing your files; a small down-arrow count in the status bar means something new is ready to pull.\nThe first time you commit, Positron may ask whether to stage all your changes and commit them directly. Click Yes (or Always).\nThe first time you click Sync Changes, Positron asks you to confirm pulling and pushing. Click OK (or OK, Don’t Ask Again).\nIf Positron asks you to sign in to GitHub, your browser will show “Authorize Visual-Studio-Code”. That’s expected: Positron is built on VS Code. If Positron then says sign-in failed, see the Setup FAQ.\nIf Positron offers to turn on an AI assistant or code completions, skip it for now. AI autocomplete stays off through Week 5 (see Policies).\n\nuv: a free tool that installs Python and the course packages, so everyone’s setup is identical. To install it, open a terminal: in Positron, choose Terminal &gt; New Terminal (on Windows this opens PowerShell; on a Mac, a regular terminal). Then paste the command for your system and press Enter:\n\nWindows:\npowershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\"\nMac:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nNot using Positron’s terminal? On Windows, click Start, type PowerShell, and open Windows PowerShell. On a Mac, press Cmd+Space, type Terminal, and press Return.\nWhen it finishes, quit and reopen Positron (or close and reopen the terminal) so it can find uv. Check with uv --version, which should print a version number.\n\nTell Git who you are. In a terminal, paste each command, replace the text in quotes with your own name and the email on your GitHub account, then press Enter:\ngit config --global user.name \"First Last\"\ngit config --global user.email \"your-github-email@example.com\"\nClone your repo. Make a folder such as EconS431 directly in your home folder (C:\\Users\\&lt;you&gt;\\EconS431 or /Users/&lt;you&gt;/EconS431). Not in OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents, which many laptops sync automatically. Then, in a Positron terminal:\ncd ~/EconS431\ngit clone https://github.com/WSU-EconS431/ps-&lt;your-username&gt;.git\nThe first clone opens a GitHub sign-in window; choose the browser option. Then open the new folder: File &gt; Open Folder &gt; EconS431/ps-&lt;your-username&gt;.\nBuild the environment. In a Positron terminal inside your repo, run uv sync. Then click the interpreter name at the top right and choose the Python from .venv (labeled econs431). If Positron offers to create an environment, decline: uv sync builds the course one.\nCheck it. Run uv run python check_setup.py. Every line should start with [OK]. Then open ps01/ps01.ipynb, choose the same econs431 kernel at the top right of the notebook, complete it, commit, push, and submit the commit link in Canvas."
+    "objectID": "setup.html#one-time-setup",
+    "href": "setup.html#one-time-setup",
+    "title": "Setup guide",
+    "section": "One-time setup",
+    "text": "One-time setup\n\nGitHub: the website that stores your course work online. Each student gets a private repository (“repo”) there, a folder only you and the instructor can see. New problem sets arrive in it. To hand in work, you use Git to save it to your repo, then submit the link to it in Canvas.\n\nSign up at github.com with any username (it doesn’t need to be your real name), and add your WSU email to the account.\nApply for GitHub Education student benefits at education.github.com. Approval can take a few days; it gives you free GitHub Copilot and free Codespaces hours.\nGitHub will ask you to set up two-factor sign-in. Keep that phone or app handy: you’ll need a code when you sign in on a lab computer.\nEnter your GitHub username in the Canvas “GitHub username” survey, so your course repo can be created.\n\nAccept your repo invitation from the email GitHub sends you, or at https://github.com/WSU-EconS431/ps-&lt;your-username&gt;/invitations.\nCreate your codespace. On your repo’s page (https://github.com/WSU-EconS431/ps-&lt;your-username&gt;), click the green Code button, choose the Codespaces tab, and click Create codespace on main.\n\nThe first time takes a few minutes while it installs Python and the course packages. Then an editor opens in your browser. It’s VS Code, the program Positron is built on.\nIf it offers to turn on GitHub Copilot or AI code completions, skip it for now. AI autocomplete stays off through Week 5 (see Policies).\n\nCheck it. Open a terminal: click the ☰ menu at the top left, then Terminal &gt; New Terminal (or press Ctrl+`). Run:\nuv run python check_setup.py\nEvery line should start with [OK].\nDo PS01. In the file list on the left, open ps01/ps01.ipynb. If the notebook asks you to Select Kernel (top right), choose Python Environments, then the one in .venv. Complete it, then:\n\nIn Source Control (the branching icon on the left), type a short message such as “PS01 done” in the box and click Commit. Every commit needs a message.\nClick Sync Changes to push it to GitHub.\nOn your repo’s GitHub page, open the commit, copy its URL, and paste it into the PS01 assignment in Canvas."
   },
   {
-    "objectID": "setup-local.html#every-problem-set-in-positron",
-    "href": "setup-local.html#every-problem-set-in-positron",
-    "title": "Work on your own computer (optional)",
-    "section": "Every problem set in Positron",
-    "text": "Every problem set in Positron\n\nPull in Positron (Source Control &gt; … &gt; Pull). The new psNN/ folder appears.\nWork in psNN/psNN.ipynb, and commit whenever something works.\nRestart & Run All. If it doesn’t run from top to bottom, it isn’t finished.\nFill in the AI usage note at the bottom.\nPush, copy the commit URL from GitHub, and paste it into Canvas before the deadline.\n\nThe rules of the road are the same as in Codespaces."
+    "objectID": "setup.html#each-time",
+    "href": "setup.html#each-time",
+    "title": "Setup guide",
+    "section": "Each time you work",
+    "text": "Each time you work\n\nOpen your codespace: your repo’s page &gt; Code &gt; Codespaces tab &gt; click the codespace that’s already there. Reuse it; don’t create a new one each time.\nStart by pulling: in Source Control, click Sync Changes (or ⋯ &gt; Pull) so you have any new problem sets.\nBefore you leave: commit and push. Your work is only safe once it’s on GitHub. A codespace you stop using for a few weeks is deleted, and anything not pushed goes with it.\nThen close the tab. The codespace stops by itself after 30 idle minutes. To stop it right away, go to github.com/codespaces, click ⋯ next to it, and choose Stop codespace.\nOn a lab or shared computer, sign out of GitHub when you’re done.\n\nYour monthly allowance: your GitHub account includes about 60 hours of codespace time a month, or 90 once your student benefits are approved. That’s plenty for this course if you stop your codespace when you’re done. You can see your usage under Settings &gt; Billing on GitHub."
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "Topics and readings by week. Due dates are in Canvas only. Lecture notebooks are linked here as each week is posted.\nReadings come from two free QuantEcon lecture series: Python Programming for Economics and Finance (PP), by Thomas J. Sargent and John Stachurski, and A First Course in Quantitative Economics with Python (FC).\n\n\n\nWeek\nTopic\nReading\nNotebook\n\n\n\n\nModule 1\nPython, Git, and AI-assisted coding foundations\n\n\n\n\n1\nCourse introduction; computational thinking in economics; writing in Markdown and LaTeX; setup; AI policy\nPP 1. About These Lectures; Quarto: Markdown Basics (reference)\nWeek 1\n\n\n2\nPython fundamentals I: variables, control flow, functions\nPP 3. An Introductory Example; PP 4. Functions; PP 5. Python Essentials\nWeek 2\n\n\n3\nPython fundamentals II: NumPy arrays, vectorization, plotting\nPP 10. NumPy; PP 11. Matplotlib\nWeek 3\n\n\nModule 2\nData handling and visualization\n\n\n\n\n4\npandas for economic data\nPP 17. Pandas\n\n\n\n5\nExploratory data analysis and visualization\nFC 2. Long-Run Growth\n\n\n\nModule 3\nNumerical methods\n\n\n\n\n6\nRoot-finding and optimization\nPP 12. SciPy\n\n\n\n7\nLinear algebra and Markov chains\nFC 17. Linear Equations and Matrix Algebra; FC 40. Markov Chains: Basic Concepts\n\n\n\n8\nRandomness and simulation; midterm\nFC 10. LLN and CLT\n\n\n\nModule 4\nMicroeconomic applications\n\n\n\n\n9\nConsumer theory, computationally\n\n\n\n\n10\nProducer theory, competitive markets, and welfare\n\n\n\n\n11\nMonopoly and price discrimination\n\n\n\n\n12\nOligopoly and game theory\n\n\n\n\n13\nGeneral equilibrium, many goods, and networks\nFC 52. Supply and Demand with Many Goods; FC 50. Networks\n\n\n\nModule 5\nEstimation, AI-assisted analysis, and agent-based modeling\n\n\n\n\n14\nRegression, maximum likelihood, intro machine learning; AI-assisted analysis\nFC 12. Simple Linear Regression Model; FC 13. Maximum Likelihood Estimation\n\n\n\n15\nAgent-based modeling\nFC 31. Racial Segregation (the Schelling model)\n\n\n\n16\nCapstone presentations and wrap-up"
+    "objectID": "setup.html#every-problem-set",
+    "href": "setup.html#every-problem-set",
+    "title": "Setup guide",
+    "section": "Every problem set",
+    "text": "Every problem set\n\nPull (Source Control &gt; Sync Changes). The new psNN/ folder appears.\nWork in psNN/psNN.ipynb, and commit whenever something works.\nRestart & Run All. If it doesn’t run from top to bottom, it isn’t finished.\nFill in the AI usage note at the bottom.\nCommit, push (Sync Changes), copy the commit URL from GitHub, and paste it into Canvas before the deadline."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ECONS 431 Computational Economics",
-    "section": "",
-    "text": "Computational tools for solving and analyzing economic models: programming in Python, working with economic data, numerical methods, microeconomic applications, estimation, and agent-based modeling."
-  },
-  {
-    "objectID": "index.html#start-here",
-    "href": "index.html#start-here",
-    "title": "ECONS 431 Computational Economics",
-    "section": "Start here",
-    "text": "Start here\n\nSet up your codespace with the Setup guide before the second class session. It runs in your web browser, so there’s nothing to install.\nStuck? Check the Setup FAQ, then post on Discussions.\nEach week, the Schedule links that week’s readings and lecture notebooks."
-  },
-  {
-    "objectID": "index.html#where-things-live",
-    "href": "index.html#where-things-live",
-    "title": "ECONS 431 Computational Economics",
-    "section": "Where things live",
-    "text": "Where things live\n\n\n\nWhat\nWhere\n\n\n\n\nLecture notes, notebooks, readings, setup help\nThis site\n\n\nYour problem sets\nYour private repo: WSU-EconS431/ps-&lt;your-username&gt;\n\n\nDue dates, submissions, grades, announcements\nCanvas\n\n\nQuestions about code\nCourse Discussions on GitHub\n\n\nCourse policies, including AI use\nPolicies"
-  },
-  {
-    "objectID": "index.html#this-week",
-    "href": "index.html#this-week",
-    "title": "ECONS 431 Computational Economics",
-    "section": "This week",
-    "text": "This week\nWeek 1: Course introduction and setup. Read the Week 1 notebook and complete the Setup guide and PS01."
-  },
-  {
-    "objectID": "policies.html",
-    "href": "policies.html",
-    "title": "Policies",
-    "section": "",
-    "text": "The syllabus in Canvas is the official version of every course policy. This page summarizes the ones you’ll use most."
-  },
-  {
-    "objectID": "policies.html#ai-use",
-    "href": "policies.html#ai-use",
-    "title": "Policies",
-    "section": "AI use",
-    "text": "AI use\nAI assistants are allowed in this course, with acknowledgment, under rules that change as your skills grow. You must be able to explain and defend every line you submit.\n\n\n\n\n\n\n\n\n\n\nPeriod\nChat assistants (explain, debug)\nInline autocomplete\nAgentic tools that edit and run code for you\nDisclosure\n\n\n\n\nWeeks 1–5 (fundamentals, data)\nAllowed\nOff\nNot for problem sets\nAI usage note on every problem set\n\n\nWeeks 6–13 (numerical methods, applications)\nAllowed\nAllowed\nNot for problem sets\nAI usage note on every problem set\n\n\nWeeks 14–16 and capstone\nAllowed\nAllowed\nAllowed, documented\nUsage note, plus one AI error your team caught and corrected, in the presentation\n\n\nMidterm and in-class exams\nNot allowed\nOff\nNot allowed\n—\n\n\n\nWhy autocomplete is off at first: in the first five weeks, autocomplete writes the syntax you’re supposed to be learning. A chat assistant explaining an error message teaches it.\nTools: Microsoft 365 Copilot Chat is free with your WSU login and is the course default. GitHub Copilot is free for verified students through GitHub Education. You may use other assistants under the same rules; you never need to pay for one. In course codespaces, Copilot’s autocomplete is switched off for Weeks 1–5; you’ll be shown how to turn it on in Week 6. Copilot Chat stays available.\nPrivacy: never paste personal data, other students’ work, or restricted datasets into a consumer AI tool. Use the WSU-login Copilot when unsure.\nSpot checks: each week a few students, chosen at random, walk through one cell of their submission for three minutes in lab or office hours.\n\nAI usage note\nEvery problem-set notebook ends with this cell. “None” is a fine answer.\n## AI usage note\n- Tool(s) and model, if known:\n- What I asked (paste or summarize the key prompts):\n- What I used from the output, and where (cell numbers):\n- How I checked it (tests run, numbers compared, errors I fixed):"
-  },
-  {
-    "objectID": "policies.html#submitting-work",
-    "href": "policies.html#submitting-work",
-    "title": "Policies",
-    "section": "Submitting work",
-    "text": "Submitting work\n\nRestart & Run All. The notebook must run from top to bottom.\nFill in the AI usage note.\nCommit and push.\nCopy the commit URL from GitHub and paste it into the Canvas assignment before the deadline. The Canvas submission time is the official time."
+    "objectID": "setup.html#rules",
+    "href": "setup.html#rules",
+    "title": "Setup guide",
+    "section": "Rules of the road",
+    "text": "Rules of the road\n\nYour repo is private. Never make it public or share it, even after the course, unless an assignment says it may be shared.\nUse relative paths (data/prices.csv), never full paths like C:\\Users\\... or /workspaces/.... Your code must run on the instructor’s machine.\nDon’t commit .venv/ or big data files. GitHub rejects files over 100 MB, and your repo’s .gitignore handles the common cases.\nDon’t change pyproject.toml or uv.lock. If you think you need another package, ask on Discussions.\nAsking for help: see Getting help."
   },
   {
     "objectID": "setup-faq.html",
@@ -252,39 +217,186 @@
     "text": "Getting help\n\nPost on Discussions\nInclude all four of these, so someone can help on the first reply:\n\nWhere you’re working: Codespaces, or your own Windows or Mac computer.\nThe setup step you were on.\nThe exact error text, copied as text (not a screenshot).\nThe full output of uv run python check_setup.py, if you can run it.\n\nAnswering a classmate’s setup question counts toward participation.\n\n\nAsk an AI assistant (with the right context first)\nGeneric AI advice often conflicts with this course’s setup. It may tell you to pip install numpy, install Anaconda, or create a new environment, and those make things worse here. Paste this context first, then your problem. Microsoft 365 Copilot Chat (sign in with your WSU account) is free and works well for this.\nI'm setting up a Python course environment. The setup is fixed and I must not\nchange it:\n- Editor: GitHub Codespaces (VS Code in the browser), or Positron on my own\n  computer (built on VS Code).\n- Python environment: managed by uv. My repo has pyproject.toml, uv.lock and\n  .python-version (Python 3.13). The environment is built with `uv sync` into a\n  .venv folder in the repo.\n- Code lives in a private GitHub repo. In Codespaces, Git signs in\n  automatically; on my own computer, Git signs in with Git Credential Manager\n  (Windows) or the GitHub CLI (Mac).\n- The repo checker is `uv run python check_setup.py`; [!!] lines are problems.\n\nRules for your answer:\n- Do NOT suggest pip install, conda/Anaconda, a new virtual environment,\n  changing pyproject.toml or uv.lock, or a different Python version.\n- Fixes should use: uv sync, choosing the .venv interpreter or kernel in\n  Positron, moving the repo out of a cloud-synced folder, or Git/GitHub\n  settings.\n- Give me ONE step at a time, tell me what I should see if it worked, and wait\n  for my result before the next step.\n\nWhere I'm working: [Codespaces, or my own Windows/Mac computer]\nWhat I was doing: [setup step or command]\nExact error text: [paste]\ncheck_setup.py output: [paste, if available]\nTwo more prompts that help:\n\nBefore running a Git command you’re unsure about: “Before I run [command], explain in plain language what it will do, and whether it can lose any of my work. Don’t suggest alternatives unless it’s risky.”\nWhen an error message makes no sense: “Explain this error in plain language for a beginner: what it means, the most likely cause, and the first thing to check. Error: [paste]”\n\nIf an AI assistant helped with your setup, say so in PS01’s AI usage note, the same as for any problem set."
   },
   {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Setup guide",
+    "objectID": "policies.html",
+    "href": "policies.html",
+    "title": "Policies",
     "section": "",
-    "text": "You’ll do your coding in GitHub Codespaces: the course’s Python setup, running on GitHub’s computers and shown in your web browser. There’s nothing to install, and it works the same on any laptop, a Chromebook, or a campus lab computer. Do steps 1–5 before the second class session. If you get stuck, see the Setup FAQ.\nPrefer a desktop editor or working offline? You can also work on your own computer. That’s optional, and you can add it any time.\nBefore you start: an internet connection, a current web browser (Chrome, Edge, Firefox, or Safari), and your phone for GitHub’s sign-in codes."
+    "text": "The Syllabus is the official version of every course policy. This page summarizes the ones you’ll use most."
   },
   {
-    "objectID": "setup.html#one-time-setup",
-    "href": "setup.html#one-time-setup",
-    "title": "Setup guide",
-    "section": "One-time setup",
-    "text": "One-time setup\n\nGitHub: the website that stores your course work online. Each student gets a private repository (“repo”) there, a folder only you and the instructor can see. New problem sets arrive in it. To hand in work, you use Git to save it to your repo, then submit the link to it in Canvas.\n\nSign up at github.com with any username (it doesn’t need to be your real name), and add your WSU email to the account.\nApply for GitHub Education student benefits at education.github.com. Approval can take a few days; it gives you free GitHub Copilot and free Codespaces hours.\nGitHub will ask you to set up two-factor sign-in. Keep that phone or app handy: you’ll need a code when you sign in on a lab computer.\nEnter your GitHub username in the Canvas “GitHub username” survey, so your course repo can be created.\n\nAccept your repo invitation from the email GitHub sends you, or at https://github.com/WSU-EconS431/ps-&lt;your-username&gt;/invitations.\nCreate your codespace. On your repo’s page (https://github.com/WSU-EconS431/ps-&lt;your-username&gt;), click the green Code button, choose the Codespaces tab, and click Create codespace on main.\n\nThe first time takes a few minutes while it installs Python and the course packages. Then an editor opens in your browser. It’s VS Code, the program Positron is built on.\nIf it offers to turn on GitHub Copilot or AI code completions, skip it for now. AI autocomplete stays off through Week 5 (see Policies).\n\nCheck it. Open a terminal: click the ☰ menu at the top left, then Terminal &gt; New Terminal (or press Ctrl+`). Run:\nuv run python check_setup.py\nEvery line should start with [OK].\nDo PS01. In the file list on the left, open ps01/ps01.ipynb. If the notebook asks you to Select Kernel (top right), choose Python Environments, then the one in .venv. Complete it, then:\n\nIn Source Control (the branching icon on the left), type a short message such as “PS01 done” in the box and click Commit. Every commit needs a message.\nClick Sync Changes to push it to GitHub.\nOn your repo’s GitHub page, open the commit, copy its URL, and paste it into the PS01 assignment in Canvas."
+    "objectID": "policies.html#ai-use",
+    "href": "policies.html#ai-use",
+    "title": "Policies",
+    "section": "AI use",
+    "text": "AI use\nAI assistants are allowed in this course, with acknowledgment, under rules that change as your skills grow. You must be able to explain and defend every line you submit.\n\n\n\n\n\n\n\n\n\n\nPeriod\nChat assistants (explain, debug)\nInline autocomplete\nAgentic tools that edit and run code for you\nDisclosure\n\n\n\n\nWeeks 1–5 (fundamentals, data)\nAllowed\nOff\nNot for problem sets\nAI usage note on every problem set\n\n\nWeeks 6–13 (numerical methods, applications)\nAllowed\nAllowed\nNot for problem sets\nAI usage note on every problem set\n\n\nWeeks 14–16 and capstone\nAllowed\nAllowed\nAllowed, documented\nUsage note, plus one AI error your team caught and corrected, in the presentation\n\n\nMidterm and in-class exams\nNot allowed\nOff\nNot allowed\n—\n\n\n\nWhy autocomplete is off at first: in the first five weeks, autocomplete writes the syntax you’re supposed to be learning. A chat assistant explaining an error message teaches it.\nTools: Microsoft 365 Copilot Chat is free with your WSU login and is the course default. GitHub Copilot is free for verified students through GitHub Education. You may use other assistants under the same rules; you never need to pay for one. In course codespaces, Copilot’s autocomplete is switched off for Weeks 1–5; you’ll be shown how to turn it on in Week 6. Copilot Chat stays available.\nPrivacy: never paste personal data, other students’ work, or restricted datasets into a consumer AI tool. Use the WSU-login Copilot when unsure.\nSpot checks: each week a few students, chosen at random, walk through one cell of their submission for three minutes in lab or office hours.\n\nAI usage note\nEvery problem-set notebook ends with this cell. “None” is a fine answer.\n## AI usage note\n- Tool(s) and model, if known:\n- What I asked (paste or summarize the key prompts):\n- What I used from the output, and where (cell numbers):\n- How I checked it (tests run, numbers compared, errors I fixed):"
   },
   {
-    "objectID": "setup.html#each-time",
-    "href": "setup.html#each-time",
-    "title": "Setup guide",
-    "section": "Each time you work",
-    "text": "Each time you work\n\nOpen your codespace: your repo’s page &gt; Code &gt; Codespaces tab &gt; click the codespace that’s already there. Reuse it; don’t create a new one each time.\nStart by pulling: in Source Control, click Sync Changes (or ⋯ &gt; Pull) so you have any new problem sets.\nBefore you leave: commit and push. Your work is only safe once it’s on GitHub. A codespace you stop using for a few weeks is deleted, and anything not pushed goes with it.\nThen close the tab. The codespace stops by itself after 30 idle minutes. To stop it right away, go to github.com/codespaces, click ⋯ next to it, and choose Stop codespace.\nOn a lab or shared computer, sign out of GitHub when you’re done.\n\nYour monthly allowance: your GitHub account includes about 60 hours of codespace time a month, or 90 once your student benefits are approved. That’s plenty for this course if you stop your codespace when you’re done. You can see your usage under Settings &gt; Billing on GitHub."
+    "objectID": "policies.html#submitting-work",
+    "href": "policies.html#submitting-work",
+    "title": "Policies",
+    "section": "Submitting work",
+    "text": "Submitting work\n\nRestart & Run All. The notebook must run from top to bottom.\nFill in the AI usage note.\nCommit and push.\nCopy the commit URL from GitHub and paste it into the Canvas assignment before the deadline. The Canvas submission time is the official time."
   },
   {
-    "objectID": "setup.html#every-problem-set",
-    "href": "setup.html#every-problem-set",
-    "title": "Setup guide",
-    "section": "Every problem set",
-    "text": "Every problem set\n\nPull (Source Control &gt; Sync Changes). The new psNN/ folder appears.\nWork in psNN/psNN.ipynb, and commit whenever something works.\nRestart & Run All. If it doesn’t run from top to bottom, it isn’t finished.\nFill in the AI usage note at the bottom.\nCommit, push (Sync Changes), copy the commit URL from GitHub, and paste it into Canvas before the deadline."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ECONS 431 Computational Economics",
+    "section": "",
+    "text": "Computational tools for solving and analyzing economic models: programming in Python, working with economic data, numerical methods, microeconomic applications, estimation, and agent-based modeling."
   },
   {
-    "objectID": "setup.html#rules",
-    "href": "setup.html#rules",
-    "title": "Setup guide",
-    "section": "Rules of the road",
-    "text": "Rules of the road\n\nYour repo is private. Never make it public or share it, even after the course, unless an assignment says it may be shared.\nUse relative paths (data/prices.csv), never full paths like C:\\Users\\... or /workspaces/.... Your code must run on the instructor’s machine.\nDon’t commit .venv/ or big data files. GitHub rejects files over 100 MB, and your repo’s .gitignore handles the common cases.\nDon’t change pyproject.toml or uv.lock. If you think you need another package, ask on Discussions.\nAsking for help: see Getting help."
+    "objectID": "index.html#this-week",
+    "href": "index.html#this-week",
+    "title": "ECONS 431 Computational Economics",
+    "section": "This week",
+    "text": "This week\nWeek 1: Course introduction and setup. Read the Week 1 notebook and complete the Setup guide and PS01.\n\nStart here\n\nSet up your codespace with the Setup guide before the second class session. It runs in your web browser, so there’s nothing to install.\nStuck? Check the Setup FAQ, then post on Discussions.\nEach week, the Schedule links that week’s readings and lecture notebooks."
+  },
+  {
+    "objectID": "index.html#where-things-live",
+    "href": "index.html#where-things-live",
+    "title": "ECONS 431 Computational Economics",
+    "section": "Where things live",
+    "text": "Where things live\n\n\n\nWhat\nWhere\n\n\n\n\nLecture notes, notebooks, readings, setup help\nThis site\n\n\nYour problem sets\nYour private repo: WSU-EconS431/ps-&lt;your-username&gt;\n\n\nDue dates, submissions, grades, announcements\nCanvas\n\n\nQuestions about code\nCourse Discussions on GitHub\n\n\nSyllabus: official policies, grading, and the semester plan\nSyllabus\n\n\nAI rules and how to submit work, in brief\nPolicies"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Topics and readings by week. Due dates are in Canvas only. Lecture notebooks are linked here as each week is posted.\nReadings come from two free QuantEcon lecture series: Python Programming for Economics and Finance (PP), by Thomas J. Sargent and John Stachurski, and A First Course in Quantitative Economics with Python (FC).\n\n\n\nWeek\nTopic\nReading\nNotebook\n\n\n\n\nModule 1\nPython, Git, and AI-assisted coding foundations\n\n\n\n\n1\nCourse introduction; computational thinking in economics; writing in Markdown and LaTeX; setup; AI policy\nSS 1. About These Lectures; Quarto: Markdown Basics (reference)\nWeek 1\n\n\n2\nPython fundamentals I: variables, control flow, functions\nSS 3. An Introductory Example; SS 4. Functions; SS 5. Python Essentials\nWeek 2\n\n\n3\nPython fundamentals II: NumPy arrays, vectorization, plotting\nSS10. NumPy; SS 11. Matplotlib\nWeek 3\n\n\nModule 2\nData handling and visualization\n\n\n\n\n4\npandas for economic data\nSS 17. Pandas\n\n\n\n5\nExploratory data analysis and visualization\nFC 2. Long-Run Growth\n\n\n\nModule 3\nNumerical methods\n\n\n\n\n6\nRoot-finding and optimization\nSS 12. SciPy\n\n\n\n7\nLinear algebra and Markov chains\nFC 17. Linear Equations and Matrix Algebra; FC 40. Markov Chains: Basic Concepts\n\n\n\n8\nRandomness and simulation; midterm\nFC 10. LLN and CLT\n\n\n\nModule 4\nMicroeconomic applications\n\n\n\n\n9\nConsumer theory, computationally\n\n\n\n\n10\nProducer theory, competitive markets, and welfare\n\n\n\n\n11\nMonopoly and price discrimination\n\n\n\n\n12\nOligopoly and game theory\n\n\n\n\n13\nGeneral equilibrium, many goods, and networks\nFC 52. Supply and Demand with Many Goods; FC 50. Networks\n\n\n\nModule 5\nEstimation, AI-assisted analysis, and agent-based modeling\n\n\n\n\n14\nRegression, maximum likelihood, intro machine learning; AI-assisted analysis\nFC 12. Simple Linear Regression Model; FC 13. Maximum Likelihood Estimation\n\n\n\n15\nAgent-based modeling\nFC 31. Racial Segregation (the Schelling model)\n\n\n\n16\nCapstone presentations and wrap-up"
+  },
+  {
+    "objectID": "setup-local.html",
+    "href": "setup-local.html",
+    "title": "Work on your own computer (optional)",
+    "section": "",
+    "text": "The course’s default is GitHub Codespaces, which runs in your web browser with nothing to install. This page sets up the same environment on your own laptop instead, so you can work offline and use Positron, a desktop editor. It’s optional, and you can do it any time.\nYou can use both. Your repo on GitHub is the same either way: pull when you sit down, and push when you get up, whichever computer you’re on.\nBefore you start: finish steps 1 and 2 of the Setup guide (GitHub account and repo invitation). You’ll also need about 5 GB of free disk space. If you get stuck, see the Setup FAQ; you can always keep working in Codespaces in the meantime."
+  },
+  {
+    "objectID": "setup-local.html#steps",
+    "href": "setup-local.html#steps",
+    "title": "Work on your own computer (optional)",
+    "section": "Steps",
+    "text": "Steps\n\nGit: version-control software. It saves snapshots (“commits”) of your work and syncs them with your private course repo on GitHub. You’ll use it to get each new problem set (pull) and to hand in your work (commit and push), mostly through buttons in Positron. You’ll type Git commands in Positron’s terminal only during setup and for the occasional fix.\n\nWindows: install “Git for Windows” from git-scm.com and accept every default. It includes the sign-in helper Git needs for GitHub.\nMac: open Terminal, type git --version, and accept the prompt to install the Command Line Tools. Then install the GitHub CLI from cli.github.com and run gh auth login (choose the web-browser login) and gh auth setup-git, so Git can sign in to GitHub.\n\nPositron (free, from Posit): the program where you’ll do all your coding. It opens your course repo, runs Python notebooks and scripts, shows your data and plots, and has Git built in. Download and install it from positron.posit.co.\n\nWhen you first open your course folder, Positron asks whether you trust the authors of the files. Click Yes, I trust the authors; it’s your own repo.\nIf Positron offers to create a Python environment, decline. Step 6 builds the course environment instead.\nIf Positron asks “Would you like Positron to periodically run git fetch?”, click Yes. It checks GitHub for new problem sets without changing your files; a small down-arrow count in the status bar means something new is ready to pull.\nThe first time you commit, Positron may ask whether to stage all your changes and commit them directly. Click Yes (or Always).\nThe first time you click Sync Changes, Positron asks you to confirm pulling and pushing. Click OK (or OK, Don’t Ask Again).\nIf Positron asks you to sign in to GitHub, your browser will show “Authorize Visual-Studio-Code”. That’s expected: Positron is built on VS Code. If Positron then says sign-in failed, see the Setup FAQ.\nIf Positron offers to turn on an AI assistant or code completions, skip it for now. AI autocomplete stays off through Week 5 (see Policies).\n\nuv: a free tool that installs Python and the course packages, so everyone’s setup is identical. To install it, open a terminal: in Positron, choose Terminal &gt; New Terminal (on Windows this opens PowerShell; on a Mac, a regular terminal). Then paste the command for your system and press Enter:\n\nWindows:\npowershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\"\nMac:\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nNot using Positron’s terminal? On Windows, click Start, type PowerShell, and open Windows PowerShell. On a Mac, press Cmd+Space, type Terminal, and press Return.\nWhen it finishes, quit and reopen Positron (or close and reopen the terminal) so it can find uv. Check with uv --version, which should print a version number.\n\nTell Git who you are. In a terminal, paste each command, replace the text in quotes with your own name and the email on your GitHub account, then press Enter:\ngit config --global user.name \"First Last\"\ngit config --global user.email \"your-github-email@example.com\"\nClone your repo. Make a folder such as EconS431 directly in your home folder (C:\\Users\\&lt;you&gt;\\EconS431 or /Users/&lt;you&gt;/EconS431). Not in OneDrive, Dropbox, or iCloud, and not on your Desktop or in Documents, which many laptops sync automatically. Then, in a Positron terminal:\ncd ~/EconS431\ngit clone https://github.com/WSU-EconS431/ps-&lt;your-username&gt;.git\nThe first clone opens a GitHub sign-in window; choose the browser option. Then open the new folder: File &gt; Open Folder &gt; EconS431/ps-&lt;your-username&gt;.\nBuild the environment. In a Positron terminal inside your repo, run uv sync. Then click the interpreter name at the top right and choose the Python from .venv (labeled econs431). If Positron offers to create an environment, decline: uv sync builds the course one.\nCheck it. Run uv run python check_setup.py. Every line should start with [OK]. Then open ps01/ps01.ipynb, choose the same econs431 kernel at the top right of the notebook, complete it, commit, push, and submit the commit link in Canvas."
+  },
+  {
+    "objectID": "setup-local.html#every-problem-set-in-positron",
+    "href": "setup-local.html#every-problem-set-in-positron",
+    "title": "Work on your own computer (optional)",
+    "section": "Every problem set in Positron",
+    "text": "Every problem set in Positron\n\nPull in Positron (Source Control &gt; … &gt; Pull). The new psNN/ folder appears.\nWork in psNN/psNN.ipynb, and commit whenever something works.\nRestart & Run All. If it doesn’t run from top to bottom, it isn’t finished.\nFill in the AI usage note at the bottom.\nPush, copy the commit URL from GitHub, and paste it into Canvas before the deadline.\n\nThe rules of the road are the same as in Codespaces."
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "WarningDraft\n\n\n\nFill in the remaining [TBD] items (office hours, the academic integrity sanction, and any break week) and delete this box before the first day of class.\nThis syllabus is the official statement of course policies. Readings and lecture notebooks are on the course website’s Schedule; due dates, submissions, and grades are in Canvas.\nStudents are responsible for reading and understanding all university-wide policies and resources pertaining to all courses. They are in the University Syllabus."
+  },
+  {
+    "objectID": "syllabus.html#course-information",
+    "href": "syllabus.html#course-information",
+    "title": "Syllabus",
+    "section": "Course information",
+    "text": "Course information\n\n\n\nItem\nDetails\n\n\n\n\nCourse\nECONS 431 Computational Economics, 3 credits\n\n\nTerm\nSpring 2027\n\n\nMeetings\nTuesday & Thursday 10:35-11:50 am, Hulbert 27 [and when notified, Computer Lab Hulbert 21]\n\n\nPrerequisite\nECONS 301\n\n\nCourse website\nwsu-econs431.github.io/site\n\n\nCanvas\nDue dates, submissions, grades, and announcements\n\n\nUCORE designation\nNone\n\n\n\nCatalog description. Computational tools for solving a broad range of microeconomic and macroeconomic models from partial and general equilibrium models to dynamic models, growth modeling, neural nets, and portfolio models.\nThis offering. We build models in Python, starting from a supply-and-demand market and ending with an agent-based model. Along the way you’ll work with real economic data, solve models numerically, analyze market structure and welfare, and estimate economic relationships. No programming experience is assumed."
+  },
+  {
+    "objectID": "syllabus.html#instructor",
+    "href": "syllabus.html#instructor",
+    "title": "Syllabus",
+    "section": "Instructor",
+    "text": "Instructor\n\n\n\nItem\nDetails\n\n\n\n\nInstructor\nProf. Jonathan Yoder\n\n\nEmail\nyoder@wsu.edu\n\n\nOffice\n203B\n\n\nPhone\n(509) 335-8596\n\n\nStudent (office) hours\n[TBD: days and times], and by appointment\n\n\nTeaching assistant\nNone\n\n\n\nGetting help. Post questions about code in the course Discussions on GitHub, so classmates with the same question see the answer. Use email for anything personal. I answer within one business day, though not usually in the evening before a deadline, so start early."
+  },
+  {
+    "objectID": "syllabus.html#materials-and-costs",
+    "href": "syllabus.html#materials-and-costs",
+    "title": "Syllabus",
+    "section": "Materials and costs",
+    "text": "Materials and costs\nEverything required for this course is free.\n\n\n\nItem\nRequired?\nWhere\nCost\n\n\n\n\nPython Programming for Economics and Finance, Thomas J. Sargent and John Stachurski (online)\nRequired readings\npython-programming.quantecon.org\nFree\n\n\nA First Course in Quantitative Economics with Python, Thomas J. Sargent and John Stachurski (online)\nRequired readings\nintro.quantecon.org\nFree\n\n\nA laptop, Chromebook, or tablet with a keyboard, and a current web browser\nRequired in class\nYour own, or a WSU computer lab\n—\n\n\nGitHub account, with GitHub Education student benefits\nRequired\ngithub.com, education.github.com\nFree\n\n\nGitHub Codespaces or other code editors like Google Colab, Positron, or VSCode (where you write and run code)\nRequired\nYour course repository\nFree within the monthly allowance (Setup guide)\n\n\nMicrosoft 365 Copilot Chat (AI assistant)\nRecommended\nYour WSU login\nFree\n\n\n\nThere are no course fees. If you don’t have a suitable device, talk to me in the first week."
+  },
+  {
+    "objectID": "syllabus.html#learning-outcomes",
+    "href": "syllabus.html#learning-outcomes",
+    "title": "Syllabus",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\nBy the end of the course, you will be able to:\n\nProgram. Write, test, and debug Python code that solves economic problems, and manage your work with Git and GitHub.\nWork with data. Load, clean, combine, summarize, and visualize economic data.\nSolve models numerically. Use root-finding, optimization, linear algebra, and simulation to solve economic models, including ones with no pencil-and-paper solution.\nApply microeconomics computationally. Build computational versions of consumer and producer choice, market structure, game theory, and general equilibrium, and use them for comparative statics and welfare analysis.\nEstimate. Estimate economic relationships with regression and maximum likelihood, and distinguish prediction from causal inference.\nModel with agents. Build an agent-based model and compare its aggregate outcomes with an analytical model.\nCommunicate and work responsibly. Present computational results in reproducible notebooks with clear writing, equations, and figures, and use AI assistants critically and with transparent disclosure.\n\n\n\n\n\n\n\n\n\nOutcome\nWhere you practice it\nHow it’s assessed\n\n\n\n\n1. Program\nWeeks 1–3, every week after\nProblem sets, midterm, labs\n\n\n2. Work with data\nWeeks 4–5\nProblem sets, capstone\n\n\n3. Solve models numerically\nWeeks 6–8\nProblem sets, midterm\n\n\n4. Apply microeconomics\nWeeks 9–13\nProblem sets, capstone\n\n\n5. Estimate\nWeek 14\nProblem set, capstone\n\n\n6. Model with agents\nWeek 15\nAgent-based model lab, capstone\n\n\n7. Communicate and work responsibly\nAll weeks\nWritten answers and AI usage notes in every problem set; capstone notebook and presentation"
+  },
+  {
+    "objectID": "syllabus.html#how-the-course-works",
+    "href": "syllabus.html#how-the-course-works",
+    "title": "Syllabus",
+    "section": "How the course works",
+    "text": "How the course works\nEach week has a lecture notebook on the course website, which we work through in class with live coding, and an in-class lab where you practice in pairs. Most weeks also have a problem set that appears in your private GitHub repository. You work on it in your codespace, push it to GitHub, and submit the commit link in Canvas. The Setup guide walks you through all of this in Week 1, and the Setup FAQ covers common problems.\nExpected effort. ECONS 431 is a 3-credit course. Plan on about 9 hours a week: about 3 in class and about 6 outside class on readings, problem sets, and the capstone project. Programming takes longer when you’re new to it; that’s normal, and it speeds up."
+  },
+  {
+    "objectID": "syllabus.html#assessments-and-grading",
+    "href": "syllabus.html#assessments-and-grading",
+    "title": "Syllabus",
+    "section": "Assessments and grading",
+    "text": "Assessments and grading\n\n\n\n\n\n\n\n\nComponent\nWeight\nDetails\n\n\n\n\nProblem sets (PS01–PS14)\n35%\nWeekly; each ends with an AI usage note. Your lowest score, other than PS01, is dropped.\n\n\nMidterm computational exam\n15%\nWeek 8, in class, covers Modules 1–3.\n\n\nIn-class labs and participation\n10%\nCompleted during class; your two lowest lab scores are dropped.\n\n\nAgent-based model lab\n10%\nWeek 15, individually or in pairs.\n\n\nCapstone project\n30%\nTeams of 2–3: proposal (5%), progress check-in (5%), final notebook, repository, and written summary (12%), and presentation (8%).\n\n\n\nProblem sets combine code, which must run from top to bottom, with written answers in Markdown. Parts are checked by running your notebook; written answers, figures, and explanations are graded by hand. Automated feedback during the semester is for practice only and doesn’t set your grade.\nCapstone project. Teams form in Week 5 and propose a question in Week 7, usually a market-structure comparison, a tax or welfare analysis, or a small general-equilibrium economy, using public data or a calibrated model. Each team checks in during Week 12 and presents in Week 16. The final submission is a team repository with the project notebook, a 1–2 page written summary, and an AI usage disclosure. The presentation includes one AI-generated error the team caught and corrected. Team members may receive different grades if their contributions differ substantially; each member submits a short contribution statement.\nFinal exam. There is no final exam. Capstone presentations take place in Week 16.\n\nLetter grades\nFinal percentages are rounded to the nearest whole number (89.5 becomes 90) before letter grades are assigned.\n\n\n\nGrade\nPercentage\nGrade\nPercentage\n\n\n\n\nA\n93–100\nC+\n77–79\n\n\nA–\n90–92\nC\n73–76\n\n\nB+\n87–89\nC–\n70–72\n\n\nB\n83–86\nD+\n67–69\n\n\nB–\n80–82\nD\n60–66\n\n\n\n\nF\n0–59"
+  },
+  {
+    "objectID": "syllabus.html#attendance-late-work-and-make-ups",
+    "href": "syllabus.html#attendance-late-work-and-make-ups",
+    "title": "Syllabus",
+    "section": "Attendance, late work, and make-ups",
+    "text": "Attendance, late work, and make-ups\nAttendance. Attendance isn’t graded directly, but in-class labs are part of your grade and are done during class. The two dropped lab scores cover illness and other short absences. For a longer absence, contact me as soon as you can.\nLate problem sets. A problem set submitted up to 48 hours late loses 10% of its points for each 24 hours, or part of 24 hours, that it’s late. After 48 hours it isn’t accepted. The Canvas submission time is the official time. With a documented university-approved absence, emergency, or accommodation, contact me for an extension without penalty.\nCapstone deliverables aren’t accepted late without arrangement made in advance.\nMissed midterm. If you miss the midterm because of illness, an emergency, or a university-approved absence, email me before the exam if possible, and no later than 24 hours after it, to arrange a make-up. Make-ups without a documented reason aren’t given. Arrangements for religious observance follow the University Syllabus.\nMissed labs can’t be made up; the two dropped lab scores cover them.\nIncomplete grades. Under Academic Regulation 90, an Incomplete is possible only when circumstances beyond your control prevent you from finishing the course’s work on time. Talk to me as soon as such a situation arises."
+  },
+  {
+    "objectID": "syllabus.html#collaboration",
+    "href": "syllabus.html#collaboration",
+    "title": "Syllabus",
+    "section": "Collaboration",
+    "text": "Collaboration\nDiscussing ideas, approaches, and error messages with classmates is encouraged. The code and written answers you submit for problem sets must be your own: don’t copy someone else’s code or answers or share yours, and name the classmates you worked with in your AI usage note. In-class labs and the agent-based model lab may be done in pairs; the capstone is a team project."
+  },
+  {
+    "objectID": "syllabus.html#your-repository-and-privacy",
+    "href": "syllabus.html#your-repository-and-privacy",
+    "title": "Syllabus",
+    "section": "Your repository and privacy",
+    "text": "Your repository and privacy\nYour course work lives in a private GitHub repository that only you and the course staff can see. Your GitHub username doesn’t need to be your real name. Keep your repository private, and don’t post course work publicly, during or after the course, unless an assignment says it may be shared."
+  },
+  {
+    "objectID": "syllabus.html#classroom-expectations",
+    "href": "syllabus.html#classroom-expectations",
+    "title": "Syllabus",
+    "section": "Classroom expectations",
+    "text": "Classroom expectations\nWe are all expected to engage in courteous, respectful discussion, including on GitHub Discussions. Bring a charged device to every class. Keep phones and unrelated browser tabs away during live coding and labs; it’s hard to catch up after missing a few steps. Behavior that disrupts the learning environment may lead to a request to leave class or referral to the appropriate disciplinary process."
+  },
+  {
+    "objectID": "syllabus.html#artificial-intelligence-ai-policy",
+    "href": "syllabus.html#artificial-intelligence-ai-policy",
+    "title": "Syllabus",
+    "section": "Artificial intelligence (AI) policy",
+    "text": "Artificial intelligence (AI) policy\nAI use only with acknowledgment. AI assistants are allowed in this course, following the rules below, provided you disclose how you used them. You must be able to explain and defend every line you submit. The rules change as your skills grow:\n\n\n\n\n\n\n\n\n\nPeriod\nChat assistants (explain, debug)\nInline autocomplete\nAgentic tools that edit and run code for you\n\n\n\n\nWeeks 1–5\nAllowed\nOff\nNot for problem sets\n\n\nWeeks 6–13\nAllowed\nAllowed\nNot for problem sets\n\n\nWeeks 14–16 and capstone\nAllowed\nAllowed\nAllowed, documented\n\n\nMidterm and in-class exams\nNot allowed\nOff\nNot allowed\n\n\n\nWhy the phases: early on, autocomplete writes the syntax you’re there to learn, while a chat assistant explaining an error message teaches it.\nDisclosure. Every problem set ends with an AI usage note: the tool, what you asked, what you used and where, and how you checked it. “None” is a fine answer. The capstone requires the same disclosure, plus one AI error your team caught and corrected. Undisclosed AI use, or AI use that breaks the rules above, is a violation of academic integrity (see below).\nSpot checks. Each week a few students, chosen at random, walk me through one cell of their submission for about three minutes. Difficulty explaining your own work is a reason for a closer look at it, not proof of a violation.\nTools and privacy. The course default is Microsoft 365 Copilot Chat, free with your WSU login. GitHub Copilot is free for verified students. You never need to pay for an AI tool. Don’t paste personal information, other students’ work, or restricted data into consumer AI tools. The course website’s Policies page has more detail."
+  },
+  {
+    "objectID": "syllabus.html#academic-integrity",
+    "href": "syllabus.html#academic-integrity",
+    "title": "Syllabus",
+    "section": "Academic integrity",
+    "text": "Academic integrity\nYou are responsible for reading WSU’s Academic Integrity Policy, which is based on Washington State law. If you cheat in your work in this class you will:\n\n[TBD: academic sanction. Suggested: receive a zero on the assignment for a first violation; fail the course for a second violation or for any violation on the midterm].\nBe reported to the Center for Community Standards.\nHave the right to appeal my decision.\nNot be able to drop the course or withdraw from the course until the appeals process is finished.\n\nIf you have any questions about what you can and cannot do in this course, ask me.\nIf you want to ask for a change in my decision about academic integrity, use the form at the Center for Community Standards website. You must submit this request within 21 calendar days of the decision."
+  },
+  {
+    "objectID": "syllabus.html#course-concerns",
+    "href": "syllabus.html#course-concerns",
+    "title": "Syllabus",
+    "section": "Course concerns",
+    "text": "Course concerns\nIf you have a concern about the course, start by talking to me. Under Academic Regulation 104, concerns about course policies in this syllabus must be emailed to me within 5 business days after the first day of instruction, and concerns about a final grade within 10 business days of the final grading deadline. If a concern isn’t resolved with me within 10 business days, you may take it to the director of the School of Economic Sciences, and then to the dean of the College of Agricultural, Human, and Natural Resource Sciences. The University Ombuds is available at any stage for advice or help resolving a concern."
+  },
+  {
+    "objectID": "syllabus.html#university-policies-and-resources",
+    "href": "syllabus.html#university-policies-and-resources",
+    "title": "Syllabus",
+    "section": "University policies and resources",
+    "text": "University policies and resources\nThe University Syllabus covers student support resources; Lauren’s Promise (WSU’s commitment to address discrimination and harassment); reasonable accommodations through the Access Center; pregnancy and related conditions; arrangements for religious reasons; and emergencies on campus."
+  },
+  {
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
+    "section": "Course schedule",
+    "text": "Course schedule\nTopics may shift slightly; any change will be announced in Canvas. PP is Python Programming for Economics and Finance and FC is A First Course in Quantitative Economics with Python. Lecture notebooks for each week are posted on the course website’s Schedule. Due dates are in Canvas. [TBD: if the term includes a break, note which week it follows.]\n\n\n\nWeek\nModule\nTopic\nReadings\nDue\n\n\n\n\n1\n1. Python, Git, and AI-assisted coding foundations\nCourse introduction; why compute in economics; writing in Markdown and LaTeX; setup; AI policy\nPP 1. About These Lectures; Quarto: Markdown Basics (reference)\nPS01 (setup and first commit)\n\n\n2\n1\nPython fundamentals I: variables, control flow, functions, debugging\nPP 3. An Introductory Example; PP 4. Functions; PP 5. Python Essentials\nPS02\n\n\n3\n1\nPython fundamentals II: NumPy arrays, vectorization, plotting\nPP 10. NumPy; PP 11. Matplotlib\nPS03\n\n\n4\n2. Data handling and visualization\npandas for economic data\nPP 17. Pandas\nPS04\n\n\n5\n2\nExploratory data analysis and visualization\nFC 2. Long-Run Growth\nPS05; capstone teams formed\n\n\n6\n3. Numerical methods\nRoot-finding and optimization\nPP 12. SciPy\nPS06\n\n\n7\n3\nLinear algebra and Markov chains\nFC 17. Linear Equations and Matrix Algebra; FC 40. Markov Chains: Basic Concepts\nPS07; capstone proposal\n\n\n8\n3\nRandomness and simulation\nFC 10. LLN and CLT\nPS08; midterm exam\n\n\n9\n4. Microeconomic applications\nConsumer theory, computationally\nTo be posted\nPS09\n\n\n10\n4\nProducer theory, competitive markets, and welfare\nTo be posted\nPS10\n\n\n11\n4\nMonopoly and price discrimination\nTo be posted\nPS11\n\n\n12\n4\nOligopoly and game theory\nTo be posted\nPS12; capstone progress check-in\n\n\n13\n4\nGeneral equilibrium, many goods, and networks\nFC 52. Supply and Demand with Many Goods; FC 50. Networks\nPS13\n\n\n14\n5. Estimation, AI-assisted analysis, and agent-based modeling\nRegression, maximum likelihood, intro machine learning; AI-assisted analysis\nFC 12. Simple Linear Regression Model; FC 13. Maximum Likelihood Estimation\nPS14\n\n\n15\n5\nAgent-based modeling\nFC 31. Racial Segregation (the Schelling model)\nAgent-based model lab\n\n\n16\n5\nCapstone presentations and wrap-up\n—\nCapstone presentation, repository, and written summary\n\n\n\nThis syllabus may be updated during the term; changes will be announced in Canvas, and this page always shows the current version."
   },
   {
     "objectID": "weeks/week02.html",

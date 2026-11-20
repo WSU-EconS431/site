@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f37043fca5f9b6498928b04d5d352ac5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f0d9818cb2e32c9f83978a56599e686a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,10 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
-
-
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -172,6 +169,10 @@ window.Quarto = {
     <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-setup" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Setup</span>
@@ -212,7 +213,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a-market-in-a-few-lines" id="toc-a-market-in-a-few-lines" class="nav-link active" data-scroll-target="#a-market-in-a-few-lines">A market in a few lines</a></li>
+  <li><a href="#the-course-at-a-glance" id="toc-the-course-at-a-glance" class="nav-link active" data-scroll-target="#the-course-at-a-glance">The course at a glance</a>
+  <ul class="collapse">
+  <li><a href="#how-a-week-works" id="toc-how-a-week-works" class="nav-link" data-scroll-target="#how-a-week-works">How a week works</a></li>
+  <li><a href="#grades" id="toc-grades" class="nav-link" data-scroll-target="#grades">Grades</a></li>
+  <li><a href="#ai-assistants" id="toc-ai-assistants" class="nav-link" data-scroll-target="#ai-assistants">AI assistants</a></li>
+  <li><a href="#where-things-are" id="toc-where-things-are" class="nav-link" data-scroll-target="#where-things-are">Where things are</a></li>
+  </ul></li>
+  <li><a href="#a-market-in-a-few-lines" id="toc-a-market-in-a-few-lines" class="nav-link" data-scroll-target="#a-market-in-a-few-lines">A market in a few lines</a></li>
   <li><a href="#drawing-it" id="toc-drawing-it" class="nav-link" data-scroll-target="#drawing-it">Drawing it</a></li>
   <li><a href="#changing-it" id="toc-changing-it" class="nav-link" data-scroll-target="#changing-it">Changing it</a></li>
   <li><a href="#writing-it-up" id="toc-writing-it-up" class="nav-link" data-scroll-target="#writing-it-up">Writing it up</a>
@@ -249,8 +257,117 @@ window.Quarto = {
 </header>
 
 
-<p><a href="https://colab.research.google.com/github/WSU-EconS431/site/blob/main/weeks/week01.ipynb">Open in Colab</a> · <a href="https://github.com/WSU-EconS431/site/blob/main/weeks/week01.ipynb">View on GitHub</a></p>
+<p><a href="https://github.com/WSU-EconS431/site/blob/main/weeks/week01.ipynb">View on GitHub</a> · <a href="https://codespaces.new/WSU-EconS431/site?quickstart=1">Open in Codespaces</a> · <a href="https://colab.research.google.com/github/WSU-EconS431/site/blob/main/weeks/week01.ipynb">Open in Colab</a></p>
 <p>Most models in your economics courses so far could be solved with pencil and paper. This course is about the ones that can’t, or that are much easier to understand once a computer does the algebra. We start with a model you already know, a competitive market, and let Python solve it, draw it, and change it.</p>
+<section id="the-course-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="the-course-at-a-glance">The course at a glance</h2>
+<p>ECONS 431 is about building economic models on a computer: writing a model in Python, solving it, drawing it, testing it against data, and explaining what it says. No programming experience is assumed. We start from scratch this week.</p>
+<p><strong>By the end of the semester, you’ll be able to:</strong></p>
+<ul>
+<li>write, test, and debug Python code, and manage it with Git and GitHub</li>
+<li>load, clean, and graph economic data</li>
+<li>solve models numerically, including ones with no pencil-and-paper solution</li>
+<li>build computational versions of microeconomic models and use them to analyze markets and welfare</li>
+<li>estimate economic relationships from data</li>
+<li>build an agent-based model, where market outcomes emerge from many individual decisions</li>
+<li>present results in clear, reproducible notebooks, and use AI assistants critically and openly</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Weeks</th>
+<th>What you’ll do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Python, Git, and AI-assisted coding</td>
+<td>1–3</td>
+<td>Learn Python on economic examples; set up your codespace and GitHub repository</td>
+</tr>
+<tr class="even">
+<td>2. Data</td>
+<td>4–5</td>
+<td>Load, clean, and graph real economic data</td>
+</tr>
+<tr class="odd">
+<td>3. Numerical methods</td>
+<td>6–8</td>
+<td>Solve equations, optimize, work with matrices and Markov chains, simulate; midterm in Week 8</td>
+</tr>
+<tr class="even">
+<td>4. Microeconomic applications</td>
+<td>9–13</td>
+<td>Consumers, firms, competition, monopoly, oligopoly, and general equilibrium</td>
+</tr>
+<tr class="odd">
+<td>5. Estimation and agent-based models</td>
+<td>14–16</td>
+<td>Regression, intro machine learning, agent-based models; capstone presentations</td>
+</tr>
+</tbody>
+</table>
+<section id="how-a-week-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-a-week-works">How a week works</h3>
+<ol type="1">
+<li><strong>In class,</strong> we work through the week’s lecture notebook, like this one, with live coding, then practice in a short lab.</li>
+<li><strong>A problem set</strong> appears in your GitHub repository, in a folder named for the week (<code>ps02</code> in Week 2, and so on).</li>
+<li><strong>You complete it</strong> in your codespace, push it to GitHub, and paste the commit link into Canvas by the due date.</li>
+</ol>
+<p>Readings come from two free online textbooks by QuantEcon, listed week by week on the <a href="https://wsu-econs431.github.io/site/schedule.html">Schedule</a>.</p>
+</section>
+<section id="grades" class="level3">
+<h3 class="anchored" data-anchor-id="grades">Grades</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Problem sets</th>
+<th style="text-align: center;">Midterm (Week 8)</th>
+<th style="text-align: center;">In-class labs</th>
+<th style="text-align: center;">Agent-based model lab (Week 15)</th>
+<th style="text-align: center;">Capstone project</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">15%</td>
+<td style="text-align: center;">10%</td>
+<td style="text-align: center;">10%</td>
+<td style="text-align: center;">30%</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>capstone</strong> is a team project (2–3 people) that builds on the Module 4 models: teams form in Week 5, propose a question in Week 7, and present in Week 16.</p>
+</section>
+<section id="ai-assistants" class="level3">
+<h3 class="anchored" data-anchor-id="ai-assistants">AI assistants</h3>
+<p>AI assistants are allowed, with disclosure, under rules that loosen as your skills grow. Chat assistants such as Microsoft 365 Copilot Chat (free with your WSU login) are allowed from day one for explaining and debugging. Autocomplete stays off until Week 6, and no AI is allowed on exams. Every problem set ends with a short note on how you used AI. Details are on the <a href="https://wsu-econs431.github.io/site/policies.html">Policies</a> page.</p>
+</section>
+<section id="where-things-are" class="level3">
+<h3 class="anchored" data-anchor-id="where-things-are">Where things are</h3>
+<ul>
+<li><strong><a href="https://wsu-econs431.github.io/site/syllabus.html">Syllabus</a>:</strong> the official course policies, grading, and schedule</li>
+<li><strong><a href="https://wsu-econs431.github.io/site/schedule.html">Schedule</a>:</strong> readings and lecture notebooks by week</li>
+<li><strong>Canvas:</strong> due dates, submissions, grades, and announcements</li>
+<li><strong>Discussions on GitHub:</strong> questions about code</li>
+</ul>
+<p>The rest of this notebook is a first taste of the course: a model you already know, solved, drawn, and changed in Python, and then written up with Markdown and LaTeX.</p>
+</section>
+</section>
 <section id="a-market-in-a-few-lines" class="level2">
 <h2 class="anchored" data-anchor-id="a-market-in-a-few-lines">A market in a few lines</h2>
 <p>Linear demand <span class="math inline">\(Q_d = a - bP\)</span> and supply <span class="math inline">\(Q_s = c + dP\)</span>. Setting <span class="math inline">\(Q_d = Q_s\)</span> gives <span class="math inline">\(P^* = (a - c)/(b + d)\)</span>.</p>
@@ -654,6 +771,7 @@ P^* &amp;= \frac{a - c}{b + d} = \frac{100 - 10}{2 + 1} = 30
 <h2 class="anchored" data-anchor-id="this-week">This week</h2>
 <ul>
 <li>Complete the <a href="../setup.html">Setup guide</a> and PS01.</li>
+<li>Read the <a href="https://wsu-econs431.github.io/site/syllabus.html">Syllabus</a>.</li>
 <li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://python-programming.quantecon.org/about_py.html">1. About These Lectures</a>.</li>
 <li>Keep Quarto’s <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown Basics</a> page handy. It covers everything in “Writing it up” and more.</li>
 <li>Bring a laptop, Chromebook, or tablet with a keyboard to the second session. We’ll set up codespaces together.</li>
@@ -1149,7 +1267,7 @@ P^* &amp;= \frac{a - c}{b + d} = \frac{100 - 10}{2 + 1} = 30
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Grades, due dates, and announcements are in Canvas.</p>
+<p>Grades are in Canvas.</p>
 </div>
   </div>
 </footer>
