@@ -64,11 +64,11 @@ working in Codespaces in the meantime.
 
    ```
    cd ~/EconS431
-   git clone https://github.com/WSU-EconS431/ps-<your-username>.git
+   git clone https://github.com/WSU-EconS431/2027sp-<your-username>.git
    ```
 
    The first clone opens a GitHub sign-in window; choose the browser option.
-   Then open the new folder: **File > Open Folder** > `EconS431/ps-<your-username>`.
+   Then open the new folder: **File > Open Folder** > `EconS431/2027sp-<your-username>`.
 
 6. **Build the environment.** In a Positron terminal inside your repo, run
    `uv sync`. Then click the interpreter name at the top right and choose the

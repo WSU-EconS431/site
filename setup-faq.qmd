@@ -21,7 +21,7 @@ the whole output into any help request.
 ### My repo is greyed out, or I don't see "Create codespace"
 
 Check that you accepted your repo invitation (step 2 of the [Setup guide](setup.qmd)),
-and that you're on **your repo's** page: `https://github.com/WSU-EconS431/ps-<your-username>`.
+and that you're on **your repo's** page: `https://github.com/WSU-EconS431/2027sp-<your-username>`.
 Use the green **Code** button there, then the **Codespaces** tab. If the repo is
 still greyed out, post on Discussions; it's a course setting the instructor can fix.
 
@@ -105,7 +105,7 @@ one. Instead:
 You typed it into the **Console**, the panel with the `>>>` prompt, which runs
 Python code only. Commands such as `uv`, `git`, and `cd` go in the **Terminal**
 (**Terminal > New Terminal**), whose prompt shows your folder, like
-`PS C:\Users\<you>\EconS431\ps-<your-username>>`.
+`PS C:\Users\<you>\EconS431\2027sp-<your-username>>`.
 
 ### `uv sync` says it can't find `pyproject.toml`
 
@@ -197,13 +197,13 @@ gh auth setup-git
 
 You're working in a copy of the files rather than a clone of your GitHub repo.
 Clone your repo (**Git: Clone**, paste
-`https://github.com/WSU-EconS431/ps-<your-username>.git`), then run `uv sync` in
+`https://github.com/WSU-EconS431/2027sp-<your-username>.git`), then run `uv sync` in
 the new folder. Copy any work you want to keep into the clone.
 
 ### I get "Repository not found" (or 404) for my repo
 
 You haven't accepted the invitation yet. Open the email from GitHub, or go to
-`https://github.com/WSU-EconS431/ps-<your-username>/invitations` while signed in.
+`https://github.com/WSU-EconS431/2027sp-<your-username>/invitations` while signed in.
 
 ### `check_setup.py` says `git user.name` or `git user.email` isn't set
 
