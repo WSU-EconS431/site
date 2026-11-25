@@ -36,7 +36,7 @@ This syllabus is the official statement of course policies. Readings and lecture
 | Email | [yoder@wsu.edu](mailto:yoder@wsu.edu) |
 | Office | 203B |
 | Phone | (509) 335-8596 |
-| Student (office) hours | Thursday 12-1 and by appointment |
+| Student (office) hours | Thursday 12-1 in Computer Lab Hulbert 21 and by appointment |
 | Teaching assistant | None |
 
 **Getting help.** Post questions about code in the course Discussions on GitHub, so classmates with the same question see the answer. Use email for anything personal. I answer within one business day, though not usually in the evening before a deadline, so start early.
