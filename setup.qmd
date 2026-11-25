@@ -19,7 +19,7 @@ Edge, Firefox, or Safari), and your phone for GitHub's sign-in codes.
 
 1. **GitHub**: the website that stores your course work online. Each student gets a private repository ("repo") there, a folder only you and the instructor can see. New problem sets arrive in it. To hand in work, you use Git to save it to your repo, then submit the link to it in Canvas.
    - Sign up at [github.com](https://github.com) with any username (it doesn't need to be your real name), and add your WSU email to the account.
-   - Apply for GitHub Education student benefits at [education.github.com](https://education.github.com). Approval can take a few days; it gives you free GitHub Copilot and free Codespaces hours.
+   - Apply for GitHub Education student benefits: see [Get GitHub student benefits](#student-benefits) below. It takes about 10 minutes, and approval can take a few days, so start in Week 1. Your codespace works while you wait.
    - GitHub will ask you to set up two-factor sign-in. Keep that phone or app handy: you'll need a code when you sign in on a lab computer.
    - Enter your GitHub username in the Canvas "GitHub username" survey, so your course repo can be created.
 
@@ -56,6 +56,46 @@ Edge, Firefox, or Safari), and your phone for GitHub's sign-in codes.
 6. **Then do Problem Set 1 (probset01),** also already in your repo. It's due Monday of
    Week 2 at 11:59:59 pm: commit, push, then open the commit on your repo's GitHub page,
    copy its URL, and paste it into the Problem Set 1 assignment in Canvas.
+
+## Get GitHub student benefits {#student-benefits}
+
+GitHub Education is free for students. It gives you GitHub Pro, which raises your free
+Codespaces time from about 60 to about 90 hours a month, and GitHub Copilot Student. You
+don't need it to start: your codespace works while your application is reviewed.
+
+The **Join GitHub Education** button on [education.github.com](https://education.github.com)
+leads to the same application as the steps below.
+
+1. **Add your WSU email first.** On GitHub, click your profile picture (top right) >
+   **Settings** > **Emails**. Add your `@wsu.edu` address, then click the link in the
+   email GitHub sends you to verify it.
+2. **Check your name.** Under **Settings** > **Public profile**, put your real first and
+   last name in **Name**, as it appears on your WSU documents. (Your *username* can still be
+   anything.) If GitHub asks for billing information during the application, use the same
+   name. Nothing is charged.
+3. **Start the application.** Go to
+   [github.com/settings/education/benefits](https://github.com/settings/education/benefits)
+   (or **Settings** > **Education benefits**) and click **Start an application**.
+4. **Fill it in.** Choose **Student**, select **Washington State University**, and pick your
+   `@wsu.edu` email.
+5. **Show proof that you're enrolled,** if asked. GitHub asks you to take a photo with your
+   camera rather than upload a file. Use a document that shows your full name,
+   "Washington State University", and a current date, such as your class schedule or
+   an enrollment verification from myWSU. A Cougar Card works only if it shows a current
+   date. Photographing the document on a screen or on paper is fine, as long as it's sharp.
+6. **Submit.** For the best chance, apply on campus with your browser allowed to share
+   your location, and with any VPN turned off.
+7. **Wait for two emails.** Approval usually takes a few days, longer at the start of a
+   semester. The benefits themselves can take up to 3 more days to appear. You can check
+   the status on the same
+   [Education benefits](https://github.com/settings/education/benefits) page.
+
+**If you're turned down,** the email says why, most often a name that doesn't match or a
+blurry or undated document. Fix that one thing, then apply again with a new photo.
+
+**Copilot:** once you're approved, you can turn on Copilot Student from the same Education
+benefits page. In course codespaces, Copilot's autocomplete stays off through Week 5
+(see [Policies](policies.qmd)); Copilot Chat is fine to use.
 
 ## Each time you work {#each-time}
 
