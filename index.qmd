@@ -21,6 +21,7 @@ Computational tools for solving and analyzing economic models: programming in Py
 | What | Where |
 |------------------------------------|------------------------------------|
 | Lecture notes, notebooks, readings, setup help | This site |
+| In-class lab exercises | Your private repo: `WSU-EconS431/2027sp-<your-username>` |
 | Your problem sets | Your private repo: `WSU-EconS431/2027sp-<your-username>` |
 | Due dates, submissions, grades, announcements | Canvas |
 | Questions about code | Course Discussions on GitHub |
