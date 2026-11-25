@@ -218,7 +218,7 @@ window.Quarto = {
   <li><a href="#searching-a-grid" id="toc-searching-a-grid" class="nav-link" data-scroll-target="#searching-a-grid">6. Searching a grid</a></li>
   <li><a href="#plotting-with-matplotlib" id="toc-plotting-with-matplotlib" class="nav-link" data-scroll-target="#plotting-with-matplotlib">7. Plotting with Matplotlib</a></li>
   <li><a href="#market-demand-from-individual-buyers" id="toc-market-demand-from-individual-buyers" class="nav-link" data-scroll-target="#market-demand-from-individual-buyers">8. Market demand from individual buyers</a></li>
-  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">9. In-class exercises</a></li>
+  <li><a href="#in-class-lab" id="toc-in-class-lab" class="nav-link" data-scroll-target="#in-class-lab">9. In-class lab</a></li>
   <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This week</a></li>
   </ul>
 </nav>
@@ -462,8 +462,8 @@ How many: 4</code></pre>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"vectorized: </span><span class="sc">{</span>t_vec<span class="sc">:.4f}</span><span class="ss"> s  (</span><span class="sc">{</span>t_loop <span class="op">/</span> t_vec<span class="sc">:.0f}</span><span class="ss">x faster)"</span>)</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same answer:"</span>, np.isclose(total, total_vec))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>loop:       0.369 s
-vectorized: 0.0105 s  (35x faster)
+<pre><code>loop:       0.565 s
+vectorized: 0.0135 s  (42x faster)
 same answer: True</code></pre>
 </div>
 </div>
@@ -613,26 +613,11 @@ Demand at P = 30: 49</code></pre>
 </div>
 </div>
 </div>
-<p>With WTP uniform on <span class="math inline">\([0, 60]\)</span>, the expected share of buyers with WTP above <span class="math inline">\(P\)</span> is <span class="math inline">\(1 - P/60\)</span>, so 90 buyers give expected demand <span class="math inline">\(90 - 1.5P\)</span>, the curve we’ve used all week. The simulated curve has steps because each buyer is one unit, and it wanders around the line because of the random draws. More buyers make it smoother (Exercise E4). Week 15’s agent-based models start from exactly this idea.</p>
+<p>With WTP uniform on <span class="math inline">\([0, 60]\)</span>, the expected share of buyers with WTP above <span class="math inline">\(P\)</span> is <span class="math inline">\(1 - P/60\)</span>, so 90 buyers give expected demand <span class="math inline">\(90 - 1.5P\)</span>, the curve we’ve used all week. The simulated curve has steps because each buyer is one unit, and it wanders around the line because of the random draws. More buyers make it smoother (Lab 3). Week 15’s agent-based models start from exactly this idea.</p>
 </section>
-<section id="in-class-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-exercises">9. In-class exercises</h2>
-<p><strong>E1.</strong> Make a price grid from 0 to 60 in steps of 0.5. How many of those prices have a <em>surplus</em> (quantity supplied above quantity demanded)?</p>
-<div id="c042" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E1: your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>E2.</strong> Write a vectorized <code>elasticity(p, a, b)</code> (your Week 2 version may already work on arrays; test it). On a fine grid between 1 and 59, find the price where demand is closest to unit elastic. Check: <span class="math inline">\(a/(2b)\)</span>.</p>
-<div id="c044" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E2: your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>E3.</strong> Plot revenue against price on one set of axes, mark the maximum with a dot, and give the figure a title that states the finding.</p>
-<div id="c046" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E3: your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>E4.</strong> Repeat Section 8 with 9,000 buyers and compare with <span class="math inline">\(9000 - 150P\)</span>. What happens to the steps and to the gap between the curves? Write one sentence.</p>
-<div id="c048" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E4: your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="in-class-lab" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-lab">9. In-class lab</h2>
+<p>The exercises for this week are in <strong>Lab 3</strong>. It appears in the <code>lab03</code> folder of your repository at the start of the second class session (pull to see it), and you work on it in pairs.</p>
 </section>
 <section id="this-week" class="level2">
 <h2 class="anchored" data-anchor-id="this-week">This week</h2>

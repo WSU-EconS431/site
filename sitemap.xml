@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wsu-econs431.github.io/site/weeks/week03.html</loc>
-    <lastmod>2026-11-19T23:17:36.753Z</lastmod>
+    <loc>https://wsu-econs431.github.io/site/weeks/week08.html</loc>
+    <lastmod>2026-11-24T00:25:48.700Z</lastmod>
   </url>
   <url>
-    <loc>https://wsu-econs431.github.io/site/weeks/week01.html</loc>
-    <lastmod>2026-11-20T00:45:03.003Z</lastmod>
+    <loc>https://wsu-econs431.github.io/site/weeks/week06.html</loc>
+    <lastmod>2026-11-24T00:25:25.956Z</lastmod>
   </url>
   <url>
-    <loc>https://wsu-econs431.github.io/site/setup.html</loc>
-    <lastmod>2026-11-06T15:10:55.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/setup-faq.html</loc>
-    <lastmod>2026-11-07T20:16:50.316Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/policies.html</loc>
-    <lastmod>2026-11-19T20:27:53.334Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/index.html</loc>
-    <lastmod>2026-11-16T14:36:56.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/schedule.html</loc>
-    <lastmod>2026-11-19T18:45:51.231Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/setup-local.html</loc>
-    <lastmod>2026-11-06T15:10:55.616Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wsu-econs431.github.io/site/syllabus.html</loc>
-    <lastmod>2026-11-19T22:03:10.656Z</lastmod>
+    <loc>https://wsu-econs431.github.io/site/weeks/week04.html</loc>
+    <lastmod>2026-11-24T00:24:42.723Z</lastmod>
   </url>
   <url>
     <loc>https://wsu-econs431.github.io/site/weeks/week02.html</loc>
-    <lastmod>2026-11-19T23:23:20.273Z</lastmod>
+    <lastmod>2026-11-24T00:24:16.314Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/syllabus.html</loc>
+    <lastmod>2026-11-25T14:06:32.548Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/setup-local.html</loc>
+    <lastmod>2026-11-25T14:24:42.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/schedule.html</loc>
+    <lastmod>2026-11-21T18:41:17.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/index.html</loc>
+    <lastmod>2026-11-25T14:24:41.993Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/policies.html</loc>
+    <lastmod>2026-11-21T18:17:43.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/setup-faq.html</loc>
+    <lastmod>2026-11-25T14:24:42.004Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/setup.html</loc>
+    <lastmod>2026-11-25T14:24:42.024Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week01.html</loc>
+    <lastmod>2026-11-20T00:45:31.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week03.html</loc>
+    <lastmod>2026-11-24T00:24:30.113Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week05.html</loc>
+    <lastmod>2026-11-24T00:25:14.187Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wsu-econs431.github.io/site/weeks/week07.html</loc>
+    <lastmod>2026-11-24T00:25:37.228Z</lastmod>
   </url>
 </urlset>

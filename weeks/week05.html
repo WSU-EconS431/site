@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 5: Exploratory data analysis and visualization – ECONS 431 Computational Economics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f0d9818cb2e32c9f83978a56599e686a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ECONS 431 Computational Economics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-setup" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Setup</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-setup">    
+        <li>
+    <a class="dropdown-item" href="../setup.html">
+ <span class="dropdown-text">Setup guide (Codespaces)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-local.html">
+ <span class="dropdown-text">Work on your own computer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-faq.html">
+ <span class="dropdown-text">Setup FAQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Policies</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#look-before-you-plot" id="toc-look-before-you-plot" class="nav-link active" data-scroll-target="#look-before-you-plot">1. Look before you plot</a></li>
+  <li><a href="#one-variable-its-distribution" id="toc-one-variable-its-distribution" class="nav-link" data-scroll-target="#one-variable-its-distribution">2. One variable: its distribution</a></li>
+  <li><a href="#a-variable-over-time-and-why-logs" id="toc-a-variable-over-time-and-why-logs" class="nav-link" data-scroll-target="#a-variable-over-time-and-why-logs">3. A variable over time, and why logs</a></li>
+  <li><a href="#comparing-several-series" id="toc-comparing-several-series" class="nav-link" data-scroll-target="#comparing-several-series">4. Comparing several series</a></li>
+  <li><a href="#comparing-groups" id="toc-comparing-groups" class="nav-link" data-scroll-target="#comparing-groups">5. Comparing groups</a></li>
+  <li><a href="#two-variables-a-scatter-plot" id="toc-two-variables-a-scatter-plot" class="nav-link" data-scroll-target="#two-variables-a-scatter-plot">6. Two variables: a scatter plot</a></li>
+  <li><a href="#adding-context-recessions-in-a-time-series" id="toc-adding-context-recessions-in-a-time-series" class="nav-link" data-scroll-target="#adding-context-recessions-in-a-time-series">7. Adding context: recessions in a time series</a></li>
+  <li><a href="#making-a-figure-someone-else-will-read" id="toc-making-a-figure-someone-else-will-read" class="nav-link" data-scroll-target="#making-a-figure-someone-else-will-read">8. Making a figure someone else will read</a>
+  <ul class="collapse">
+  <li><a href="#stating-the-finding" id="toc-stating-the-finding" class="nav-link" data-scroll-target="#stating-the-finding">Stating the finding</a></li>
+  </ul></li>
+  <li><a href="#in-class-lab" id="toc-in-class-lab" class="nav-link" data-scroll-target="#in-class-lab">9. In-class lab</a></li>
+  <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This week</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 5: Exploratory data analysis and visualization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/WSU-EconS431/site/blob/main/weeks/week05.ipynb">Open in Colab</a> · <a href="https://github.com/WSU-EconS431/site/blob/main/weeks/week05.ipynb">View on GitHub</a></p>
+<p>Last week you loaded and reshaped tables. This week you use them to <strong>find out what the data say</strong>: how a variable is distributed, how it moves over time, how groups differ, and how two variables relate. Exploratory analysis is a loop of questions and quick figures, followed by a few figures built to be read by someone else. The reading, <a href="https://intro.quantecon.org/long_run_growth.html">FC 2. Long-Run Growth</a>, asks the same kind of questions of the same Maddison data.</p>
+<p><strong>After this week you can:</strong></p>
+<ul>
+<li>check a new dataset for problems before drawing anything</li>
+<li>choose a figure for the question: histogram, line, scatter, or points by group</li>
+<li>use a log scale when percentage changes matter, and say so on the axis</li>
+<li>add context to a time-series figure (shaded recessions, a reference line)</li>
+<li>state a finding in one sentence with a number and a caveat</li>
+</ul>
+<div id="ddcec9a4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:43.025397Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:43.024685Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:44.312881Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:44.311471Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> FuncFormatter, NullFormatter</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../data"</span> <span class="cf">if</span> Path(<span class="st">"../data"</span>).exists() <span class="cf">else</span> <span class="st">"https://raw.githubusercontent.com/WSU-EconS431/site/main/data"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mpd <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/mpd2020_full.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mpd.loc[mpd[<span class="st">"gdppc"</span>] <span class="op">&lt;=</span> <span class="dv">0</span>, <span class="st">"gdppc"</span>] <span class="op">=</span> np.nan        <span class="co"># zeros are placeholders (Week 4)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/country_groups.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="look-before-you-plot" class="level2">
+<h2 class="anchored" data-anchor-id="look-before-you-plot">1. Look before you plot</h2>
+<p>Week 4’s habits, as a routine you can run on any new table: the shape, the types, how much is missing, and whether the key columns identify rows uniquely.</p>
+<div id="8ca52881" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:44.314773Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:44.314549Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:44.326583Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:44.325028Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quick_look(df, keys):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Print the basic facts to check before analyzing a table."""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"rows, columns:"</span>, df.shape)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"duplicate keys:"</span>, df.duplicated(keys).<span class="bu">sum</span>())</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"share missing:"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.isna().mean().<span class="bu">round</span>(<span class="dv">3</span>).to_string())</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>quick_look(mpd, [<span class="st">"countrycode"</span>, <span class="st">"year"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rows, columns: (21682, 5)
+duplicate keys: 0
+share missing:
+countrycode    0.000
+country        0.000
+year           0.000
+gdppc          0.091
+pop            0.207</code></pre>
+</div>
+</div>
+<p>No duplicate country-years, and the gaps are in <code>gdppc</code> and <code>pop</code>, as we saw. Now to the questions.</p>
+</section>
+<section id="one-variable-its-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="one-variable-its-distribution">2. One variable: its distribution</h2>
+<p>How unequal are countries’ incomes today? A <strong>histogram</strong> counts countries in bins of income:</p>
+<div id="56ee475b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:44.329285Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:44.328945Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:44.606741Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:44.605034Z&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y2018 <span class="op">=</span> mpd[mpd[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2018</span>].dropna(subset<span class="op">=</span>[<span class="st">"gdppc"</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.5</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ax1.hist(y2018[<span class="st">"gdppc"</span>], bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"GDP per capita, 2018 (2011 intl. $)"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Number of countries"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Levels: a long right tail"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax2.hist(np.log10(y2018[<span class="st">"gdppc"</span>]), bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"log10 of GDP per capita, 2018"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Logs: closer to symmetric"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> y2018[<span class="st">"gdppc"</span>].quantile([<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(q.<span class="bu">round</span>(<span class="dv">0</span>).to_dict(), <span class="ss">f"  90th/10th percentile ratio: </span><span class="sc">{</span>q[<span class="fl">0.9</span>] <span class="op">/</span> q[<span class="fl">0.1</span>]<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-4-output-1.png" width="855" height="326" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{0.1: 1728.0, 0.5: 12310.0, 0.9: 44705.0}   90th/10th percentile ratio: 25.9</code></pre>
+</div>
+</div>
+<p>In levels, most countries are bunched at low and middle incomes and a few are far out to the right. In logs, the shape is closer to symmetric, because the gap between $2,000 and $4,000 matters about as much as the gap between $20,000 and $40,000: <strong>equal ratios are equal distances</strong>. The 90th-percentile country is many times richer than the 10th-percentile country.</p>
+</section>
+<section id="a-variable-over-time-and-why-logs" class="level2">
+<h2 class="anchored" data-anchor-id="a-variable-over-time-and-why-logs">3. A variable over time, and why logs</h2>
+<p>A straight line on a <strong>log scale</strong> is a constant growth rate. Compare the same US series on both scales, with a dashed line showing constant 2% annual growth from 1850:</p>
+<div id="da3b78f2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:44.608547Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:44.608336Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:44.967576Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:44.966774Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>usa <span class="op">=</span> mpd[(mpd[<span class="st">"countrycode"</span>] <span class="op">==</span> <span class="st">"USA"</span>) <span class="op">&amp;</span> (mpd[<span class="st">"year"</span>] <span class="op">&gt;=</span> <span class="dv">1850</span>)].sort_values(<span class="st">"year"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>g_avg <span class="op">=</span> (np.log(usa[<span class="st">"gdppc"</span>].iloc[<span class="op">-</span><span class="dv">1</span>]) <span class="op">-</span> np.log(usa[<span class="st">"gdppc"</span>].iloc[<span class="dv">0</span>])) <span class="op">/</span> (usa[<span class="st">"year"</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> usa[<span class="st">"year"</span>].iloc[<span class="dv">0</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>two_pct <span class="op">=</span> usa[<span class="st">"gdppc"</span>].iloc[<span class="dv">0</span>] <span class="op">*</span> <span class="fl">1.02</span> <span class="op">**</span> (usa[<span class="st">"year"</span>] <span class="op">-</span> <span class="dv">1850</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.5</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, scale <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="st">"linear"</span>, <span class="st">"log"</span>]):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(usa[<span class="st">"year"</span>], usa[<span class="st">"gdppc"</span>], label<span class="op">=</span><span class="st">"US GDP per capita"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax.plot(usa[<span class="st">"year"</span>], two_pct, <span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"2% a year from 1850"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax.set_yscale(scale)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>scale<span class="sc">.</span>capitalize()<span class="sc">}</span><span class="ss"> scale"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"GDP per capita (2011 intl. $)"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"average growth 1850-2018: </span><span class="sc">{</span><span class="dv">100</span> <span class="op">*</span> g_avg<span class="sc">:.2f}</span><span class="ss">% a year"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-5-output-1.png" width="871" height="326" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>average growth 1850-2018: 1.62% a year</code></pre>
+</div>
+</div>
+<p>On the linear scale the curve looks like it takes off around 1950, even though growth was steady. On the log scale the US series stays close to a straight line, a little flatter than the 2% reference line (the cell prints the average, about 1.6% a year): its long-run growth rate barely changed, and the dips (the early 1930s, the 1940s) stand out. Use a log scale whenever <strong>rates of change</strong> are the story, and label the axis so the reader knows.</p>
+</section>
+<section id="comparing-several-series" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-several-series">4. Comparing several series</h2>
+<p>Many lines need two decisions: put the lines on a log scale if you care about growth, and <strong>label the lines directly</strong> so the reader doesn’t have to match colors to a legend. Choose readable tick labels:</p>
+<div id="fe66f456" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:44.969670Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:44.969494Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.171296Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.170946Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> [<span class="st">"United States"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Japan"</span>, <span class="st">"China"</span>, <span class="st">"India"</span>, <span class="st">"Nigeria"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> mpd.pivot(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"country"</span>, values<span class="op">=</span><span class="st">"gdppc"</span>).loc[<span class="dv">1950</span>:, countries]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">4.2</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>nudge <span class="op">=</span> {<span class="st">"United Kingdom"</span>: <span class="fl">0.88</span>, <span class="st">"Japan"</span>: <span class="fl">1.12</span>}            <span class="co"># two end values are almost equal: separate the labels</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> countries:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(wide.index, wide[name], linewidth<span class="op">=</span><span class="fl">1.8</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">2019</span>, wide[name].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> nudge.get(name, <span class="fl">1.0</span>), name, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)   <span class="co"># label at the end of each line</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">"log"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax.set_yticks([<span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">20000</span>, <span class="dv">50000</span>])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FuncFormatter(<span class="kw">lambda</span> v, _: <span class="ss">f"$</span><span class="sc">{</span>v<span class="sc">:,.0f}</span><span class="ss">"</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_minor_formatter(NullFormatter())</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">1950</span>, <span class="dv">2040</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"GDP per capita (2011 intl. $, log scale)"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"China passed India and Nigeria after 1980"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>fig.text(<span class="fl">0.01</span>, <span class="op">-</span><span class="fl">0.02</span>, <span class="st">"Source: Maddison Project Database 2020"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-6-output-1.png" width="641" height="405" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reading a log-scale line: the steeper the line, the faster the growth, whatever the level. China starts below India and Nigeria in 1950 and ends well above both. Extra room on the right (<code>set_xlim</code>) makes space for the labels, and where two end values are nearly equal (the United Kingdom and Japan) the labels are nudged apart.</p>
+</section>
+<section id="comparing-groups" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-groups">5. Comparing groups</h2>
+<p>Our small lookup table assigns 26 countries to regions. With only a few countries per region, a box plot has too little to summarize; <strong>show every country</strong> as a point instead. A log axis keeps the poorest and richest regions on one picture.</p>
+<div id="3d25a9eb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:45.173052Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:45.172861Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.402075Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.400609Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> y2018.merge(groups, on<span class="op">=</span><span class="st">"countrycode"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> reg.groupby(<span class="st">"region"</span>)[<span class="st">"gdppc"</span>].median().sort_values().index</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sns.stripplot(data<span class="op">=</span>reg, x<span class="op">=</span><span class="st">"gdppc"</span>, y<span class="op">=</span><span class="st">"region"</span>, order<span class="op">=</span>order, size<span class="op">=</span><span class="dv">7</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">"log"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">20000</span>, <span class="dv">50000</span>])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(FuncFormatter(<span class="kw">lambda</span> v, _: <span class="ss">f"$</span><span class="sc">{</span>v<span class="sc">:,.0f}</span><span class="ss">"</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_minor_formatter(NullFormatter())</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"GDP per capita, 2018 (2011 intl. $, log scale)"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Income differs more across regions than within most of them"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>reg.groupby(<span class="st">"region"</span>)[<span class="st">"gdppc"</span>].agg([<span class="st">"count"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>]).loc[order].<span class="bu">round</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-7-output-1.png" width="744" height="377" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Sub-Saharan Africa</th>
+<td>3</td>
+<td>3377.0</td>
+<td>12166.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">South and South East Asia</th>
+<td>5</td>
+<td>6806.0</td>
+<td>16649.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Middle East and North Africa</th>
+<td>2</td>
+<td>11957.0</td>
+<td>19270.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Latin America</th>
+<td>3</td>
+<td>14034.0</td>
+<td>18556.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Eastern Europe</th>
+<td>1</td>
+<td>24669.0</td>
+<td>24669.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">East Asia</th>
+<td>3</td>
+<td>13102.0</td>
+<td>38674.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Western Europe</th>
+<td>6</td>
+<td>31497.0</td>
+<td>46178.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Western Offshoots</th>
+<td>3</td>
+<td>44869.0</td>
+<td>55335.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Check the title against the numbers before you keep it: compare the spread inside a region (min to max) with the gap between regions. If the claim doesn’t hold, change the title, not the data.</p>
+</section>
+<section id="two-variables-a-scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="two-variables-a-scatter-plot">6. Two variables: a scatter plot</h2>
+<p>Do poorer countries grow faster? In 1990, countries varied in income. If poor countries catch up, those with low 1990 income should show higher growth from 1990 to 2018. Each point is a country; both axes use logs (growth is already a log difference).</p>
+<div id="211dbf6b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:45.403994Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:45.403770Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.572420Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.571129Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> mpd.pivot(index<span class="op">=</span><span class="st">"year"</span>, columns<span class="op">=</span><span class="st">"country"</span>, values<span class="op">=</span><span class="st">"gdppc"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>conv <span class="op">=</span> pd.DataFrame({<span class="st">"log_y1990"</span>: np.log(w.loc[<span class="dv">1990</span>]),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"growth"</span>: (np.log(w.loc[<span class="dv">2018</span>]) <span class="op">-</span> np.log(w.loc[<span class="dv">1990</span>])) <span class="op">/</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">100</span>}).dropna()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(conv[<span class="st">"log_y1990"</span>], conv[<span class="st">"growth"</span>], <span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.corrcoef(conv[<span class="st">"log_y1990"</span>], conv[<span class="st">"growth"</span>])[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(conv)<span class="sc">}</span><span class="ss"> countries; slope </span><span class="sc">{</span>slope<span class="sc">:.2f}</span><span class="ss"> percentage points per unit of log income; correlation </span><span class="sc">{</span>r<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="fl">4.5</span>))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(conv[<span class="st">"log_y1990"</span>], conv[<span class="st">"growth"</span>], s<span class="op">=</span><span class="dv">18</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(conv[<span class="st">"log_y1990"</span>].<span class="bu">min</span>(), conv[<span class="st">"log_y1990"</span>].<span class="bu">max</span>(), <span class="dv">50</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, intercept <span class="op">+</span> slope <span class="op">*</span> xs, color<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"fitted line"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"China"</span>, <span class="st">"India"</span>, <span class="st">"United States"</span>, <span class="st">"Qatar"</span>, <span class="st">"Japan"</span>]:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    ax.annotate(name, (conv.loc[name, <span class="st">"log_y1990"</span>], conv.loc[name, <span class="st">"growth"</span>]), fontsize<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                xytext<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), textcoords<span class="op">=</span><span class="st">"offset points"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"log GDP per capita, 1990"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Average annual growth, 1990-2018 (%)"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Initial income and later growth, 1990-2018"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>169 countries; slope -0.02 percentage points per unit of log income; correlation -0.01</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-8-output-2.png" width="605" height="414" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The fitted line is almost flat: across all 169 countries, 1990 income says essentially nothing about growth over the next 28 years. That is not what a simple “poor countries catch up” story predicts. It does not rule out catching up among countries that are alike in other ways, which is what economists usually test, with regression (Week 14). A fitted line is a <strong>summary of the pattern</strong>, not a law, and a different window or sample can change it. Notice how much the result depends on which of the 169 rows you include.</p>
+</section>
+<section id="adding-context-recessions-in-a-time-series" class="level2">
+<h2 class="anchored" data-anchor-id="adding-context-recessions-in-a-time-series">7. Adding context: recessions in a time series</h2>
+<p><code>us_macro_1959_2009.csv</code> is quarterly US data, and <code>nber_recessions.csv</code> lists the eight recessions dated by the National Bureau of Economic Research. Shading the recessions shows how a variable behaves around them. <code>ax.axvspan(start, end)</code> draws a vertical band.</p>
+<div id="64a8bb60" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:45.573959Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:45.573770Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.825564Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.824971Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/us_macro_1959_2009.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>us[<span class="st">"date"</span>] <span class="op">=</span> pd.PeriodIndex.from_fields(year<span class="op">=</span>us[<span class="st">"year"</span>], quarter<span class="op">=</span>us[<span class="st">"quarter"</span>], freq<span class="op">=</span><span class="st">"Q"</span>).to_timestamp()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> us.set_index(<span class="st">"date"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>us[<span class="st">"gdp_growth"</span>] <span class="op">=</span> us[<span class="st">"realgdp"</span>].pct_change(<span class="dv">4</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>rec <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/nber_recessions.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"peak_month"</span>, <span class="st">"trough_month"</span>])</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">5.5</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax1.plot(us.index, us[<span class="st">"gdp_growth"</span>], color<span class="op">=</span><span class="st">"tab:blue"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax1.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Real GDP growth,</span><span class="ch">\n</span><span class="st">last 4 quarters (%)"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>ax2.plot(us.index, us[<span class="st">"unemp"</span>], color<span class="op">=</span><span class="st">"tab:red"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Unemployment rate (%)"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"Quarter"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> (ax1, ax2):</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> rec.itertuples():</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        ax.axvspan(row.peak_month, row.trough_month, color<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Output growth falls and unemployment rises in the shaded recessions"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>fig.text(<span class="fl">0.01</span>, <span class="op">-</span><span class="fl">0.01</span>, <span class="st">"Shading: NBER recessions. Data: FRED and BLS via statsmodels; NBER dates."</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week05_files/figure-html/cell-9-output-1.png" width="670" height="541" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A claim like “unemployment rises in every recession” is easy to check once you have the dates. Compare the unemployment rate in the quarter of each peak and each trough:</p>
+<div id="8bff3e7e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:45.827370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:45.827171Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.841102Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.840243Z&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>peak_u <span class="op">=</span> [us.loc[pd.Period(q).start_time, <span class="st">"unemp"</span>] <span class="cf">for</span> q <span class="kw">in</span> rec[<span class="st">"peak_quarter"</span>]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>trough_u <span class="op">=</span> [us.loc[pd.Period(q).start_time, <span class="st">"unemp"</span>] <span class="cf">for</span> q <span class="kw">in</span> rec[<span class="st">"trough_quarter"</span>]]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>check <span class="op">=</span> pd.DataFrame({<span class="st">"peak"</span>: rec[<span class="st">"peak_quarter"</span>], <span class="st">"trough"</span>: rec[<span class="st">"trough_quarter"</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"unemp_at_peak"</span>: peak_u, <span class="st">"unemp_at_trough"</span>: trough_u})</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>check[<span class="st">"change"</span>] <span class="op">=</span> (check[<span class="st">"unemp_at_trough"</span>] <span class="op">-</span> check[<span class="st">"unemp_at_peak"</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">peak</th>
+<th data-quarto-table-cell-role="th">trough</th>
+<th data-quarto-table-cell-role="th">unemp_at_peak</th>
+<th data-quarto-table-cell-role="th">unemp_at_trough</th>
+<th data-quarto-table-cell-role="th">change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1960Q2</td>
+<td>1961Q1</td>
+<td>5.2</td>
+<td>6.8</td>
+<td>1.6</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1969Q4</td>
+<td>1970Q4</td>
+<td>3.6</td>
+<td>5.8</td>
+<td>2.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1973Q4</td>
+<td>1975Q1</td>
+<td>4.8</td>
+<td>8.2</td>
+<td>3.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1980Q1</td>
+<td>1980Q3</td>
+<td>6.3</td>
+<td>7.7</td>
+<td>1.4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1981Q3</td>
+<td>1982Q4</td>
+<td>7.4</td>
+<td>10.7</td>
+<td>3.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>1990Q3</td>
+<td>1991Q1</td>
+<td>5.7</td>
+<td>6.6</td>
+<td>0.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>2001Q1</td>
+<td>2001Q4</td>
+<td>4.2</td>
+<td>5.5</td>
+<td>1.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>2007Q4</td>
+<td>2009Q2</td>
+<td>4.8</td>
+<td>9.2</td>
+<td>4.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Unemployment was higher at the trough than at the peak in every one of the eight recessions, by 0.9 percentage points (1990-91) to 4.4 (2007-09). (The NBER trough dates the bottom of output, not unemployment; unemployment often keeps rising for a while after.)</p>
+</section>
+<section id="making-a-figure-someone-else-will-read" class="level2">
+<h2 class="anchored" data-anchor-id="making-a-figure-someone-else-will-read">8. Making a figure someone else will read</h2>
+<p>Everything from Week 3’s checklist still applies. For figures with data, add:</p>
+<ul>
+<li><strong>Say what the axis is:</strong> units, and “log scale” if it is.</li>
+<li><strong>Show the source</strong>, on the figure or in a caption.</li>
+<li><strong>Label lines directly</strong> when there are more than three or four.</li>
+<li><strong>Show the data points</strong> when there are few of them.</li>
+<li><strong>Make the title the finding</strong>, and check that the figure supports it.</li>
+<li><strong>Choose the figure for the question:</strong> distribution (histogram), change over time (line), comparison across groups (points or bars), relationship (scatter).</li>
+</ul>
+<section id="stating-the-finding" class="level3">
+<h3 class="anchored" data-anchor-id="stating-the-finding">Stating the finding</h3>
+<p>A finding is a sentence with a number in it, the evidence, and a caveat. You can build it from variables, so the text always matches the computation:</p>
+<div id="c758a170" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:29:45.842781Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:29:45.842597Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:29:45.848125Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:29:45.847281Z&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> conv[<span class="st">"growth"</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>display(Markdown(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"**Finding.** Between 1990 and 2018 the median country's GDP per capita grew </span><span class="sc">{</span>d<span class="sc">.</span>median()<span class="sc">:.1f}</span><span class="ss">% a year "</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"(</span><span class="sc">{</span><span class="bu">len</span>(conv)<span class="sc">}</span><span class="ss"> countries), and the fitted line of growth on 1990 income has a slope of </span><span class="sc">{</span>slope<span class="sc">:.2f}</span><span class="ss">. "</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"*Caveat:* the line is nearly flat (correlation </span><span class="sc">{</span>r<span class="sc">:.2f}</span><span class="ss">), so 1990 income does not predict growth in this sample; it says nothing about catching up among similar countries."</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><strong>Finding.</strong> Between 1990 and 2018 the median country’s GDP per capita grew 2.2% a year (169 countries), and the fitted line of growth on 1990 income has a slope of -0.02. <em>Caveat:</em> the line is nearly flat (correlation -0.01), so 1990 income does not predict growth in this sample; it says nothing about catching up among similar countries.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="in-class-lab" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-lab">9. In-class lab</h2>
+<p>The exercises for this week are in <strong>Lab 5</strong>. It appears in the <code>lab05</code> folder of your repository at the start of the second class session (pull to see it), and you work on it in pairs.</p>
+</section>
+<section id="this-week" class="level2">
+<h2 class="anchored" data-anchor-id="this-week">This week</h2>
+<ul>
+<li>Read <a href="https://intro.quantecon.org/long_run_growth.html">FC 2. Long-Run Growth</a> from <em>A First Course in Quantitative Economics with Python</em>.</li>
+<li><strong>PS05</strong> (growth and recessions in figures) is in the <code>ps05</code> folder of your repo.</li>
+<li>Module 3 starts next week: solving models numerically.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/wsu-econs431\.github\.io\/site\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>ECONS 431 · Washington State University</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Grades are in Canvas.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

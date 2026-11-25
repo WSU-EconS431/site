@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 7: Linear algebra and Markov chains – ECONS 431 Computational Economics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f0d9818cb2e32c9f83978a56599e686a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ECONS 431 Computational Economics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-setup" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Setup</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-setup">    
+        <li>
+    <a class="dropdown-item" href="../setup.html">
+ <span class="dropdown-text">Setup guide (Codespaces)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-local.html">
+ <span class="dropdown-text">Work on your own computer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-faq.html">
+ <span class="dropdown-text">Setup FAQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Policies</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vectors-matrices-and" id="toc-vectors-matrices-and" class="nav-link active" data-scroll-target="#vectors-matrices-and">1. Vectors, matrices, and <code>@</code></a></li>
+  <li><a href="#solving-mx-b" id="toc-solving-mx-b" class="nav-link" data-scroll-target="#solving-mx-b">2. Solving <span class="math inline">\(Mx = b\)</span></a></li>
+  <li><a href="#input-output-the-leontief-model" id="toc-input-output-the-leontief-model" class="nav-link" data-scroll-target="#input-output-the-leontief-model">3. Input-output: the Leontief model</a></li>
+  <li><a href="#when-a-linear-system-is-fragile" id="toc-when-a-linear-system-is-fragile" class="nav-link" data-scroll-target="#when-a-linear-system-is-fragile">4. When a linear system is fragile</a></li>
+  <li><a href="#markov-chains" id="toc-markov-chains" class="nav-link" data-scroll-target="#markov-chains">5. Markov chains</a></li>
+  <li><a href="#a-second-chain-high-or-low-unemployment" id="toc-a-second-chain-high-or-low-unemployment" class="nav-link" data-scroll-target="#a-second-chain-high-or-low-unemployment">6. A second chain: high or low unemployment</a></li>
+  <li><a href="#in-class-lab" id="toc-in-class-lab" class="nav-link" data-scroll-target="#in-class-lab">7. In-class lab</a></li>
+  <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This week</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 7: Linear algebra and Markov chains</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/WSU-EconS431/site/blob/main/weeks/week07.ipynb">Open in Colab</a> · <a href="https://github.com/WSU-EconS431/site/blob/main/weeks/week07.ipynb">View on GitHub</a></p>
+<p>Many economic models are, at heart, a system of linear equations: markets that affect each other, industries that buy from each other, and states that an economy moves between. Last week’s solvers handle one equation at a time; this week you solve many at once, and you study a model that moves through time by chance, a <strong>Markov chain</strong>.</p>
+<p><strong>After this week you can:</strong></p>
+<ul>
+<li>build vectors and matrices with NumPy and multiply them with <code>@</code></li>
+<li>solve <span class="math inline">\(Mx = b\)</span> with <code>np.linalg.solve</code> (and see why you almost never invert a matrix)</li>
+<li>solve a linked-markets model and an input-output (Leontief) model</li>
+<li>read a condition number as a warning about fragile answers</li>
+<li>estimate a Markov chain from data, and find its long-run distribution and expected durations</li>
+</ul>
+<div id="e0583a6b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:02.644556Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:02.643927Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.183270Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.182089Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="vectors-matrices-and" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-matrices-and">1. Vectors, matrices, and <code>@</code></h2>
+<p>A <strong>matrix</strong> is a rectangular array of numbers, a <strong>vector</strong> a single column. The operator <code>@</code> is matrix multiplication; <code>*</code> multiplies element by element, which is <em>not</em> the same thing.</p>
+<div id="3d49af31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.185216Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.184923Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.190353Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.189342Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              [<span class="fl">1.0</span>, <span class="fl">3.0</span>]])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M @ x ="</span>, M <span class="op">@</span> x)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M * x ="</span>, M <span class="op">*</span> x)        <span class="co"># elementwise: each column scaled, not a matrix product</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape of M:"</span>, M.shape, <span class="st">"  transpose:</span><span class="ch">\n</span><span class="st">"</span>, M.T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>M @ x = [4. 7.]
+M * x = [[2. 2.]
+ [1. 6.]]
+shape of M: (2, 2)   transpose:
+ [[2. 1.]
+ [1. 3.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="solving-mx-b" class="level2">
+<h2 class="anchored" data-anchor-id="solving-mx-b">2. Solving <span class="math inline">\(Mx = b\)</span></h2>
+<p>Three related markets have prices <span class="math inline">\(p_1, p_2, p_3\)</span>. In market <span class="math inline">\(i\)</span> demand is <span class="math inline">\(a_i - \sum_j b_{ij}\,p_j\)</span> (own price matters most; the others are substitutes, so a higher price elsewhere <em>raises</em> demand here), and supply is <span class="math inline">\(c_i + d_i\,p_i\)</span>. Setting demand equal to supply in all three markets gives</p>
+<p><span class="math display">\[(B + D)\,p = a - c,\]</span></p>
+<p>a linear system. <code>np.linalg.solve</code> finds the prices in one step.</p>
+<div id="ccc1c19b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.192124Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.191937Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.198231Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.197124Z&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[ <span class="fl">4.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">0.5</span>],</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              [<span class="op">-</span><span class="fl">1.0</span>,  <span class="fl">3.5</span>, <span class="op">-</span><span class="fl">1.0</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              [<span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">1.0</span>,  <span class="fl">3.0</span>]])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.diag([<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">2.5</span>])          <span class="co"># supply slopes</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">80.0</span>, <span class="fl">60.0</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">5.0</span>, <span class="fl">0.0</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.linalg.solve(B <span class="op">+</span> D, a <span class="op">-</span> c)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"equilibrium prices:"</span>, p.<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest residual:"</span>, np.<span class="bu">abs</span>((B <span class="op">+</span> D) <span class="op">@</span> p <span class="op">-</span> (a <span class="op">-</span> c)).<span class="bu">max</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>equilibrium prices: [19.127 16.9   15.721]
+largest residual: 1.4210854715202004e-14</code></pre>
+</div>
+</div>
+<p><strong>What if the demand intercept in market 2 shifts?</strong> The inverse matrix <span class="math inline">\((B+D)^{-1}\)</span> holds every cross-effect at once: column <span class="math inline">\(j\)</span> says how all prices respond to a one-unit shift in market <span class="math inline">\(j\)</span>’s intercept. Computing it is fine for a small matrix we want to <em>read</em>; to solve a single system, <code>solve</code> is faster and more accurate.</p>
+<div id="320eb69a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.199664Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.199466Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.204155Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.202938Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.linalg.inv(B <span class="op">+</span> D)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M.<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>shock <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">10.0</span>, <span class="fl">0.0</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"price changes after +10 on market 2's intercept:"</span>, (M <span class="op">@</span> shock).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"check by re-solving:"</span>, (np.linalg.solve(B <span class="op">+</span> D, a <span class="op">+</span> shock <span class="op">-</span> c) <span class="op">-</span> p).<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.173 0.03  0.021]
+ [0.03  0.163 0.032]
+ [0.021 0.032 0.19 ]]
+price changes after +10 on market 2's intercept: [0.299 1.634 0.324]
+check by re-solving: [0.299 1.634 0.324]</code></pre>
+</div>
+</div>
+<p>A shock to market 2 raises price 2 the most (by about 1.6) and spills over to markets 1 and 3 (by 0.3 each), exactly as the off-diagonal entries of the inverse say.</p>
+</section>
+<section id="input-output-the-leontief-model" class="level2">
+<h2 class="anchored" data-anchor-id="input-output-the-leontief-model">3. Input-output: the Leontief model</h2>
+<p>Three industries each use the others’ output. Let <span class="math inline">\(A_{ij}\)</span> be the amount of industry <span class="math inline">\(i\)</span>’s output needed to make one unit of industry <span class="math inline">\(j\)</span>’s output, and <span class="math inline">\(d\)</span> the final demand. Total output <span class="math inline">\(x\)</span> must cover what industries use <em>plus</em> final demand:</p>
+<p><span class="math display">\[x = Ax + d \quad\Longrightarrow\quad (I - A)\,x = d.\]</span></p>
+<p>The matrix <span class="math inline">\(L = (I-A)^{-1}\)</span> is the <strong>Leontief inverse</strong>: column <span class="math inline">\(j\)</span> gives the total output (direct and indirect) needed across all industries for one unit of final demand for <span class="math inline">\(j\)</span>.</p>
+<div id="6ec75d7f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.205706Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.205507Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.212090Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.210692Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A_io <span class="op">=</span> np.array([[<span class="fl">0.20</span>, <span class="fl">0.10</span>, <span class="fl">0.05</span>],</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                 [<span class="fl">0.30</span>, <span class="fl">0.25</span>, <span class="fl">0.15</span>],</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 [<span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.10</span>]])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.array([<span class="fl">50.0</span>, <span class="fl">100.0</span>, <span class="fl">150.0</span>])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linalg.solve(np.eye(<span class="dv">3</span>) <span class="op">-</span> A_io, d)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"total output:"</span>, x.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.inv(np.eye(<span class="dv">3</span>) <span class="op">-</span> A_io)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"column sums of Leontief inverse (output multipliers):"</span>, L.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>total output: [104.26 220.49 227.25]
+column sums of Leontief inverse (output multipliers): [2.215 2.049 1.576]</code></pre>
+</div>
+</div>
+<p><strong>Another way to get the same answer.</strong> Production happens in rounds: first make <span class="math inline">\(d\)</span>, then the inputs for <span class="math inline">\(d\)</span>, then the inputs for those, and so on, so <span class="math inline">\(x = d + Ad + A^2 d + \cdots\)</span>. Iterating <span class="math inline">\(x \leftarrow Ax + d\)</span> converges to the same <span class="math inline">\(x\)</span>.</p>
+<div id="cbfd871f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.213853Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.213658Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.219323Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.218140Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> np.zeros(<span class="dv">3</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">500</span>):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    xn <span class="op">=</span> A_io <span class="op">@</span> xi <span class="op">+</span> d</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">abs</span>(xn <span class="op">-</span> xi).<span class="bu">max</span>() <span class="op">&lt;</span> <span class="fl">1e-10</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    xi <span class="op">=</span> xn</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"converged after </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> rounds:"</span>, xn.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same as solve:"</span>, np.allclose(xn, x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>converged after 40 rounds: [104.26 220.49 227.25]
+same as solve: True</code></pre>
+</div>
+</div>
+</section>
+<section id="when-a-linear-system-is-fragile" class="level2">
+<h2 class="anchored" data-anchor-id="when-a-linear-system-is-fragile">4. When a linear system is fragile</h2>
+<p>Some systems are <em>almost</em> unsolvable: two equations nearly the same line. The <strong>condition number</strong> measures this; a large one means tiny changes in <span class="math inline">\(b\)</span> cause large changes in the answer.</p>
+<div id="1d2833b3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.220902Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.220709Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.225115Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.224269Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">1.0</span>, <span class="fl">1.0001</span>]])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"condition number:"</span>, <span class="bu">round</span>(np.linalg.cond(M2)))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"solution for b = (2, 2.0001):"</span>, np.linalg.solve(M2, [<span class="fl">2.0</span>, <span class="fl">2.0001</span>]))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"solution for b = (2, 2.0002):"</span>, np.linalg.solve(M2, [<span class="fl">2.0</span>, <span class="fl">2.0002</span>]))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"condition number of the market system:"</span>, <span class="bu">round</span>(np.linalg.cond(B <span class="op">+</span> D), <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>condition number: 40002
+solution for b = (2, 2.0001): [1. 1.]
+solution for b = (2, 2.0002): [0. 2.]
+condition number of the market system: 1.73</code></pre>
+</div>
+</div>
+<p>Changing one entry of <span class="math inline">\(b\)</span> by 0.0001 moved the solution from <span class="math inline">\((1, 1)\)</span> to <span class="math inline">\((0, 2)\)</span>: with a condition number near 40,000, you lose about four or five digits of accuracy. The market system, at about 1.7, is perfectly safe. If you estimate a model and the condition number of your matrix is huge (collinear regressors, for instance), distrust the coefficients.</p>
+</section>
+<section id="markov-chains" class="level2">
+<h2 class="anchored" data-anchor-id="markov-chains">5. Markov chains</h2>
+<p>A <strong>Markov chain</strong> describes something that moves between a few <strong>states</strong>, where the chance of the next state depends only on the current state. Collect the probabilities in a matrix <span class="math inline">\(P\)</span> with <span class="math inline">\(P_{ij} = \Pr(\text{next} = j \mid \text{now} = i)\)</span>; each row sums to 1. If <span class="math inline">\(\pi_t\)</span> is the row vector of probabilities over states at time <span class="math inline">\(t\)</span>, then <span class="math inline">\(\pi_{t+1} = \pi_t P\)</span>, so <span class="math inline">\(\pi_{t+n} = \pi_t P^n\)</span>.</p>
+<p>Our states: <strong>expansion (0)</strong> or <strong>recession (1)</strong>, using the NBER’s dated recessions for the quarterly US data from Week 5.</p>
+<div id="ee90406d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.226921Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.226642Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.238508Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.237749Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../data"</span> <span class="cf">if</span> Path(<span class="st">"../data"</span>).exists() <span class="cf">else</span> <span class="st">"https://raw.githubusercontent.com/WSU-EconS431/site/main/data"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/us_macro_1959_2009.csv"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>us[<span class="st">"q"</span>] <span class="op">=</span> pd.PeriodIndex.from_fields(year<span class="op">=</span>us[<span class="st">"year"</span>], quarter<span class="op">=</span>us[<span class="st">"quarter"</span>], freq<span class="op">=</span><span class="st">"Q"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> us.set_index(<span class="st">"q"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>rec <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/nber_recessions.csv"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>in_rec <span class="op">=</span> pd.Series(<span class="dv">0</span>, index<span class="op">=</span>us.index)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> rec.itertuples():</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    in_rec.loc[pd.Period(r.peak_quarter):pd.Period(r.trough_quarter)] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> in_rec.to_numpy()</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(s)<span class="sc">}</span><span class="ss"> quarters, </span><span class="sc">{</span>s<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> of them in recession (</span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>203 quarters, 38 of them in recession (18.7%)</code></pre>
+</div>
+</div>
+<p><strong>Estimating <span class="math inline">\(P\)</span>.</strong> Count the transitions from each state to each state, then divide each row by its total.</p>
+<div id="95dec688" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.240076Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.239887Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.245559Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.244363Z&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> np.zeros((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> now, nxt <span class="kw">in</span> <span class="bu">zip</span>(s[:<span class="op">-</span><span class="dv">1</span>], s[<span class="dv">1</span>:]):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    counts[now, nxt] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> counts <span class="op">/</span> counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"counts:</span><span class="ch">\n</span><span class="st">"</span>, counts)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"P =</span><span class="ch">\n</span><span class="st">"</span>, P.<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>counts:
+ [[156.   8.]
+ [  8.  30.]]
+P =
+ [[0.951 0.049]
+ [0.211 0.789]]</code></pre>
+</div>
+</div>
+<p>Expansions are persistent (95% stay expansions), and recessions are too, though much less (79% stay recessions). Two numbers follow directly. The chance of leaving a state each quarter is <span class="math inline">\(1 - P_{ii}\)</span>, so the <strong>expected duration</strong> is <span class="math inline">\(1/(1-P_{ii})\)</span>:</p>
+<div id="09436e8f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.247114Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.246924Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.251222Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.250241Z&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"expected expansion length: </span><span class="sc">{</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> P[<span class="dv">0</span>, <span class="dv">0</span>])<span class="sc">:.1f}</span><span class="ss"> quarters"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"expected recession length: </span><span class="sc">{</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> P[<span class="dv">1</span>, <span class="dv">1</span>])<span class="sc">:.1f}</span><span class="ss"> quarters"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>expected expansion length: 20.5 quarters
+expected recession length: 4.8 quarters</code></pre>
+</div>
+</div>
+<p><strong>Where does the chain end up?</strong> Start anywhere and apply <span class="math inline">\(P\)</span> many times: the distribution settles to a <strong>stationary distribution</strong> <span class="math inline">\(\pi^*\)</span> with <span class="math inline">\(\pi^* = \pi^* P\)</span>. That is, <span class="math inline">\(\pi^*\)</span> is a left eigenvector of <span class="math inline">\(P\)</span> with eigenvalue 1. Two ways to find it:</p>
+<div id="81971ed5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.252771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.252577Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.257219Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.256472Z&quot;}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) eigenvector of P transposed</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>w, v <span class="op">=</span> np.linalg.eig(P.T)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>pi_star <span class="op">=</span> np.real(v[:, np.argmax(np.real(w))])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>pi_star <span class="op">=</span> pi_star <span class="op">/</span> pi_star.<span class="bu">sum</span>()</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"eigenvector method:"</span>, pi_star.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) just iterate</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">1.0</span>])          <span class="co"># start in recession</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">200</span>):</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    dist <span class="op">=</span> dist <span class="op">@</span> P</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"after 200 steps from recession:"</span>, dist.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"share of quarters actually in recession:"</span>, s.mean().<span class="bu">round</span>(<span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigenvector method: [0.8119 0.1881]
+after 200 steps from recession: [0.8119 0.1881]
+share of quarters actually in recession: 0.1872</code></pre>
+</div>
+</div>
+<p>The chain’s long-run recession share (about 19%) matches the sample share, as it should: the transition counts come from the same data. How <em>fast</em> it forgets its starting point is governed by the second eigenvalue of <span class="math inline">\(P\)</span> (here about 0.74): each quarter, the gap to <span class="math inline">\(\pi^*\)</span> shrinks by about that factor.</p>
+<div id="87285b61" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.259390Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.259138Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.536603Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.536076Z&quot;}}" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gaps <span class="op">=</span> []</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>):</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    gaps.append(<span class="bu">abs</span>(dist[<span class="dv">1</span>] <span class="op">-</span> pi_star[<span class="dv">1</span>]))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    dist <span class="op">=</span> dist <span class="op">@</span> P</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>ax.semilogy(gaps, <span class="st">"o-"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"quarters after starting in recession"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"gap between P(recession) and long-run share"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"A Markov chain forgets where it started"</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"second eigenvalue:"</span>, np.sort(np.real(w))[<span class="dv">0</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week07_files/figure-html/cell-13-output-1.png" width="525" height="346" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>second eigenvalue: 0.741</code></pre>
+</div>
+</div>
+</section>
+<section id="a-second-chain-high-or-low-unemployment" class="level2">
+<h2 class="anchored" data-anchor-id="a-second-chain-high-or-low-unemployment">6. A second chain: high or low unemployment</h2>
+<p>Define the state as <strong>high</strong> unemployment (6% or more) or <strong>low</strong>, using the same quarterly data. High unemployment is very persistent here, which changes the long-run answer.</p>
+<div id="52354723" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:03.537890Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:03.537723Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:03.543967Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:03.543109Z&quot;}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> (us[<span class="st">"unemp"</span>].to_numpy() <span class="op">&gt;=</span> <span class="fl">6.0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.zeros((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> now, nxt <span class="kw">in</span> <span class="bu">zip</span>(st[:<span class="op">-</span><span class="dv">1</span>], st[<span class="dv">1</span>:]):</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    C[now, nxt] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>P2 <span class="op">=</span> C <span class="op">/</span> C.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"P2 =</span><span class="ch">\n</span><span class="st">"</span>, P2.<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># stationary distribution by solving (P' - I) pi = 0 with the extra equation sum(pi) = 1</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>M3 <span class="op">=</span> np.vstack([P2.T <span class="op">-</span> np.eye(<span class="dv">2</span>), np.ones(<span class="dv">2</span>)])</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>pi2 <span class="op">=</span> np.linalg.lstsq(M3, np.array([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>]), rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"stationary distribution:"</span>, pi2.<span class="bu">round</span>(<span class="dv">3</span>), <span class="st">"  share of sample quarters in high-unemployment:"</span>, st.mean().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"expected high-unemployment spell:"</span>, <span class="bu">round</span>(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> P2[<span class="dv">1</span>, <span class="dv">1</span>]), <span class="dv">1</span>), <span class="st">"quarters"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>P2 =
+ [[0.944 0.056]
+ [0.079 0.921]]
+stationary distribution: [0.587 0.413]   share of sample quarters in high-unemployment: 0.379
+expected high-unemployment spell: 12.7 quarters</code></pre>
+</div>
+</div>
+<p>The stationary share (about 41%) differs from the sample share (about 38%): the chain is estimated from transitions only, and the sample is a short, specific stretch of history. Always ask whether the “long run” of a model describes the data’s own history or something the data did not live long enough to show.</p>
+</section>
+<section id="in-class-lab" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-lab">7. In-class lab</h2>
+<p>The exercises for this week are in <strong>Lab 7</strong>, which doubles as a <strong>practice run for the midterm</strong>: it uses the same format (released and collected by script, paper part first, then the codespace). It appears in the <code>lab07</code> folder of your repository at the start of the second class session (pull to see it).</p>
+</section>
+<section id="this-week" class="level2">
+<h2 class="anchored" data-anchor-id="this-week">This week</h2>
+<ul>
+<li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://intro.quantecon.org/linear_equations.html">FC 17. Linear Equations and Matrix Algebra</a> and <a href="https://intro.quantecon.org/markov_chains_I.html">FC 40. Markov Chains: Basic Concepts</a>.</li>
+<li><strong>PS07</strong> (linked markets, an input-output model, a Markov chain) is in the <code>ps07</code> folder of your repo.</li>
+<li>Next week: randomness and simulation, and the <strong>midterm</strong>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/wsu-econs431\.github\.io\/site\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>ECONS 431 · Washington State University</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Grades are in Canvas.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

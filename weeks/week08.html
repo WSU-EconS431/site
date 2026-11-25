@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 8: Randomness and simulation – ECONS 431 Computational Economics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f0d9818cb2e32c9f83978a56599e686a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ECONS 431 Computational Economics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-setup" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Setup</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-setup">    
+        <li>
+    <a class="dropdown-item" href="../setup.html">
+ <span class="dropdown-text">Setup guide (Codespaces)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-local.html">
+ <span class="dropdown-text">Work on your own computer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../setup-faq.html">
+ <span class="dropdown-text">Setup FAQ</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Policies</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#random-numbers-reproducibly" id="toc-random-numbers-reproducibly" class="nav-link active" data-scroll-target="#random-numbers-reproducibly">1. Random numbers, reproducibly</a></li>
+  <li><a href="#the-law-of-large-numbers" id="toc-the-law-of-large-numbers" class="nav-link" data-scroll-target="#the-law-of-large-numbers">2. The law of large numbers</a></li>
+  <li><a href="#how-wrong-is-a-simulation-the-standard-error" id="toc-how-wrong-is-a-simulation-the-standard-error" class="nav-link" data-scroll-target="#how-wrong-is-a-simulation-the-standard-error">3. How wrong is a simulation? The standard error</a></li>
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">4. The central limit theorem</a></li>
+  <li><a href="#the-bootstrap" id="toc-the-bootstrap" class="nav-link" data-scroll-target="#the-bootstrap">5. The bootstrap</a></li>
+  <li><a href="#simulating-a-markov-chain" id="toc-simulating-a-markov-chain" class="nav-link" data-scroll-target="#simulating-a-markov-chain">6. Simulating a Markov chain</a></li>
+  <li><a href="#random-shocks-through-a-model" id="toc-random-shocks-through-a-model" class="nav-link" data-scroll-target="#random-shocks-through-a-model">7. Random shocks through a model</a></li>
+  <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">8. In-class work</a></li>
+  <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This week</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 8: Randomness and simulation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/WSU-EconS431/site/blob/main/weeks/week08.ipynb">Open in Colab</a> · <a href="https://github.com/WSU-EconS431/site/blob/main/weeks/week08.ipynb">View on GitHub</a></p>
+<p>Some questions have no formula but can be answered by <strong>simulation</strong>: build the process in code, run it many times, and look at what happens. Simulation answers “how uncertain is this estimate?”, “what does a shock to a model do to the <em>distribution</em> of outcomes?”, and “does my formula agree with a brute-force check?”</p>
+<p><strong>After this week you can:</strong></p>
+<ul>
+<li>draw random numbers reproducibly with <code>np.random.default_rng(seed)</code></li>
+<li>see the law of large numbers and the central limit theorem happen</li>
+<li>estimate an expectation by Monte Carlo and report its standard error</li>
+<li>bootstrap a confidence interval for a statistic with no formula</li>
+<li>simulate a Markov chain and compare the long-run share with the stationary distribution</li>
+<li>push random shocks through a model you solve numerically (Week 6)</li>
+</ul>
+<div id="7f1f97f2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:06.007737Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:06.007176Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:06.851194Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:06.850155Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> brentq</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="random-numbers-reproducibly" class="level2">
+<h2 class="anchored" data-anchor-id="random-numbers-reproducibly">1. Random numbers, reproducibly</h2>
+<p>A computer’s “random” numbers come from a deterministic recipe started at a <strong>seed</strong>. The same seed gives the same numbers every run, which is what you want in a notebook: your results should not change when someone re-runs it. Create one generator, <code>rng</code>, and draw everything from it.</p>
+<div id="cc3c972d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:06.852782Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:06.852497Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:06.859312Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:06.858057Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2027</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"uniform on [0,1):"</span>, rng.random(<span class="dv">3</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"standard normal:  "</span>, rng.normal(size<span class="op">=</span><span class="dv">3</span>).<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dice rolls:       "</span>, rng.integers(<span class="dv">1</span>, <span class="dv">7</span>, size<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pick from a list: "</span>, rng.choice([<span class="st">"low"</span>, <span class="st">"mid"</span>, <span class="st">"high"</span>], size<span class="op">=</span><span class="dv">5</span>, p<span class="op">=</span>[<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>]))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>rng_a, rng_b <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>), np.random.default_rng(<span class="dv">5</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"same seed, same draws:"</span>, np.allclose(rng_a.random(<span class="dv">4</span>), rng_b.random(<span class="dv">4</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>uniform on [0,1): [0.008 0.386 0.083]
+standard normal:   [-2.152  1.212 -0.482]
+dice rolls:        [4 2 1 4 4 4 1 1 5 1]
+pick from a list:  ['low' 'high' 'low' 'high' 'mid']
+same seed, same draws: True</code></pre>
+</div>
+</div>
+</section>
+<section id="the-law-of-large-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="the-law-of-large-numbers">2. The law of large numbers</h2>
+<p>The average of many independent draws settles down to the true mean. Here, the average of fair-die rolls (true mean 3.5) as the number of rolls grows:</p>
+<div id="7c0bd656" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:06.862251Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:06.862025Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:07.188343Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:07.186831Z&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rolls <span class="op">=</span> rng.integers(<span class="dv">1</span>, <span class="dv">7</span>, size<span class="op">=</span><span class="dv">10_000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>running <span class="op">=</span> np.cumsum(rolls) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(rolls) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax.plot(running)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">3.5</span>, color<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">"log"</span>)<span class="op">;</span> ax.set_xlabel(<span class="st">"number of rolls"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"average so far"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"The running average of dice rolls converges to 3.5"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"average after 10, 100, 10,000 rolls:"</span>, running[<span class="dv">9</span>].<span class="bu">round</span>(<span class="dv">2</span>), running[<span class="dv">99</span>].<span class="bu">round</span>(<span class="dv">2</span>), running[<span class="op">-</span><span class="dv">1</span>].<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week08_files/figure-html/cell-4-output-1.png" width="553" height="342" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>average after 10, 100, 10,000 rolls: 3.5 3.51 3.501</code></pre>
+</div>
+</div>
+</section>
+<section id="how-wrong-is-a-simulation-the-standard-error" class="level2">
+<h2 class="anchored" data-anchor-id="how-wrong-is-a-simulation-the-standard-error">3. How wrong is a simulation? The standard error</h2>
+<p>A Monte Carlo estimate is itself random. If <span class="math inline">\(\hat\mu\)</span> is the average of <span class="math inline">\(n\)</span> independent draws with standard deviation <span class="math inline">\(\sigma\)</span>, its <strong>standard error</strong> is <span class="math inline">\(\sigma/\sqrt{n}\)</span>: to cut the error in half you need <em>four times</em> the draws.</p>
+<p>Example: <span class="math inline">\(\mathbb{E}[\max(X, Y)]\)</span> for independent standard normals <span class="math inline">\(X, Y\)</span>. The exact answer is <span class="math inline">\(1/\sqrt{\pi} \approx 0.5642\)</span>, so we can check the simulation.</p>
+<div id="6a0a2361" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:07.190397Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:07.190164Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:07.234510Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:07.233142Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">16</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">100</span>, <span class="dv">10_000</span>, <span class="dv">1_000_000</span>]:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> np.maximum(rng.normal(size<span class="op">=</span>n), rng.normal(size<span class="op">=</span>n))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    est, se <span class="op">=</span> m.mean(), m.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(n)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">:&gt;9,}</span><span class="ss">: estimate </span><span class="sc">{</span>est<span class="sc">:.4f}</span><span class="ss">,  standard error </span><span class="sc">{</span>se<span class="sc">:.4f}</span><span class="ss">,  error vs exact </span><span class="sc">{</span>est <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>np<span class="sc">.</span>sqrt(np.pi)<span class="sc">:+.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n =       100: estimate 0.6006,  standard error 0.0832,  error vs exact +0.0365
+n =    10,000: estimate 0.5602,  standard error 0.0082,  error vs exact -0.0040
+n = 1,000,000: estimate 0.5637,  standard error 0.0008,  error vs exact -0.0005</code></pre>
+</div>
+</div>
+<p>The errors are about one standard error in size, and the standard error shrinks by a factor of 10 each time <span class="math inline">\(n\)</span> grows by a factor of 100. Always report the standard error with a Monte Carlo number: without it, nobody knows how many digits to trust.</p>
+</section>
+<section id="the-central-limit-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="the-central-limit-theorem">4. The central limit theorem</h2>
+<p>Averages of <em>any</em> independent draws with finite variance look normal when <span class="math inline">\(n\)</span> is large, even if the draws are very skewed. Here, draws from a heavily skewed distribution (exponential), averaged over 50 draws each:</p>
+<div id="01d09195" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:07.236256Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:07.236037Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:07.531184Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:07.530308Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>single <span class="op">=</span> rng.exponential(size<span class="op">=</span><span class="dv">20_000</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> rng.exponential(size<span class="op">=</span>(<span class="dv">20_000</span>, <span class="dv">50</span>)).mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">3.3</span>), sharey<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(single, bins<span class="op">=</span><span class="dv">60</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_title(<span class="st">"single draws (skewed)"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(means, bins<span class="op">=</span><span class="dv">60</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_title(<span class="st">"average of 50 draws (nearly normal)"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sd of a single draw:"</span>, single.std().<span class="bu">round</span>(<span class="dv">3</span>), <span class="st">"  sd of the average of 50:"</span>, means.std().<span class="bu">round</span>(<span class="dv">3</span>), <span class="st">"  (1/sqrt(50) ="</span>, <span class="bu">round</span>(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">50</span>), <span class="dv">3</span>), <span class="st">")"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week08_files/figure-html/cell-6-output-1.png" width="856" height="307" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sd of a single draw: 0.989   sd of the average of 50: 0.142   (1/sqrt(50) = 0.141 )</code></pre>
+</div>
+</div>
+</section>
+<section id="the-bootstrap" class="level2">
+<h2 class="anchored" data-anchor-id="the-bootstrap">5. The bootstrap</h2>
+<p>How uncertain is the average US real GDP growth rate over 1959–2009? There is a formula for the mean, but not for, say, the median or a quantile. The <strong>bootstrap</strong> needs no formula: resample your own data <em>with replacement</em> many times, recompute the statistic each time, and use the spread of those results as the uncertainty.</p>
+<div id="823eb846" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:07.532766Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:07.532578Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:07.755963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:07.754820Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> <span class="st">"../data"</span> <span class="cf">if</span> Path(<span class="st">"../data"</span>).exists() <span class="cf">else</span> <span class="st">"https://raw.githubusercontent.com/WSU-EconS431/site/main/data"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>us <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>DATA<span class="sc">}</span><span class="ss">/us_macro_1959_2009.csv"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>growth <span class="op">=</span> <span class="dv">400</span> <span class="op">*</span> np.log(us[<span class="st">"realgdp"</span>]).diff().dropna().to_numpy()      <span class="co"># annualized quarterly growth, percent</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(growth)<span class="sc">}</span><span class="ss"> quarters; mean </span><span class="sc">{</span>growth<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">%, median </span><span class="sc">{</span>np<span class="sc">.</span>median(growth)<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">8</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>boot_mean <span class="op">=</span> np.empty(B)<span class="op">;</span> boot_med <span class="op">=</span> np.empty(B)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(B):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    resample <span class="op">=</span> rng.choice(growth, size<span class="op">=</span><span class="bu">len</span>(growth), replace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    boot_mean[b] <span class="op">=</span> resample.mean()<span class="op">;</span> boot_med[b] <span class="op">=</span> np.median(resample)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>se_formula <span class="op">=</span> growth.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(growth))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean:   bootstrap 95% interval </span><span class="sc">{</span>np<span class="sc">.</span>percentile(boot_mean, [<span class="fl">2.5</span>, <span class="fl">97.5</span>])<span class="sc">.</span><span class="bu">round</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">,  formula </span><span class="sc">{</span>(growth.mean() <span class="op">+</span> np.array([<span class="op">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>]) <span class="op">*</span> se_formula)<span class="sc">.</span><span class="bu">round</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"median: bootstrap 95% interval </span><span class="sc">{</span>np<span class="sc">.</span>percentile(boot_med, [<span class="fl">2.5</span>, <span class="fl">97.5</span>])<span class="sc">.</span><span class="bu">round</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">   (no simple formula)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>202 quarters; mean 3.10%, median 3.06%
+mean:   bootstrap 95% interval [2.62 3.59],  formula [2.62 3.59]
+median: bootstrap 95% interval [2.79 3.46]   (no simple formula)</code></pre>
+</div>
+</div>
+<p>For the mean, the bootstrap and the formula agree, which is the point of checking. For the median there is no easy formula, and the bootstrap gives an interval anyway. One caution: this bootstrap treats quarters as independent draws, which is a simplification for time series (growth in one quarter is not independent of the next), so treat the interval as a rough guide.</p>
+</section>
+<section id="simulating-a-markov-chain" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-a-markov-chain">6. Simulating a Markov chain</h2>
+<p>Last week’s recession chain, with <span class="math inline">\(P\)</span> estimated from the data. To <strong>simulate</strong> it, start in a state and at each step draw the next state using the current row of <span class="math inline">\(P\)</span>. Over a long run, the share of time in recession should be close to the stationary distribution we computed last week (about 19%), and the average recession spell should be close to the expected duration (about 4.75 quarters).</p>
+<div id="e927ed4f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:07.758189Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:07.757925Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:08.032964Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:08.032165Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.array([[<span class="fl">0.9512</span>, <span class="fl">0.0488</span>],</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>              [<span class="fl">0.2105</span>, <span class="fl">0.7895</span>]])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">11</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">20_000</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> np.zeros(T, dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    state[t] <span class="op">=</span> rng.choice(<span class="dv">2</span>, p<span class="op">=</span>P[state[t <span class="op">-</span> <span class="dv">1</span>]])</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># lengths of the runs of consecutive recession quarters</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>runs, length <span class="op">=</span> [], <span class="dv">0</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s_ <span class="kw">in</span> state:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s_ <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        length <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> length <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        runs.append(length)<span class="op">;</span> length <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"share of time in recession: </span><span class="sc">{</span>state<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">   (stationary distribution: </span><span class="sc">{</span><span class="fl">0.0488</span> <span class="op">/</span> (<span class="fl">0.0488</span> <span class="op">+</span> <span class="fl">0.2105</span>)<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"average recession spell: </span><span class="sc">{</span>np<span class="sc">.</span>mean(runs)<span class="sc">:.2f}</span><span class="ss"> quarters over </span><span class="sc">{</span><span class="bu">len</span>(runs)<span class="sc">}</span><span class="ss"> recessions   (formula: </span><span class="sc">{</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> P[<span class="dv">1</span>, <span class="dv">1</span>])<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>share of time in recession: 0.184   (stationary distribution: 0.188)
+average recession spell: 4.57 quarters over 804 recessions   (formula: 4.75)</code></pre>
+</div>
+</div>
+</section>
+<section id="random-shocks-through-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="random-shocks-through-a-model">7. Random shocks through a model</h2>
+<p>Week 6’s market (without a tax) has demand <span class="math inline">\(Q_d = A P^{-\varepsilon}\)</span> and supply <span class="math inline">\(Q_s = B P^{\gamma}\)</span>. Suppose demand is uncertain: <span class="math inline">\(A = 300\,e^{0.2 z}\)</span> with <span class="math inline">\(z\)</span> standard normal. What is the distribution of the equilibrium price? We solve the market for each of many draws of <span class="math inline">\(A\)</span>, with <code>brentq</code> (in this simple case there is a formula, <span class="math inline">\(P = (A/B)^{1/(\varepsilon+\gamma)}\)</span>, which lets us check the simulation).</p>
+<div id="6ead38de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-11-21T18:41:08.034365Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-11-21T18:41:08.034178Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-11-21T18:41:08.262564Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-11-21T18:41:08.261444Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>eps, Bs, gam <span class="op">=</span> <span class="fl">1.8</span>, <span class="dv">8</span>, <span class="fl">0.6</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">21</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4000</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>A_draws <span class="op">=</span> <span class="dv">300</span> <span class="op">*</span> np.exp(<span class="fl">0.2</span> <span class="op">*</span> rng.normal(size<span class="op">=</span>n))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> np.array([brentq(<span class="kw">lambda</span> p, A<span class="op">=</span>A: A <span class="op">*</span> p <span class="op">**</span> (<span class="op">-</span>eps) <span class="op">-</span> Bs <span class="op">*</span> p <span class="op">**</span> gam, <span class="fl">0.01</span>, <span class="dv">500</span>) <span class="cf">for</span> A <span class="kw">in</span> A_draws])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> (A_draws <span class="op">/</span> Bs) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> (eps <span class="op">+</span> gam))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"largest gap between solver and formula:"</span>, np.<span class="bu">abs</span>(prices <span class="op">-</span> formula).<span class="bu">max</span>().<span class="bu">round</span>(<span class="dv">10</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean price </span><span class="sc">{</span>prices<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> (price at the average shock: </span><span class="sc">{</span>(<span class="dv">300</span> <span class="op">/</span> Bs) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> (eps <span class="op">+</span> gam))<span class="sc">:.3f}</span><span class="ss">),  5th to 95th percentile: </span><span class="sc">{</span>np<span class="sc">.</span>percentile(prices, [<span class="dv">5</span>, <span class="dv">95</span>])<span class="sc">.</span><span class="bu">round</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"share of draws with price above 5:"</span>, (prices <span class="op">&gt;</span> <span class="dv">5</span>).mean().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>ax.hist(prices, bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>ax.axvline(prices.mean(), color<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"equilibrium price"</span>)<span class="op">;</span> ax.set_title(<span class="st">"A 20</span><span class="sc">% d</span><span class="st">emand shock gives a spread of prices"</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>largest gap between solver and formula: 0.0
+mean price 4.547 (price at the average shock: 4.527),  5th to 95th percentile: [3.97 5.19]
+share of draws with price above 5: 0.114</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week08_files/figure-html/cell-9-output-2.png" width="538" height="340" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A symmetric shock to log demand gives a <em>skewed</em> distribution of prices (the mean is slightly above the price at the average shock), and the question “how likely is a price above 5?” has an answer that no point forecast can give. That is what simulation is for.</p>
+</section>
+<section id="in-class-work" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-work">8. In-class work</h2>
+<p><strong>There is no Lab 8: the midterm is this week.</strong> Week 7’s lab was the practice run. After the midterm, the second class session is a regular lecture on this notebook.</p>
+</section>
+<section id="this-week" class="level2">
+<h2 class="anchored" data-anchor-id="this-week">This week</h2>
+<ul>
+<li>Read <em>Python Programming for Economics and Finance</em>: <a href="https://intro.quantecon.org/lln_clt_intro.html">FC 10. LLN and CLT</a>, and review Weeks 1–7 for the midterm.</li>
+<li><strong>PS08</strong> (Monte Carlo, bootstrap, a simulated chain, a market with shocks) is in the <code>ps08</code> folder of your repo.</li>
+<li>Next: Module 4 begins.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/wsu-econs431\.github\.io\/site\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>ECONS 431 · Washington State University</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Grades are in Canvas.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
