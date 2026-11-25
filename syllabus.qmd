@@ -80,7 +80,7 @@ By the end of the course, you will be able to:
 
 ## How the course works
 
-Each week has a **lecture notebook** on the course website, which we work through in class with live coding, and, in most weeks, an **in-class lab** in the second session where you practice in pairs. Most weeks also have a **problem set** that appears in your private GitHub repository. You work on it in your codespace, push it to GitHub, and submit the commit link in Canvas. The [Setup guide](https://wsu-econs431.github.io/site/setup.html) walks you through all of this in Week 1, and the [Setup FAQ](https://wsu-econs431.github.io/site/setup-faq.html) covers common problems.
+Each week has a **lecture notebook** on the course website, which we work through in class with live coding, and, in most weeks, an **in-class lab** in the second session where you practice in pairs. Most weeks also have a **problem set** that appears in your private GitHub repository. Labs and problem sets are numbered by week: Week 4's are Lab 4 and Problem Set 4, in the folders `lab04` and `probset04`. Each problem set is released on Monday of its week and due the following Monday at 11:59:59 pm; Problem Set 1 is in your repository from the start and is due Monday of Week 2. Exact due dates are in Canvas. You work on it in your codespace, push it to GitHub, and submit the commit link in Canvas. The [Setup guide](https://wsu-econs431.github.io/site/setup.html) walks you through all of this in Week 1, and the [Setup FAQ](https://wsu-econs431.github.io/site/setup-faq.html) covers common problems.
 
 **Expected effort.** ECONS 431 is a 3-credit course. Plan on about 9 hours a week: about 3 in class and about 6 outside class on readings, problem sets, and the capstone project. Programming takes longer when you're new to it; that's normal, and it speeds up.
 
@@ -88,15 +88,15 @@ Each week has a **lecture notebook** on the course website, which we work throug
 
 | Component | Weight | Details |
 |---|---|---|
-| Problem sets (PS01–PS14) | 35% | Weekly; each ends with an AI usage note. Your lowest score, other than PS01, is dropped. |
+| Problem sets (Problem Sets 1–14, in folders probset01–probset14) | 35% | Weekly; each ends with an AI usage note. Your lowest score, other than Problem Set 1, is dropped. |
 | Midterm exam | 15% | Week 8, one class session: a short paper part and a computational part in your codespace. Covers Modules 1–3. No AI. |
-| In-class labs | 10% | Twelve labs, done in pairs during class; your ten best count, 1% each. |
+| In-class labs | 10% | Thirteen labs, done during class (in pairs from Week 2); your ten best count, 1% each. |
 | Agent-based model lab | 10% | Week 15, individually or in pairs. |
 | Capstone project | 30% | Teams of 2–3: proposal (5%), progress check-in (5%), final notebook, repository, and written summary (12%), and presentation (8%). |
 
 **Problem sets** combine code, which must run from top to bottom, with written answers in Markdown. Parts are checked by running your notebook; written answers, figures, and explanations are graded by hand. Automated feedback during the semester is for practice only and doesn't set your grade.
 
-**In-class labs.** The second class session of Weeks 2–7 and 9–14 is a lab: twelve in all, and your best ten count, 1% each. You work in pairs on a short notebook that appears in your repository when the lab starts (one person types and one navigates, and you switch halfway). Each of you commits your own copy, names your partner at the top of the notebook, and pushes before class ends. There is no Canvas submission. Each lab is scored 2 (a real attempt, pushed by the end of class), 1 (partly done), or 0 (nothing pushed, or the notebook untouched). Labs can't be made up; the two dropped labs cover absences. There is no lab in Week 1 (we set up codespaces together), Week 8 (the midterm), Week 15 (the agent-based model lab, graded separately), or Week 16 (presentations). Week 7's lab is a practice midterm.
+**In-class labs.** The second class session of Weeks 1–7 and 9–14 is a lab: thirteen in all, and your best ten count, 1% each. You work in pairs on a short notebook that appears in your repository when the lab starts (one person types and one navigates, and you switch halfway). Each of you commits your own copy, names your partner at the top of the notebook, and pushes before class ends. There is no Canvas submission. Each lab is scored 2 (a real attempt, pushed by the end of class), 1 (partly done), or 0 (nothing pushed, or the notebook untouched). Labs can't be made up; the three dropped labs cover absences. Lab 1 is setting up your codespace and making your first commit, done individually with help from classmates. There is no lab in Week 8 (the midterm), Week 15 (the agent-based model lab, graded separately), or Week 16 (presentations). Week 7's lab is a practice midterm.
 
 **Midterm exam.** The midterm is in Week 8, in one class session, and covers Modules 1–3. Part A (about 20 minutes, about 30% of the exam) is on paper with no devices: predict what code prints, find a bug, choose a method, or interpret a figure. Part B (about 50 minutes, about 70%) is one notebook in your codespace about a single economic scenario: load and summarize data, make a labeled figure, solve for an equilibrium numerically, run one optimization or simulation, and write a short interpretation. In Part B you may use the course website, your own repository, and your own notes. AI tools, messaging, and getting help from other people are not allowed. The notebook is released to your repository when Part B starts and collected when time is up, so commit and push before the end. The Week 7 lab is a full practice run in the same setup. If you have exam accommodations through the [Access Center](https://access.wsu.edu/), send me your letter early so we can arrange the time you need.
 
@@ -119,7 +119,7 @@ Final percentages are rounded to the nearest whole number (89.5 becomes 90) befo
 
 ## Attendance, late work, and make-ups
 
-**Attendance.** Attendance isn't graded directly, but in-class labs are part of your grade and are done during class. The two dropped lab scores cover illness and other short absences. For a longer absence, contact me as soon as you can.
+**Attendance.** Attendance isn't graded directly, but in-class labs are part of your grade and are done during class. The three dropped lab scores cover illness and other short absences. For a longer absence, contact me as soon as you can.
 
 **Late problem sets.** A problem set submitted up to 48 hours late loses 10% of its points for each 24 hours, or part of 24 hours, that it's late. After 48 hours it isn't accepted. The Canvas submission time is the official time. With a documented university-approved absence, emergency, or accommodation, contact me for an extension without penalty.
 
@@ -127,7 +127,7 @@ Final percentages are rounded to the nearest whole number (89.5 becomes 90) befo
 
 **Missed midterm.** If you miss the midterm because of illness, an emergency, or a university-approved absence, email me before the exam if possible, and no later than 24 hours after it, to arrange a make-up, which is an alternate version of the exam. Make-ups without a documented reason aren't given. Arrangements for religious observance follow the [University Syllabus](https://syllabus.wsu.edu/university-syllabus/).
 
-**Missed labs** can't be made up; the two dropped lab scores cover them.
+**Missed labs** can't be made up; the three dropped lab scores cover them.
 
 **Incomplete grades.** Under [Academic Regulation 90](https://catalog.wsu.edu/General/AcademicRegulations/ListAll), an Incomplete is possible only when circumstances beyond your control prevent you from finishing the course's work on time. Talk to me as soon as such a situation arises.
 
@@ -187,22 +187,22 @@ The [University Syllabus](https://syllabus.wsu.edu/university-syllabus/) covers 
 
 Topics may shift slightly; any change will be announced in Canvas. PP is Python Programming for Economics and Finance and FC is A First Course in Quantitative Economics with Python. Lecture notebooks for each week are posted on the course website's [Schedule](https://wsu-econs431.github.io/site/schedule.html). **Due dates are in Canvas.** **[TBD: if the term includes a break, note which week it follows.]**
 
-| Week | Module | Topic | Readings | Lab | Due |
+| Week | Module | Topic | Readings | Lab (Thursday) | Problem set (released Monday, due the next Monday) |
 |---|---|---|---|---|---|
-| 1 | 1. Python, Git, and AI-assisted coding foundations | Course introduction; why compute in economics; writing in Markdown and LaTeX; setup; AI policy | [PP 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | None (setup) | PS01 (setup and first commit) |
-| 2 | 1 | Python fundamentals I: variables, control flow, functions, debugging | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 4. Functions](https://python-programming.quantecon.org/functions.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | Lab 2 | PS02 |
-| 3 | 1 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | Lab 3 | PS03 |
-| 4 | 2. Data handling and visualization | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | Lab 4 | PS04 |
-| 5 | 2 | Exploratory data analysis and visualization | [FC 2. Long-Run Growth](https://intro.quantecon.org/long_run_growth.html) | Lab 5 | PS05; capstone teams formed |
-| 6 | 3. Numerical methods | Root-finding and optimization | [PP 12. SciPy](https://python-programming.quantecon.org/scipy.html) | Lab 6 | PS06 |
-| 7 | 3 | Linear algebra and Markov chains | [FC 17. Linear Equations and Matrix Algebra](https://intro.quantecon.org/linear_equations.html); [FC 40. Markov Chains: Basic Concepts](https://intro.quantecon.org/markov_chains_I.html) | Lab 7: practice midterm | PS07; capstone proposal |
-| 8 | 3 | Randomness and simulation | [FC 10. LLN and CLT](https://intro.quantecon.org/lln_clt_intro.html) | None (midterm) | PS08; **midterm exam** |
-| 9 | 4. Microeconomic applications | Consumer theory, computationally | To be posted | Lab 9 | PS09 |
-| 10 | 4 | Producer theory, competitive markets, and welfare | To be posted | Lab 10 | PS10 |
-| 11 | 4 | Monopoly and price discrimination | To be posted | Lab 11 | PS11 |
-| 12 | 4 | Oligopoly and game theory | To be posted | Lab 12 | PS12; capstone progress check-in |
-| 13 | 4 | General equilibrium, many goods, and networks | [FC 52. Supply and Demand with Many Goods](https://intro.quantecon.org/supply_demand_multiple_goods.html); [FC 50. Networks](https://intro.quantecon.org/networks.html) | Lab 13 | PS13 |
-| 14 | 5. Estimation, AI-assisted analysis, and agent-based modeling | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | [FC 12. Simple Linear Regression Model](https://intro.quantecon.org/simple_linear_regression.html); [FC 13. Maximum Likelihood Estimation](https://intro.quantecon.org/mle_intro.html) | Lab 14 | PS14 |
+| 1 | 1. Python, Git, and AI-assisted coding foundations | Course introduction; why compute in economics; writing in Markdown and LaTeX; setup; AI policy | [PP 1. About These Lectures](https://python-programming.quantecon.org/about_py.html); [Quarto: Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html) (reference) | Lab 1 (lab01): set up your codespace | Problem Set 1 (probset01): setup and first commit |
+| 2 | 1 | Python fundamentals I: variables, control flow, functions, debugging | [PP 3. An Introductory Example](https://python-programming.quantecon.org/python_by_example.html); [PP 4. Functions](https://python-programming.quantecon.org/functions.html); [PP 5. Python Essentials](https://python-programming.quantecon.org/python_essentials.html) | Lab 2 (lab02) | Problem Set 2 (probset02) |
+| 3 | 1 | Python fundamentals II: NumPy arrays, vectorization, plotting | [PP 10. NumPy](https://python-programming.quantecon.org/numpy.html); [PP 11. Matplotlib](https://python-programming.quantecon.org/matplotlib.html) | Lab 3 (lab03) | Problem Set 3 (probset03) |
+| 4 | 2. Data handling and visualization | pandas for economic data | [PP 17. Pandas](https://python-programming.quantecon.org/pandas.html) | Lab 4 (lab04) | Problem Set 4 (probset04) |
+| 5 | 2 | Exploratory data analysis and visualization | [FC 2. Long-Run Growth](https://intro.quantecon.org/long_run_growth.html) | Lab 5 (lab05) | Problem Set 5 (probset05); capstone teams formed |
+| 6 | 3. Numerical methods | Root-finding and optimization | [PP 12. SciPy](https://python-programming.quantecon.org/scipy.html) | Lab 6 (lab06) | Problem Set 6 (probset06) |
+| 7 | 3 | Linear algebra and Markov chains | [FC 17. Linear Equations and Matrix Algebra](https://intro.quantecon.org/linear_equations.html); [FC 40. Markov Chains: Basic Concepts](https://intro.quantecon.org/markov_chains_I.html) | Lab 7 (lab07): practice midterm | Problem Set 7 (probset07); capstone proposal |
+| 8 | 3 | Randomness and simulation | [FC 10. LLN and CLT](https://intro.quantecon.org/lln_clt_intro.html) | None (midterm) | Problem Set 8 (probset08): a short review; **midterm exam** |
+| 9 | 4. Microeconomic applications | Consumer theory, computationally | To be posted | Lab 9 (lab09) | Problem Set 9 (probset09) |
+| 10 | 4 | Producer theory, competitive markets, and welfare | To be posted | Lab 10 (lab10) | Problem Set 10 (probset10) |
+| 11 | 4 | Monopoly and price discrimination | To be posted | Lab 11 (lab11) | Problem Set 11 (probset11) |
+| 12 | 4 | Oligopoly and game theory | To be posted | Lab 12 (lab12) | Problem Set 12 (probset12); capstone progress check-in |
+| 13 | 4 | General equilibrium, many goods, and networks | [FC 52. Supply and Demand with Many Goods](https://intro.quantecon.org/supply_demand_multiple_goods.html); [FC 50. Networks](https://intro.quantecon.org/networks.html) | Lab 13 (lab13) | Problem Set 13 (probset13) |
+| 14 | 5. Estimation, AI-assisted analysis, and agent-based modeling | Regression, maximum likelihood, intro machine learning; AI-assisted analysis | [FC 12. Simple Linear Regression Model](https://intro.quantecon.org/simple_linear_regression.html); [FC 13. Maximum Likelihood Estimation](https://intro.quantecon.org/mle_intro.html) | Lab 14 (lab14) | Problem Set 14 (probset14) |
 | 15 | 5 | Agent-based modeling | [FC 31. Racial Segregation](https://intro.quantecon.org/schelling.html) (the Schelling model) | Agent-based model lab | Agent-based model lab |
 | 16 | 5 | Capstone presentations and wrap-up | — | None | Capstone presentation, repository, and written summary |
 

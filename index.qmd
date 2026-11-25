@@ -8,7 +8,7 @@ Computational tools for solving and analyzing economic models: programming in Py
 
 ## This week
 
-**Week 1: Course introduction and setup.** Read the [Week 1 notebook](weeks/week01.ipynb) and complete the [Setup guide](setup.qmd) and PS01.
+**Week 1: Course introduction and setup.** Read the [Week 1 notebook](weeks/week01.ipynb) set up your codespace in Thursday's Lab 1 (lab01) with the [Setup guide](setup.qmd), and start Problem Set 1 (probset01), due Monday of Week 2 at 11:59:59 pm.
 
 ### Start here
 

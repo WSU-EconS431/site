@@ -56,10 +56,10 @@ Every problem-set notebook ends with this cell. "None" is a fine answer.
 
 ## In-class labs and the midterm
 
-The second class session of most weeks is a **lab**, done in pairs. Your ten best of twelve
+The second class session of most weeks is a **lab**, done in pairs. Your ten best of thirteen
 labs count, 1% each; each is scored 2 (a real attempt pushed by the end of class), 1 (partly
 done), or 0. Push your own copy before class ends and name your partner at the top. There is no
-Canvas submission and no make-up; the two dropped labs cover absences. The Syllabus lists which
+Canvas submission and no make-up; the three dropped labs cover absences. The Syllabus lists which
 weeks have labs.
 
 The **midterm** (Week 8, one class session) has a short part on paper and a part in your

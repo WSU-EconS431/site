@@ -5,6 +5,15 @@ title: "Schedule"
 Topics and readings by week. **Due dates are in Canvas only.** Lecture notebooks
 are linked here as each week is posted.
 
+**Everything is numbered by week.** Week 4 has Lecture notebook 4, Lab 4 (folder `lab04` in
+your repo), and Problem Set 4 (folder `probset04`). A week without a lab or problem set
+skips that number, so there is no Lab 8; a week with two problem sets adds a letter
+(`probset04a`, `probset04b`).
+
+**Each week runs the same way.** Problem Set N is released Monday of Week N and due the
+following Monday at 11:59:59 pm. Lab N is in Thursday's class and must be pushed by 11:50:59 am.
+Exact due dates are in Canvas.
+
 Readings come from two free QuantEcon lecture series:
 [Python Programming for Economics and Finance](https://python-programming.quantecon.org)
 (**PP**), by Thomas J. Sargent and John Stachurski, and

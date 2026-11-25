@@ -45,15 +45,17 @@ Edge, Firefox, or Safari), and your phone for GitHub's sign-in codes.
 
    Every line should start with `[OK]`.
 
-5. **Do PS01.** In the file list on the left, open `ps01/ps01.ipynb`. If the
-   notebook asks you to **Select Kernel** (top right), choose **Python
-   Environments**, then the one in `.venv`. Complete it, then:
+5. **Do Lab 1 (lab01)** in class on Thursday of Week 1. In the file list on the left, open
+   `lab01/lab01.ipynb`. If the notebook asks you to **Select Kernel** (top right), choose
+   **Python Environments**, then the one in `.venv`. Complete it, then:
    - In **Source Control** (the branching icon on the left), type a short
-     message such as "PS01 done" in the box and click **Commit**. Every commit
+     message such as "Lab 1 done" in the box and click **Commit**. Every commit
      needs a message.
-   - Click **Sync Changes** to push it to GitHub.
-   - On your repo's GitHub page, open the commit, copy its URL, and paste it into
-     the PS01 assignment in Canvas.
+   - Click **Sync Changes** to push it to GitHub. Labs have nothing to submit in Canvas.
+
+6. **Then do Problem Set 1 (probset01),** also already in your repo. It's due Monday of
+   Week 2 at 11:59:59 pm: commit, push, then open the commit on your repo's GitHub page,
+   copy its URL, and paste it into the Problem Set 1 assignment in Canvas.
 
 ## Each time you work {#each-time}
 
@@ -75,14 +77,20 @@ codespace time a month, or 90 once your student benefits are approved. That's
 plenty for this course if you stop your codespace when you're done. You can see
 your usage under **Settings > Billing** on GitHub.
 
-## Every problem set
+## Every problem set and lab
 
-1. **Pull** (Source Control > **Sync Changes**). The new `psNN/` folder appears.
-2. **Work** in `psNN/psNN.ipynb`, and commit whenever something works.
-3. **Restart & Run All.** If it doesn't run from top to bottom, it isn't finished.
-4. **Fill in the AI usage note** at the bottom.
-5. **Commit, push (Sync Changes), copy the commit URL** from GitHub, and **paste
-   it into Canvas** before the deadline.
+Problem sets and labs arrive in your repo as folders numbered by week: Week 4 brings
+`probset04/` (Problem Set 4) and `lab04/` (Lab 4). A week without one skips its number.
+
+1. **Pull** (Source Control > **Sync Changes**). The new `probsetNN/` or `labNN/` folder appears.
+2. **Work** in the notebook inside it (`probsetNN/probsetNN.ipynb` or `labNN/labNN.ipynb`),
+   and commit whenever something works.
+3. **Labs:** commit and push (Sync Changes) before class ends. There is nothing to
+   submit in Canvas.
+4. **Problem sets:** click **Restart**, then **Run All**. If it doesn't run from top to
+   bottom, it isn't finished. Fill in the **AI usage note** at the bottom.
+5. **Problem sets:** commit, push (Sync Changes), **copy the commit URL** from GitHub,
+   and **paste it into Canvas** before the deadline.
 
 ## Rules of the road {#rules}
 

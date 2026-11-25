@@ -76,14 +76,14 @@ working in Codespaces in the meantime.
    environment, decline: `uv sync` builds the course one.
 
 7. **Check it.** Run `uv run python check_setup.py`. Every line should start with
-   `[OK]`. Then open `ps01/ps01.ipynb`, choose the same **econs431** kernel at the
-   top right of the notebook, complete it, commit, push, and submit the commit
-   link in Canvas.
+   `[OK]`. Then open `lab01/lab01.ipynb`, choose the same **econs431** kernel at the
+   top right of the notebook, complete it, commit, and push. Problem Set 1
+   (`probset01`) is next.
 
-## Every problem set in Positron
+## Every problem set and lab in Positron
 
-1. **Pull** in Positron (Source Control > **...** > Pull). The new `psNN/` folder appears.
-2. **Work** in `psNN/psNN.ipynb`, and commit whenever something works.
+1. **Pull** in Positron (Source Control > **...** > Pull). The new `probsetNN/` or `labNN/` folder appears (numbered by week).
+2. **Work** in the notebook inside it, and commit whenever something works. For a lab, commit and push before class ends; the steps below are for problem sets.
 3. **Restart & Run All.** If it doesn't run from top to bottom, it isn't finished.
 4. **Fill in the AI usage note** at the bottom.
 5. **Push, copy the commit URL** from GitHub, and **paste it into Canvas** before
